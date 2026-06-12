@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #ECECEF; font-family: "Plus Jakarta Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: #5B4BE3; color: #fff; }
+  @keyframes beFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes beGlow { 0%,100% { opacity: .55; } 50% { opacity: .9; } }
+  @keyframes beShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+</helmet>
+
+<div style="background: #ECECEF; min-height: 100vh; color: #16181D;">
+
+  <!-- ===== STICKY SHOWCASE NAV ===== -->
+  <div style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #E2E3E9;">
+    <div style="max-width: 1340px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="display: flex; align-items: center; gap: 11px;">
+        <div style="width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(74,59,208,0.35);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>
+        </div>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: #0F1115;">BookEase</span>
+        <span style="font-size: 11px; font-weight: 600; color: #8A909C; border: 1px solid #E2E3E9; border-radius: 999px; padding: 3px 9px; margin-left: 4px; white-space: nowrap;">CASE STUDY</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 4px; font-size: 13.5px; font-weight: 600;">
+        <a href="#overview" style="color: #545A66; text-decoration: none; padding: 8px 13px; border-radius: 8px;">Overview</a>
+        <a href="#styleguide" style="color: #545A66; text-decoration: none; padding: 8px 13px; border-radius: 8px;">Style Guide</a>
+        <a href="#web" style="color: #545A66; text-decoration: none; padding: 8px 13px; border-radius: 8px;">Web</a>
+        <a href="#ios" style="color: #545A66; text-decoration: none; padding: 8px 13px; border-radius: 8px;">iOS App</a>
+        <a href="#build" style="color: #545A66; text-decoration: none; padding: 8px 13px; border-radius: 8px;">Build Notes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COVER / OVERVIEW ===== -->
+  <section id="overview" data-screen-label="Cover" style="position: relative; overflow: hidden; background: linear-gradient(158deg, #4A3DAE 0%, #362C86 55%, #2C2370 100%); color: #fff;">
+    <div style="position: absolute; top: -180px; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(circle, rgba(140,124,255,0.5), transparent 62%); filter: blur(20px); animation: beGlow 7s ease-in-out infinite;"></div>
+    <div style="position: absolute; bottom: -120px; right: 8%; width: 360px; height: 360px; background: radial-gradient(circle, rgba(200,242,92,0.18), transparent 65%); filter: blur(10px);"></div>
+    <div style="position: relative; max-width: 1340px; margin: 0 auto; padding: 96px 32px 104px;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; color: #C7CAD6; margin-bottom: 30px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #C8F25C; box-shadow: 0 0 10px #C8F25C;"></span>
+        <span style="color: #DCD9F2;">SERVICE BOOKING PLATFORM — PERSONAL TRAINING</span>
+      </div>
+      <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 84px; line-height: 0.98; letter-spacing: -0.035em; margin: 0 0 24px; max-width: 16ch;">
+        Book services faster, <span style="color: #C8F25C;">easier</span>, and smarter.
+      </h1>
+      <p style="font-size: 20px; line-height: 1.6; color: #C7C2E8; max-width: 56ch; margin: 0 0 40px; font-weight: 400;">
+        BookEase is a complete booking experience for trainers, studios and their clients — a responsive web app, an admin dashboard, and a native iOS app, all built on one design system.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 64px;">
+        <div style="display: inline-flex; align-items: center; gap: 9px; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 12px; box-shadow: 0 8px 24px rgba(91,75,227,0.4);">Book Now <span style="font-size:17px;">→</span></div>
+        <div style="display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-weight: 600; font-size: 15px; padding: 14px 24px; border-radius: 12px;">View Services</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden;">
+        <div style="background: rgba(255,255,255,0.06); padding: 24px 26px;"><div style="font-family:'Space Grotesk',sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.02em;">7</div><div style="font-size: 13px; color: #C7C2E8; margin-top: 4px;">Web screens</div></div>
+        <div style="background: rgba(255,255,255,0.06); padding: 24px 26px;"><div style="font-family:'Space Grotesk',sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.02em;">7</div><div style="font-size: 13px; color: #C7C2E8; margin-top: 4px;">iOS screens</div></div>
+        <div style="background: rgba(255,255,255,0.06); padding: 24px 26px;"><div style="font-family:'Space Grotesk',sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.02em;">14+</div><div style="font-size: 13px; color: #C7C2E8; margin-top: 4px;">Components</div></div>
+        <div style="background: rgba(255,255,255,0.06); padding: 24px 26px;"><div style="font-family:'Space Grotesk',sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.02em;">1</div><div style="font-size: 13px; color: #C7C2E8; margin-top: 4px;">Design system</div></div>
+      </div>
+    </div>
+  </section>
+
+<section id="styleguide" data-screen-label="Style Guide" style="max-width: 1340px; margin: 0 auto; padding: 90px 32px 30px;">
+    <div style="margin-bottom: 48px; max-width: 720px;">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; color: #5B4BE3; margin-bottom: 14px;">01 — FOUNDATIONS</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; color: #0F1115;">A single design system</h2>
+      <p style="font-size: 18px; line-height: 1.6; color: #545A66; margin: 0;">One source of truth for color, type, spacing and components — shared pixel-for-pixel across the Angular web app and the SwiftUI iOS app.</p>
+    </div>
+
+    <!-- COLORS -->
+    <div style="font-size: 13px; font-weight: 700; color: #16181D; margin-bottom: 16px; letter-spacing: -0.01em;">Color palette</div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 96px; background: #5B4BE3;"></div><div style="padding: 13px 15px;"><div style="font-weight: 700; font-size: 13.5px;">Primary 600</div><div style="font-size: 12px; color: #8A909C; font-family: 'Space Grotesk',sans-serif; margin-top: 2px;">#5B4BE3</div></div></div>
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 96px; background: #4A3BD0;"></div><div style="padding: 13px 15px;"><div style="font-weight: 700; font-size: 13.5px;">Primary 700</div><div style="font-size: 12px; color: #8A909C; font-family: 'Space Grotesk',sans-serif; margin-top: 2px;">#4A3BD0</div></div></div>
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 96px; background: #C8F25C; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);"></div><div style="padding: 13px 15px;"><div style="font-weight: 700; font-size: 13.5px;">Accent Lime</div><div style="font-size: 12px; color: #8A909C; font-family: 'Space Grotesk',sans-serif; margin-top: 2px;">#C8F25C</div></div></div>
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 96px; background: #0E0F14;"></div><div style="padding: 13px 15px;"><div style="font-weight: 700; font-size: 13.5px;">Ink 900</div><div style="font-size: 12px; color: #8A909C; font-family: 'Space Grotesk',sans-serif; margin-top: 2px;">#0E0F14</div></div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 16px;">
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #545A66;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Text 600</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#545A66</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #8A909C;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Muted 500</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#8A909C</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #E2E3E9; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Border 200</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#E2E3E9</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #F4F4F7; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Surface</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#F4F4F7</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #16A34A;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Success</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#16A34A</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #D97706;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Warning</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#D97706</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #E11D48;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Danger</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#E11D48</div></div></div>
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E3E9; background: #fff;"><div style="height: 64px; background: #2563EB;"></div><div style="padding: 10px 12px;"><div style="font-weight: 700; font-size: 12px;">Info</div><div style="font-size: 11px; color: #8A909C; font-family: 'Space Grotesk',sans-serif;">#2563EB</div></div></div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div style="font-size: 13px; font-weight: 700; color: #16181D; margin: 44px 0 16px; letter-spacing: -0.01em;">Typography</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 28px 30px;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px;">Space Grotesk</span><span style="font-size: 12px; color: #8A909C; font-weight: 600;">Display · Headings</span></div>
+        <div style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 52px; line-height: 1; letter-spacing: -0.03em; color: #0F1115;">Aa Bb</div>
+        <div style="font-family: 'Space Grotesk',sans-serif; font-weight: 500; font-size: 19px; color: #545A66; margin-top: 14px;">Weights 400 · 500 · 600 · 700</div>
+      </div>
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 28px 30px;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px;"><span style="font-weight: 800; font-size: 15px;">Plus Jakarta Sans</span><span style="font-size: 12px; color: #8A909C; font-weight: 600;">UI · Body</span></div>
+        <div style="font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.02em; color: #0F1115;">Aa Bb</div>
+        <div style="font-weight: 500; font-size: 19px; color: #545A66; margin-top: 14px;">Weights 400 · 500 · 600 · 700 · 800</div>
+      </div>
+    </div>
+    <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 14px 30px; margin-top: 16px;">
+      <div style="display: flex; align-items: baseline; gap: 20px; padding: 16px 0; border-bottom: 1px solid #F0F0F4;"><span style="width: 130px; font-size: 12px; color: #8A909C; font-weight: 600; flex-shrink: 0;">Display / 48–84</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 40px; letter-spacing: -0.03em; color: #0F1115;">Book with ease</span></div>
+      <div style="display: flex; align-items: baseline; gap: 20px; padding: 16px 0; border-bottom: 1px solid #F0F0F4;"><span style="width: 130px; font-size: 12px; color: #8A909C; font-weight: 600; flex-shrink: 0;">Heading / 28–32</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; color: #0F1115;">Your appointments</span></div>
+      <div style="display: flex; align-items: baseline; gap: 20px; padding: 16px 0; border-bottom: 1px solid #F0F0F4;"><span style="width: 130px; font-size: 12px; color: #8A909C; font-weight: 600; flex-shrink: 0;">Body / 16</span><span style="font-weight: 500; font-size: 16px; color: #545A66;">Choose a service, pick a time slot, and confirm your booking in seconds.</span></div>
+      <div style="display: flex; align-items: baseline; gap: 20px; padding: 16px 0;"><span style="width: 130px; font-size: 12px; color: #8A909C; font-weight: 600; flex-shrink: 0;">Caption / 12–13</span><span style="font-weight: 600; font-size: 13px; color: #8A909C; text-transform: uppercase; letter-spacing: 0.06em;">Updated 2 minutes ago</span></div>
+    </div>
+
+<div style="font-size: 13px; font-weight: 700; color: #16181D; margin: 44px 0 16px; letter-spacing: -0.01em;">Components</div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-items: start;">
+
+      <!-- Buttons -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Buttons</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+          <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 11px; box-shadow: 0 4px 12px rgba(91,75,227,0.28); transition: all .15s;" style-hover="background: #4A3BD0; transform: translateY(-1px);">Book Now</button>
+          <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 11px; transition: all .15s;" style-hover="border-color: #5B4BE3; color: #5B4BE3;">Secondary</button>
+          <button style="font-family: inherit; cursor: pointer; background: transparent; border: none; color: #5B4BE3; font-weight: 700; font-size: 14px; padding: 12px 12px; border-radius: 11px; transition: all .15s;" style-hover="background: #EEEBFD;">Ghost →</button>
+          <button style="font-family: inherit; cursor: not-allowed; background: #EEEEF1; border: none; color: #B6BBC4; font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 11px;">Disabled</button>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Status badges</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 12.5px; padding: 6px 12px; border-radius: 999px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #16A34A;"></span>Confirmed</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3D9; color: #B45309; font-weight: 700; font-size: 12.5px; padding: 6px 12px; border-radius: 999px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #D97706;"></span>Pending</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: #FCE4E9; color: #BE123C; font-weight: 700; font-size: 12.5px; padding: 6px 12px; border-radius: 999px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #E11D48;"></span>Cancelled</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: #EAEFFC; color: #1D4ED8; font-weight: 700; font-size: 12.5px; padding: 6px 12px; border-radius: 999px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #2563EB;"></span>Completed</span>
+        </div>
+      </div>
+
+      <!-- Inputs + search (full width) -->
+      <div style="grid-column: span 2; background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Inputs · Search · Validation</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; color: #16181D; margin-bottom: 7px;">Full name</label>
+            <div style="display: flex; align-items: center; height: 46px; padding: 0 14px; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; color: #16181D; font-size: 14.5px; font-weight: 500;">Jordan Hayes</div>
+            <div style="font-size: 12px; color: #8A909C; margin-top: 7px;">Default</div>
+          </div>
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; color: #16181D; margin-bottom: 7px;">Email</label>
+            <div style="display: flex; align-items: center; height: 46px; padding: 0 14px; border: 1.5px solid #5B4BE3; border-radius: 11px; background: #fff; color: #16181D; font-size: 14.5px; font-weight: 500; box-shadow: 0 0 0 4px rgba(91,75,227,0.13);">jordan@<span style="color:#B6BBC4;">|</span></div>
+            <div style="font-size: 12px; color: #5B4BE3; font-weight: 600; margin-top: 7px;">Focused</div>
+          </div>
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; color: #16181D; margin-bottom: 7px;">Phone</label>
+            <div style="display: flex; align-items: center; height: 46px; padding: 0 14px; border: 1.5px solid #E11D48; border-radius: 11px; background: #FFF7F8; color: #16181D; font-size: 14.5px; font-weight: 500;">07-</div>
+            <div style="font-size: 12px; color: #E11D48; font-weight: 600; margin-top: 7px;">Enter a valid phone number</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 11px; height: 50px; padding: 0 16px; border: 1px solid #DDDFE6; border-radius: 13px; background: #F7F7FA; margin-top: 20px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg>
+          <span style="font-size: 14.5px; color: #8A909C; font-weight: 500;">Search services, trainers, or categories…</span>
+        </div>
+      </div>
+
+      <!-- Filter chips -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Filter chips</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+          <span style="background: #5B4BE3; color: #fff; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">All</span>
+          <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">Strength</span>
+          <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">HIIT</span>
+          <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">Mobility</span>
+          <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 999px;">Recovery</span>
+        </div>
+      </div>
+
+      <!-- Dashboard stat card -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Stat card</div>
+        <div style="border: 1px solid #ECECEF; border-radius: 14px; padding: 18px 20px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <div style="width: 38px; height: 38px; border-radius: 10px; background: #EEEBFD; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <span style="font-size: 12.5px; font-weight: 700; color: #15803D; background: #E7F8EE; padding: 4px 9px; border-radius: 999px;">+12%</span>
+          </div>
+          <div style="font-family: 'Space Grotesk',sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">1,284</div>
+          <div style="font-size: 13.5px; color: #8A909C; font-weight: 500; margin-top: 2px;">Total bookings</div>
+        </div>
+      </div>
+
+      <!-- Service card -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Service card</div>
+        <div style="border: 1px solid #ECECEF; border-radius: 14px; overflow: hidden;">
+          <div style="height: 96px; background: linear-gradient(135deg, #5B4BE3, #8273F0); position: relative;"><span style="position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.9); color: #4A3BD0; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px;">STRENGTH</span></div>
+          <div style="padding: 16px 18px;">
+            <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">1:1 Strength Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$65</span></div>
+            <div style="font-size: 13px; color: #8A909C; margin: 6px 0 14px; display: flex; gap: 12px;"><span>⏱ 60 min</span><span>★ 4.9 (212)</span></div>
+            <button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking card -->
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Booking card</div>
+        <div style="border: 1px solid #ECECEF; border-radius: 14px; padding: 16px 18px; display: flex; gap: 14px; align-items: center;">
+          <div style="width: 52px; height: 52px; border-radius: 12px; background: #EEEBFD; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;"><span style="font-size: 11px; font-weight: 700; color: #5B4BE3;">JUN</span><span style="font-family: 'Space Grotesk',sans-serif; font-size: 19px; font-weight: 700; color: #4A3BD0; line-height: 1;">14</span></div>
+          <div style="flex: 1; min-width: 0;"><div style="font-weight: 700; font-size: 15px; color: #16181D;">HIIT Bootcamp</div><div style="font-size: 13px; color: #8A909C; margin-top: 3px;">10:30 AM · Coach Mia</div></div>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 12px; padding: 6px 11px; border-radius: 999px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #16A34A;"></span>Confirmed</span>
+        </div>
+      </div>
+
+      <!-- Table (full width) -->
+      <div style="grid-column: span 2; background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Table row</div>
+        <div style="border: 1px solid #ECECEF; border-radius: 14px; overflow: hidden;">
+          <div style="display: grid; grid-template-columns: 1.4fr 1.4fr 1fr 0.9fr 0.6fr; gap: 16px; padding: 13px 20px; background: #F7F7FA; font-size: 12px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.05em;"><span>Customer</span><span>Service</span><span>Date</span><span>Status</span><span style="text-align: right;">Actions</span></div>
+          <div style="display: grid; grid-template-columns: 1.4fr 1.4fr 1fr 0.9fr 0.6fr; gap: 16px; padding: 15px 20px; align-items: center; border-top: 1px solid #F0F0F4; font-size: 14px;"><span style="font-weight: 600; color: #16181D;">Jordan Hayes</span><span style="color: #545A66;">1:1 Strength Coaching</span><span style="color: #545A66;">Jun 14, 10:30</span><span><span style="display: inline-flex; align-items: center; gap: 6px; background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 12px; padding: 5px 10px; border-radius: 999px;">Confirmed</span></span><span style="text-align: right; color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span></div>
+          <div style="display: grid; grid-template-columns: 1.4fr 1.4fr 1fr 0.9fr 0.6fr; gap: 16px; padding: 15px 20px; align-items: center; border-top: 1px solid #F0F0F4; font-size: 14px;"><span style="font-weight: 600; color: #16181D;">Priya Patel</span><span style="color: #545A66;">HIIT Bootcamp</span><span style="color: #545A66;">Jun 14, 12:00</span><span><span style="display: inline-flex; align-items: center; gap: 6px; background: #FEF3D9; color: #B45309; font-weight: 700; font-size: 12px; padding: 5px 10px; border-radius: 999px;">Pending</span></span><span style="text-align: right; color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span></div>
+        </div>
+      </div>
+
+      <!-- States (full width) -->
+      <div style="grid-column: span 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+          <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Empty state</div>
+          <div style="text-align: center; padding: 18px 8px;">
+            <div style="width: 56px; height: 56px; border-radius: 16px; background: #F2F2F5; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#B6BBC4" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div style="font-weight: 700; font-size: 15px; color: #16181D;">No bookings yet</div>
+            <div style="font-size: 13px; color: #8A909C; margin: 6px 0 16px;">Your upcoming appointments will appear here.</div>
+            <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 10px;">Browse services</button>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+          <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Error state</div>
+          <div style="text-align: center; padding: 18px 8px;">
+            <div style="width: 56px; height: 56px; border-radius: 16px; background: #FCE4E9; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#E11D48" stroke-width="2"/><path d="M12 7v6M12 16.5v.5" stroke="#E11D48" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+            <div style="font-weight: 700; font-size: 15px; color: #16181D;">Something went wrong</div>
+            <div style="font-size: 13px; color: #8A909C; margin: 6px 0 16px;">We couldn't load your bookings. Please retry.</div>
+            <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 10px;">Try again</button>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px;">
+          <div style="font-size: 11.5px; font-weight: 700; color: #8A909C; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;">Loading state</div>
+          <div style="padding: 6px 0;">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(90deg,#F0F0F4,#E6E6EB,#F0F0F4); background-size: 200% 100%; animation: beShimmer 1.3s infinite;"></div><div style="flex: 1;"><div style="height: 12px; width: 70%; border-radius: 6px; background: linear-gradient(90deg,#F0F0F4,#E6E6EB,#F0F0F4); background-size: 200% 100%; animation: beShimmer 1.3s infinite; margin-bottom: 8px;"></div><div style="height: 10px; width: 45%; border-radius: 6px; background: linear-gradient(90deg,#F0F0F4,#E6E6EB,#F0F0F4); background-size: 200% 100%; animation: beShimmer 1.3s infinite;"></div></div></div>
+            <div style="height: 12px; width: 100%; border-radius: 6px; background: linear-gradient(90deg,#F0F0F4,#E6E6EB,#F0F0F4); background-size: 200% 100%; animation: beShimmer 1.3s infinite; margin-bottom: 10px;"></div>
+            <div style="height: 12px; width: 85%; border-radius: 6px; background: linear-gradient(90deg,#F0F0F4,#E6E6EB,#F0F0F4); background-size: 200% 100%; animation: beShimmer 1.3s infinite;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<section id="web" data-screen-label="Web App" style="background: #E6E6EA; padding: 88px 32px 30px;">
+    <div style="max-width: 1340px; margin: 0 auto;">
+      <div style="margin-bottom: 44px; max-width: 720px;">
+        <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; color: #5B4BE3; margin-bottom: 14px;">02 — RESPONSIVE WEB APP</div>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; color: #0F1115;">The customer & marketing site</h2>
+        <p style="font-size: 18px; line-height: 1.6; color: #545A66; margin: 0;">Built to map cleanly onto Angular components — a marketing landing page, service discovery, and the full booking flow.</p>
+      </div>
+
+      <!-- ===== LANDING PAGE ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Landing page</span>
+          <span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ marketing</span>
+        </div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;">
+            <div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div>
+            <div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 12.5px; color: #8A909C;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#8A909C" stroke-width="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke="#8A909C" stroke-width="2"/></svg>bookease.app</div>
+          </div>
+
+          <!-- LANDING CONTENT -->
+          <div style="background: #fff;">
+            <!-- navbar -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #F1F1F4;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div>
+                <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.02em;">BookEase</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; color: #545A66;"><span>Services</span><span>How it works</span><span>Pricing</span><span>Contact</span></div>
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <span style="font-size: 14.5px; font-weight: 700; color: #16181D;">Log in</span>
+                <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14px; padding: 11px 20px; border-radius: 11px; box-shadow: 0 4px 12px rgba(91,75,227,0.28);">Book Now</button>
+              </div>
+            </div>
+
+            <!-- hero -->
+            <div style="display: grid; grid-template-columns: 1.04fr 0.96fr; gap: 56px; padding: 72px 40px; align-items: center;">
+              <div>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 999px; margin-bottom: 24px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #5B4BE3;"></span>Personal training, on your schedule</div>
+                <h1 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 58px; line-height: 1.0; letter-spacing: -0.035em; margin: 0 0 22px; color: #0F1115;">Train with the best. Book in seconds.</h1>
+                <p style="font-size: 18.5px; line-height: 1.6; color: #545A66; margin: 0 0 32px; max-width: 46ch;">Find a coach, pick a time that fits your week, and lock in your session — no calls, no back-and-forth.</p>
+                <div style="display: flex; gap: 14px; margin-bottom: 36px;">
+                  <button style="font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15.5px; padding: 15px 28px; border-radius: 13px; box-shadow: 0 8px 22px rgba(91,75,227,0.32);">Book Now <span style="font-size: 17px;">→</span></button>
+                  <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 15.5px; padding: 15px 28px; border-radius: 13px;">View Services</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <div style="display: flex;"><image-slot id="be-av-1" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%;" shape="circle" placeholder=""></image-slot><image-slot id="be-av-2" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%; margin-left: -12px;" shape="circle" placeholder=""></image-slot><image-slot id="be-av-3" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%; margin-left: -12px;" shape="circle" placeholder=""></image-slot></div>
+                  <div><div style="font-weight: 700; font-size: 14px; color: #16181D;">★★★★★ 4.9</div><div style="font-size: 13px; color: #8A909C;">2,400+ sessions booked</div></div>
+                </div>
+              </div>
+              <div style="position: relative;">
+                <image-slot id="be-hero" style="width: 100%; height: 460px; border-radius: 22px;" shape="rounded" radius="22" placeholder="Drop a hero / trainer photo"></image-slot>
+                <div style="position: absolute; bottom: 22px; left: -24px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 16px 18px; box-shadow: 0 16px 40px rgba(16,17,22,0.16); display: flex; gap: 13px; align-items: center; animation: beFloat 5s ease-in-out infinite;">
+                  <div style="width: 46px; height: 46px; border-radius: 12px; background: #EEEBFD; display: flex; flex-direction: column; align-items: center; justify-content: center;"><span style="font-size: 10px; font-weight: 700; color: #5B4BE3;">JUN</span><span style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #4A3BD0; line-height: 1;">14</span></div>
+                  <div><div style="font-weight: 700; font-size: 14px; color: #16181D;">Session confirmed</div><div style="font-size: 12.5px; color: #8A909C;">10:30 AM · Coach Mia</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- services preview -->
+            <div style="padding: 8px 40px 72px;">
+              <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px;">
+                <div><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">SERVICES</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Popular services</h2></div>
+                <span style="font-size: 14.5px; font-weight: 700; color: #5B4BE3;">View all →</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-1" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">1:1 Strength Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$65</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">Personalised lifting program with a dedicated coach.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 60 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-2" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">HIIT Bootcamp</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$30</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">High-intensity group circuit to torch calories fast.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 45 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-3" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">Mobility & Recovery</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$45</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">Guided stretch and recovery to keep you injury-free.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 50 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- how it works -->
+            <div style="background: #F7F7FA; padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 44px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">HOW IT WORKS</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Booked in three steps</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">1</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Choose a service</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">Browse coaches and programs, filter by what you need.</p></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">2</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Pick a time slot</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">See live availability and select the slot that fits.</p></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">3</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Confirm & go</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">Get instant confirmation and a calendar invite.</p></div>
+              </div>
+            </div>
+
+            <!-- why choose us -->
+            <div style="padding: 64px 40px;">
+              <div style="margin-bottom: 36px; max-width: 600px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">WHY BOOKEASE</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Everything in one place</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#5B4BE3"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Instant booking</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Real-time availability, no waiting on a callback.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#5B4BE3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Verified coaches</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Every trainer is certified and client-reviewed.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Flexible reschedule</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Move or cancel up to 12 hours before, free.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2" stroke="#5B4BE3" stroke-width="2"/><path d="M2 20h20" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Secure payments</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Pay safely in-app with saved cards or Apple Pay.</p></div>
+              </div>
+            </div>
+
+            <!-- testimonials -->
+            <div style="background: #F7F7FA; padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 40px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">TESTIMONIALS</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Loved by clients & coaches</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 940px; margin: 0 auto;">
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 30px;"><div style="color: #C8A93C; font-size: 15px; margin-bottom: 14px;">★★★★★</div><p style="font-size: 16.5px; line-height: 1.6; color: #16181D; margin: 0 0 22px; font-weight: 500;">"I booked three sessions in under a minute. BookEase made finding a coach genuinely effortless."</p><div style="display: flex; align-items: center; gap: 12px;"><image-slot id="be-t-1" style="width: 44px; height: 44px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 14.5px;">Jordan Hayes</div><div style="font-size: 13px; color: #8A909C;">Member since 2025</div></div></div></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 30px;"><div style="color: #C8A93C; font-size: 15px; margin-bottom: 14px;">★★★★★</div><p style="font-size: 16.5px; line-height: 1.6; color: #16181D; margin: 0 0 22px; font-weight: 500;">"As a trainer, the admin dashboard saves me hours every week. My calendar finally runs itself."</p><div style="display: flex; align-items: center; gap: 12px;"><image-slot id="be-t-2" style="width: 44px; height: 44px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 14.5px;">Coach Mia Reyes</div><div style="font-size: 13px; color: #8A909C;">Strength specialist</div></div></div></div>
+              </div>
+            </div>
+
+            <!-- pricing -->
+            <div style="padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 44px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">PACKAGES</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Simple, fair pricing</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1000px; margin: 0 auto;">
+                <div style="border: 1px solid #ECECEF; border-radius: 20px; padding: 32px;"><div style="font-weight: 700; font-size: 15px; color: #8A909C; margin-bottom: 14px;">Starter</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$0</div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">Pay per session</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Book any service</span><span>✓ Reminders & calendar sync</span><span>✓ In-app payments</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px;">Get started</button></div>
+                <div style="border: 2px solid #5B4BE3; border-radius: 20px; padding: 42px 32px 32px; position: relative; box-shadow: 0 20px 44px rgba(91,75,227,0.18);"><span style="position: absolute; top: -13px; left: 32px; background: #5B4BE3; color: #fff; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px;">MOST POPULAR</span><div style="font-weight: 700; font-size: 15px; color: #5B4BE3; margin-bottom: 14px;">Pro</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$49<span style="font-size: 17px; color: #8A909C; font-weight: 600;">/mo</span></div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">8 sessions / month</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Everything in Starter</span><span>✓ Priority slots</span><span>✓ Free rescheduling</span><span>✓ Progress tracking</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Choose Pro</button></div>
+                <div style="border: 1px solid #ECECEF; border-radius: 20px; padding: 32px;"><div style="font-weight: 700; font-size: 15px; color: #8A909C; margin-bottom: 14px;">Elite</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$99<span style="font-size: 17px; color: #8A909C; font-weight: 600;">/mo</span></div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">Unlimited sessions</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Everything in Pro</span><span>✓ Dedicated coach</span><span>✓ Custom nutrition plan</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px;">Choose Elite</button></div>
+              </div>
+            </div>
+
+            <!-- contact CTA + footer -->
+            <div style="background: linear-gradient(158deg, #4A3DAE, #2C2370); padding: 64px 40px; color: #fff;">
+              <div style="display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; max-width: 1000px; margin: 0 auto 56px;">
+                <div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 38px; letter-spacing: -0.025em; margin: 0 0 10px;">Ready to start training?</h2><p style="font-size: 17px; color: #C7C2E8; margin: 0;">Join thousands booking smarter with BookEase.</p></div>
+                <button style="font-family: inherit; cursor: pointer; border: none; background: #C8F25C; color: #1B2906; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 13px; white-space: nowrap;">Book your first session</button>
+              </div>
+              <div style="border-top: 1px solid rgba(255,255,255,0.14); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px;">BookEase</span></div>
+                <div style="display: flex; gap: 28px; font-size: 14px; color: #C7C2E8; font-weight: 500;"><span>Services</span><span>Pricing</span><span>About</span><span>Contact</span><span>Privacy</span></div>
+                <div style="font-size: 13px; color: #9890C9;">© 2026 BookEase Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- ===== SERVICES LISTING ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Services listing</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ discovery</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/services</div></div>
+          <!-- app nav -->
+          <div style="display: flex; align-items: center; gap: 24px; padding: 16px 32px; border-bottom: 1px solid #F1F1F4;">
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px;">BookEase</span></div>
+            <div style="flex: 1; max-width: 440px; display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 14px; border: 1px solid #E2E3E9; border-radius: 11px; background: #F7F7FA;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 14px; color: #8A909C;">Search services or coaches…</span></div>
+            <div style="display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 600; color: #545A66;"><span>My bookings</span><span>Help</span></div>
+            <image-slot id="be-user" style="width: 36px; height: 36px; border-radius: 50%;" shape="circle" placeholder=""></image-slot>
+          </div>
+          <!-- content -->
+          <div style="padding: 32px 32px 40px; background: #FBFBFC;">
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 22px;"><div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0 0 4px; color: #0F1115;">Browse services</h2><div style="font-size: 14px; color: #8A909C;">Showing 6 of 24 services</div></div><div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid #E2E3E9; border-radius: 10px; background: #fff; font-size: 13.5px; font-weight: 600; color: #16181D;">Sort: Popular <span style="color: #8A909C;">▾</span></div></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 26px;">
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">All</span>
+              <span style="background: #5B4BE3; color: #fff; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Strength</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">HIIT</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Mobility</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Recovery</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Nutrition</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Online</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-1" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">1:1 Strength Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$65</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 60 min</span><span>★ 4.9 (212)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Personalised lifting program with a dedicated coach.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-2" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">HIIT Bootcamp</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$30</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 45 min</span><span>★ 4.8 (340)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">High-intensity group circuit to torch calories fast.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-3" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Mobility & Recovery</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$45</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 50 min</span><span>★ 4.9 (98)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Guided stretch and recovery to keep you injury-free.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-4" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Nutrition Consult</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$55</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 40 min</span><span>★ 5.0 (76)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Build a meal plan tailored to your training goals.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-5" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Online Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$40</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 30 min</span><span>★ 4.7 (154)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Remote video coaching with weekly check-ins.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-6" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Fitness Assessment</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$35</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 45 min</span><span>★ 4.9 (61)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Full-body baseline test to map your starting point.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOOKING FORM ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Booking form</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ checkout</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/book</div></div>
+          <div style="padding: 36px 40px 44px; background: #FBFBFC;">
+            <div style="margin-bottom: 8px;"><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0 0 18px; color: #0F1115;">Book your session</h2>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #5B4BE3;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #5B4BE3; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px;">1</span>Service</span>
+                <span style="width: 28px; height: 2px; background: #5B4BE3;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #5B4BE3;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #5B4BE3; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px;">2</span>Details</span>
+                <span style="width: 28px; height: 2px; background: #E2E3E9;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #B6BBC4;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #E2E3E9; color: #8A909C; display: flex; align-items: center; justify-content: center; font-size: 12px;">3</span>Confirm</span>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start;">
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px 30px;">
+                <!-- date -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Select a date</div>
+                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 26px;">
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">MON</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">12</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">TUE</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">13</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; background: #5B4BE3; cursor: pointer; box-shadow: 0 6px 14px rgba(91,75,227,0.3);"><div style="font-size: 11.5px; color: #D9D3FA; font-weight: 600;">WED</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 3px;">14</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">THU</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">15</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">FRI</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">16</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; opacity: 0.45; cursor: not-allowed;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">SAT</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">17</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">SUN</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">18</div></div>
+                </div>
+                <!-- time -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Available time slots</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 26px;">
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">9:00 AM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1.5px solid #5B4BE3; background: #EEEBFD; font-size: 14px; font-weight: 700; color: #4A3BD0; cursor: pointer;">10:30 AM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">12:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #B6BBC4; text-decoration: line-through; cursor: not-allowed;">1:30 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">3:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">4:30 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">6:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">7:30 PM</div>
+                </div>
+                <!-- customer details -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Your details</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                  <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Full name</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">Jordan Hayes</div></div>
+                  <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Phone</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">+1 415 555 0199</div></div>
+                </div>
+                <div style="margin-bottom: 14px;"><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Email</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">jordan@email.com</div></div>
+                <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Notes <span style="color: #B6BBC4; font-weight: 500;">(optional)</span></label><div style="min-height: 76px; padding: 12px 14px; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14px; color: #8A909C; line-height: 1.5;">Recovering from a minor knee strain — please keep impact low.</div></div>
+              </div>
+              <!-- summary -->
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 26px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 18px;">Booking summary</div>
+                <div style="display: flex; gap: 13px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #F0F0F4; margin-bottom: 18px;"><image-slot id="be-sum" style="width: 54px; height: 54px; border-radius: 12px;" shape="rounded" radius="12" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 15px; color: #16181D;">1:1 Strength Coaching</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">with Coach Mia</div></div></div>
+                <div style="display: flex; flex-direction: column; gap: 13px; font-size: 14px; margin-bottom: 18px;"><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Date</span><span style="color: #16181D; font-weight: 600;">Wed, Jun 14</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Time</span><span style="color: #16181D; font-weight: 600;">10:30 AM</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Duration</span><span style="color: #16181D; font-weight: 600;">60 min</span></div></div>
+                <div style="display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid #F0F0F4; margin-bottom: 22px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Total</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 20px; color: #5B4BE3;">$65.00</span></div>
+                <button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Confirm booking</button>
+                <div style="text-align: center; font-size: 12px; color: #8A909C; margin-top: 12px;">Free cancellation up to 12h before</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CONFIRMATION ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Booking confirmation</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ success</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/confirmed</div></div>
+          <div style="padding: 64px 40px; background: #FBFBFC; display: flex; flex-direction: column; align-items: center;">
+            <div style="width: 76px; height: 76px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center; margin-bottom: 22px;"><div style="width: 52px; height: 52px; border-radius: 50%; background: #16A34A; display: flex; align-items: center; justify-content: center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin: 0 0 8px; color: #0F1115;">Booking confirmed!</h2>
+            <p style="font-size: 16px; color: #545A66; margin: 0 0 32px; text-align: center;">We've sent the details and a calendar invite to <span style="color: #16181D; font-weight: 600;">jordan@email.com</span></p>
+            <div style="width: 100%; max-width: 460px; background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 26px 28px; margin-bottom: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px dashed #E2E3E9; margin-bottom: 16px;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">Booking ID</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #5B4BE3;">#BK-20416</span></div>
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14.5px;">
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Service</span><span style="color: #16181D; font-weight: 600;">1:1 Strength Coaching</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Date & time</span><span style="color: #16181D; font-weight: 600;">Wed, Jun 14 · 10:30 AM</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Coach</span><span style="color: #16181D; font-weight: 600;">Mia Reyes</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Customer</span><span style="color: #16181D; font-weight: 600;">Jordan Hayes</span></div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px;">
+              <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px 26px; border-radius: 12px;">Back to Home</button>
+              <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14.5px; padding: 13px 26px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">View Bookings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Admin dashboard</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ business owner</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">admin.bookease.app</div></div>
+          <div style="display: flex; min-height: 620px;">
+            <!-- sidebar -->
+            <div style="width: 232px; background: linear-gradient(180deg, #3A2F8F, #29205F); padding: 24px 16px; display: flex; flex-direction: column; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px 24px;"><div style="width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 17px; color: #fff;">BookEase</span></div>
+              <div style="font-size: 11px; font-weight: 700; color: #8F86C7; letter-spacing: 0.1em; padding: 0 10px 10px;">MENU</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; background: rgba(255,255,255,0.14); color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" fill="#C8F25C"/><rect x="14" y="3" width="7" height="5" rx="2" fill="#fff" opacity="0.7"/><rect x="14" y="12" width="7" height="9" rx="2" fill="#fff" opacity="0.7"/><rect x="3" y="16" width="7" height="5" rx="2" fill="#fff" opacity="0.7"/></svg>Dashboard</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#C7C2E8" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Bookings</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" stroke="#C7C2E8" stroke-width="2" stroke-linejoin="round"/></svg>Services</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C7C2E8" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Clients</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#C7C2E8" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Settings</div>
+              <div style="margin-top: auto; display: flex; align-items: center; gap: 11px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.08);"><image-slot id="be-admin" style="width: 36px; height: 36px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div style="min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mia Reyes</div><div style="font-size: 12px; color: #9890C9;">Owner</div></div></div>
+            </div>
+            <!-- main -->
+            <div style="flex: 1; background: #FBFBFC; min-width: 0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 30px; border-bottom: 1px solid #F1F1F4; background: #fff;">
+                <div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Dashboard</h2><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Wednesday, June 14 · 2026</div></div>
+                <div style="display: flex; align-items: center; gap: 14px;"><div style="display: flex; align-items: center; gap: 9px; height: 40px; padding: 0 14px; border: 1px solid #E2E3E9; border-radius: 10px; background: #F7F7FA; font-size: 13.5px; color: #8A909C; width: 200px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg>Search…</div><button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 10px 18px; border-radius: 10px;">+ New booking</button></div>
+              </div>
+              <div style="padding: 26px 30px 32px;">
+                <!-- stat cards -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 20px;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #EEEBFD; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><span style="font-size: 12px; font-weight: 700; color: #15803D; background: #E7F8EE; padding: 3px 8px; border-radius: 999px;">+12%</span></div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">1,284</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Total bookings</div></div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 20px;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #E7F8EE; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#16A34A" stroke-width="2"/><path d="M12 7v5l3 2" stroke="#16A34A" stroke-width="2" stroke-linecap="round"/></svg></div><span style="font-size: 12px; font-weight: 700; color: #15803D; background: #E7F8EE; padding: 3px 8px; border-radius: 999px;">+5%</span></div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">38</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Today's bookings</div></div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 20px;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #EAEFFC; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/></svg></div><span style="font-size: 12px; font-weight: 700; color: #15803D; background: #E7F8EE; padding: 3px 8px; border-radius: 999px;">+18%</span></div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$24,180</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Revenue (MTD)</div></div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 20px;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #FEF3D9; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D97706" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="#D97706" stroke-width="2.2" stroke-linecap="round"/></svg></div><span style="font-size: 12px; font-weight: 700; color: #B45309; background: #FEF3D9; padding: 3px 8px; border-radius: 999px;">7 new</span></div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">12</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Pending bookings</div></div>
+                </div>
+                <!-- recent + today -->
+                <div style="display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; align-items: start;">
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid #F1F1F4;"><span style="font-weight: 700; font-size: 15.5px; color: #16181D;">Recent bookings</span><span style="font-size: 13px; font-weight: 700; color: #5B4BE3;">View all</span></div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 0.9fr; gap: 12px; padding: 12px 22px; background: #FAFAFB; font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.05em;"><span>Customer</span><span>Service</span><span>Time</span><span>Status</span></div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 0.9fr; gap: 12px; padding: 14px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Jordan Hayes</span><span style="color: #545A66;">Strength Coaching</span><span style="color: #545A66;">10:30 AM</span><span><span style="background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 11.5px; padding: 4px 9px; border-radius: 999px;">Confirmed</span></span></div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 0.9fr; gap: 12px; padding: 14px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Priya Patel</span><span style="color: #545A66;">HIIT Bootcamp</span><span style="color: #545A66;">12:00 PM</span><span><span style="background: #FEF3D9; color: #B45309; font-weight: 700; font-size: 11.5px; padding: 4px 9px; border-radius: 999px;">Pending</span></span></div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 0.9fr; gap: 12px; padding: 14px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Marcus Lee</span><span style="color: #545A66;">Mobility & Recovery</span><span style="color: #545A66;">2:00 PM</span><span><span style="background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 11.5px; padding: 4px 9px; border-radius: 999px;">Confirmed</span></span></div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 0.9fr; gap: 12px; padding: 14px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Sara Kim</span><span style="color: #545A66;">Nutrition Consult</span><span style="color: #545A66;">4:30 PM</span><span><span style="background: #FCE4E9; color: #BE123C; font-weight: 700; font-size: 11.5px; padding: 4px 9px; border-radius: 999px;">Cancelled</span></span></div>
+                  </div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 20px 22px;">
+                    <div style="font-weight: 700; font-size: 15.5px; color: #16181D; margin-bottom: 18px;">Bookings this week</div>
+                    <div style="display: flex; align-items: flex-end; gap: 10px; height: 130px; margin-bottom: 12px;">
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 52px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">M</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 78px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">T</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 104px; background: #5B4BE3; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #5B4BE3; font-weight: 700;">W</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 66px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">T</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 90px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">F</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 44px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">S</span></div>
+                      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px;"><div style="width: 100%; height: 30px; background: #E6E2FB; border-radius: 7px 7px 4px 4px;"></div><span style="font-size: 11px; color: #8A909C; font-weight: 600;">S</span></div>
+                    </div>
+                    <div style="padding-top: 16px; border-top: 1px solid #F1F1F4; display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 13px; color: #8A909C;">Avg / day</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 20px; color: #16181D;">42</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOOKING MANAGEMENT ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Booking management</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ admin</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">admin.bookease.app/bookings</div></div>
+          <div style="display: flex; min-height: 580px;">
+            <div style="width: 232px; background: linear-gradient(180deg, #3A2F8F, #29205F); padding: 24px 16px; display: flex; flex-direction: column; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px 24px;"><div style="width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 17px; color: #fff;">BookEase</span></div>
+              <div style="font-size: 11px; font-weight: 700; color: #8F86C7; letter-spacing: 0.1em; padding: 0 10px 10px;">MENU</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="#C7C2E8" stroke-width="2"/></svg>Dashboard</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; background: rgba(255,255,255,0.14); color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#C8F25C" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#C8F25C" stroke-width="2" stroke-linecap="round"/></svg>Bookings</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" stroke="#C7C2E8" stroke-width="2" stroke-linejoin="round"/></svg>Services</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C7C2E8" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Clients</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#C7C2E8" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Settings</div>
+              <div style="margin-top: auto; display: flex; align-items: center; gap: 11px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.08);"><image-slot id="be-admin2" style="width: 36px; height: 36px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div style="min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mia Reyes</div><div style="font-size: 12px; color: #9890C9;">Owner</div></div></div>
+            </div>
+            <div style="flex: 1; background: #FBFBFC; min-width: 0;">
+              <div style="padding: 22px 30px; border-bottom: 1px solid #F1F1F4; background: #fff;"><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Bookings</h2><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">Manage every appointment in one place</div></div>
+              <div style="padding: 24px 30px 32px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
+                  <div style="display: flex; gap: 7px;">
+                    <span style="background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13px; padding: 8px 15px; border-radius: 9px;">All · 128</span>
+                    <span style="background: #fff; border: 1px solid #E2E3E9; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 9px;">Confirmed</span>
+                    <span style="background: #fff; border: 1px solid #E2E3E9; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 9px;">Pending</span>
+                    <span style="background: #fff; border: 1px solid #E2E3E9; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 9px;">Cancelled</span>
+                  </div>
+                  <div style="display: flex; gap: 10px;"><div style="display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 13px; border: 1px solid #E2E3E9; border-radius: 9px; background: #fff; font-size: 13px; color: #545A66; font-weight: 600;">📅 Jun 2026</div><div style="display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 13px; border: 1px solid #E2E3E9; border-radius: 9px; background: #F7F7FA; font-size: 13px; color: #8A909C;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg>Search</div></div>
+                </div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; overflow: hidden;">
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 13px 22px; background: #FAFAFB; font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.05em;"><span>Customer</span><span>Service</span><span>Date & time</span><span>Status</span><span style="text-align: right;">Actions</span></div>
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 15px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Jordan Hayes</span><span style="color: #545A66;">1:1 Strength Coaching</span><span style="color: #545A66;">Jun 14, 10:30 AM</span><span><span style="background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 11.5px; padding: 4px 10px; border-radius: 999px;">Confirmed</span></span><span style="text-align: right; display: flex; gap: 14px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span><span style="color: #8A909C; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Cancel</span></span></div>
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 15px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Priya Patel</span><span style="color: #545A66;">HIIT Bootcamp</span><span style="color: #545A66;">Jun 14, 12:00 PM</span><span><span style="background: #FEF3D9; color: #B45309; font-weight: 700; font-size: 11.5px; padding: 4px 10px; border-radius: 999px;">Pending</span></span><span style="text-align: right; display: flex; gap: 14px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span><span style="color: #8A909C; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Cancel</span></span></div>
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 15px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Marcus Lee</span><span style="color: #545A66;">Mobility & Recovery</span><span style="color: #545A66;">Jun 14, 2:00 PM</span><span><span style="background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 11.5px; padding: 4px 10px; border-radius: 999px;">Confirmed</span></span><span style="text-align: right; display: flex; gap: 14px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span><span style="color: #8A909C; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Cancel</span></span></div>
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 15px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Sara Kim</span><span style="color: #545A66;">Nutrition Consult</span><span style="color: #545A66;">Jun 14, 4:30 PM</span><span><span style="background: #FCE4E9; color: #BE123C; font-weight: 700; font-size: 11.5px; padding: 4px 10px; border-radius: 999px;">Cancelled</span></span><span style="text-align: right; display: flex; gap: 14px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span><span style="color: #8A909C; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Cancel</span></span></div>
+                  <div style="display: grid; grid-template-columns: 1.4fr 1.5fr 1.2fr 0.9fr 1fr; gap: 14px; padding: 15px 22px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span style="font-weight: 600; color: #16181D;">Tom Becker</span><span style="color: #545A66;">Online Coaching</span><span style="color: #545A66;">Jun 15, 9:00 AM</span><span><span style="background: #EAEFFC; color: #1D4ED8; font-weight: 700; font-size: 11.5px; padding: 4px 10px; border-radius: 999px;">Completed</span></span><span style="text-align: right; display: flex; gap: 14px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">View</span><span style="color: #8A909C; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Cancel</span></span></div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 16px; font-size: 13px; color: #8A909C;"><span>Showing 1–5 of 128</span><div style="display: flex; gap: 6px;"><span style="width: 32px; height: 32px; border: 1px solid #E2E3E9; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff;">‹</span><span style="width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #5B4BE3; color: #fff; font-weight: 700;">1</span><span style="width: 32px; height: 32px; border: 1px solid #E2E3E9; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff;">2</span><span style="width: 32px; height: 32px; border: 1px solid #E2E3E9; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff;">3</span><span style="width: 32px; height: 32px; border: 1px solid #E2E3E9; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff;">›</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SERVICE MANAGEMENT ===== -->
+      <div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Service management</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ admin · add &amp; edit</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">admin.bookease.app/services</div></div>
+          <div style="display: flex; min-height: 560px;">
+            <div style="width: 232px; background: linear-gradient(180deg, #3A2F8F, #29205F); padding: 24px 16px; display: flex; flex-direction: column; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px 24px;"><div style="width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 17px; color: #fff;">BookEase</span></div>
+              <div style="font-size: 11px; font-weight: 700; color: #8F86C7; letter-spacing: 0.1em; padding: 0 10px 10px;">MENU</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="#C7C2E8" stroke-width="2"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="#C7C2E8" stroke-width="2"/></svg>Dashboard</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#C7C2E8" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Bookings</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; background: rgba(255,255,255,0.14); color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>Services</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px; margin-bottom: 3px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C7C2E8" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Clients</div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 11px; color: #C7C2E8; font-weight: 600; font-size: 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#C7C2E8" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="#C7C2E8" stroke-width="2" stroke-linecap="round"/></svg>Settings</div>
+              <div style="margin-top: auto; display: flex; align-items: center; gap: 11px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.08);"><image-slot id="be-admin3" style="width: 36px; height: 36px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div style="min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: #fff;">Mia Reyes</div><div style="font-size: 12px; color: #9890C9;">Owner</div></div></div>
+            </div>
+            <div style="flex: 1; background: #FBFBFC; min-width: 0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 30px; border-bottom: 1px solid #F1F1F4; background: #fff;"><div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Services</h2><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">6 active services</div></div><button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px 18px; border-radius: 10px; box-shadow: 0 4px 12px rgba(91,75,227,0.28);">+ Add service</button></div>
+              <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; padding: 24px 30px 32px; align-items: start;">
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; overflow: hidden;">
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 13px 20px; background: #FAFAFB; font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.05em;"><span>Service</span><span>Price</span><span>Duration</span><span style="text-align: right;">Actions</span></div>
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 14px 20px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span><span style="font-weight: 600; color: #16181D; display: block;">1:1 Strength Coaching</span><span style="font-size: 12px; color: #8A909C;">Strength</span></span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #16181D;">$65</span><span style="color: #545A66;">60 min</span><span style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Delete</span></span></div>
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 14px 20px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span><span style="font-weight: 600; color: #16181D; display: block;">HIIT Bootcamp</span><span style="font-size: 12px; color: #8A909C;">HIIT</span></span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #16181D;">$30</span><span style="color: #545A66;">45 min</span><span style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Delete</span></span></div>
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 14px 20px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span><span style="font-weight: 600; color: #16181D; display: block;">Mobility &amp; Recovery</span><span style="font-size: 12px; color: #8A909C;">Recovery</span></span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #16181D;">$45</span><span style="color: #545A66;">50 min</span><span style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Delete</span></span></div>
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 14px 20px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span><span style="font-weight: 600; color: #16181D; display: block;">Nutrition Consult</span><span style="font-size: 12px; color: #8A909C;">Nutrition</span></span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #16181D;">$55</span><span style="color: #545A66;">40 min</span><span style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Delete</span></span></div>
+                  <div style="display: grid; grid-template-columns: 2fr 0.8fr 0.9fr 0.8fr; gap: 12px; padding: 14px 20px; align-items: center; border-top: 1px solid #F4F4F6; font-size: 13.5px;"><span><span style="font-weight: 600; color: #16181D; display: block;">Online Coaching</span><span style="font-size: 12px; color: #8A909C;">Online</span></span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #16181D;">$40</span><span style="color: #545A66;">30 min</span><span style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;"><span style="color: #5B4BE3; font-weight: 700; font-size: 13px;">Edit</span><span style="color: #E11D48; font-weight: 700; font-size: 13px;">Delete</span></span></div>
+                </div>
+                <!-- add/edit form panel -->
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 24px;">
+                  <div style="font-weight: 700; font-size: 16px; color: #16181D; margin-bottom: 4px;">Add service</div>
+                  <div style="font-size: 13px; color: #8A909C; margin-bottom: 20px;">Create a new bookable service.</div>
+                  <image-slot id="be-svc-form" style="width: 100%; height: 96px; display: block; margin-bottom: 16px;" shape="rounded" radius="12" placeholder="Drop a cover image"></image-slot>
+                  <label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Service name</label>
+                  <div style="height: 44px; padding: 0 13px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 10px; font-size: 14px; color: #16181D; margin-bottom: 14px;">Recovery Massage</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                    <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Price ($)</label><div style="height: 44px; padding: 0 13px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 10px; font-size: 14px; color: #16181D;">50</div></div>
+                    <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Duration</label><div style="height: 44px; padding: 0 13px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 10px; font-size: 14px; color: #16181D;">45 min</div></div>
+                  </div>
+                  <label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Category</label>
+                  <div style="height: 44px; padding: 0 13px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #DDDFE6; border-radius: 10px; font-size: 14px; color: #16181D; margin-bottom: 20px;">Recovery <span style="color: #8A909C;">▾</span></div>
+                  <div style="display: flex; gap: 10px;"><button style="flex: 1; font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 13.5px; padding: 12px; border-radius: 10px;">Cancel</button><button style="flex: 1; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 12px; border-radius: 10px;">Save service</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEB-INSERT -->
+    </div>
+  </section>
+
+<section id="ios" data-screen-label="iOS App" style="background: #E6E6EA; padding: 88px 32px 30px;">
+    <div style="max-width: 1340px; margin: 0 auto;">
+      <div style="margin-bottom: 44px; max-width: 720px;">
+        <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; color: #5B4BE3; margin-bottom: 14px;">03 — NATIVE iOS APP</div>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; color: #0F1115;">The SwiftUI mobile app</h2>
+        <p style="font-size: 18px; line-height: 1.6; color: #545A66; margin: 0;">The same design system on iOS — laid out to map directly onto SwiftUI views, with system fonts and native navigation patterns.</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 40px 36px; justify-content: center;">
+
+        <!-- 1. HOME -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 8px 20px 0;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 0 18px;">
+                  <div><div style="font-size: 14px; color: #8A909C; font-weight: 500;">Good morning,</div><div style="font-size: 23px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115;">Jordan Hayes</div></div>
+                  <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1px solid #ECECEF; display: flex; align-items: center; justify-content: center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="#16181D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 21a2 2 0 003 0" stroke="#16181D" stroke-width="2" stroke-linecap="round"/></svg></div><image-slot id="ios-av" style="width: 40px; height: 40px; border-radius: 50%;" shape="circle" placeholder=""></image-slot></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 16px; border-radius: 14px; background: #fff; border: 1px solid #ECECEF; margin-bottom: 22px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 15px; color: #8A909C;">Search services or coaches</span></div>
+                <div style="border-radius: 20px; background: linear-gradient(140deg, #5B4BE3, #4A3BD0); padding: 20px; color: #fff; margin-bottom: 26px; box-shadow: 0 12px 28px rgba(74,59,208,0.32);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: #D9D3FA;">UPCOMING SESSION</span><span style="background: rgba(255,255,255,0.2); font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px;">In 2 hrs</span></div>
+                  <div style="font-size: 19px; font-weight: 800; margin-bottom: 4px;">1:1 Strength Coaching</div>
+                  <div style="font-size: 13.5px; color: #D9D3FA;">Wed, Jun 14 · 10:30 AM · Coach Mia</div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;"><span style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em; color: #0F1115;">Popular services</span><span style="font-size: 13.5px; font-weight: 700; color: #5B4BE3;">See all</span></div>
+                <div style="display: flex; gap: 14px; margin-bottom: 24px;">
+                  <div style="flex: 1; border-radius: 16px; overflow: hidden; background: #fff; border: 1px solid #ECECEF;"><image-slot id="ios-pop1" style="width: 100%; height: 84px; display: block;" shape="rect" placeholder=""></image-slot><div style="padding: 11px 13px;"><div style="font-size: 14px; font-weight: 700; color: #16181D;">HIIT Bootcamp</div><div style="font-size: 12px; color: #8A909C; margin-top: 3px;">45 min · $30</div></div></div>
+                  <div style="flex: 1; border-radius: 16px; overflow: hidden; background: #fff; border: 1px solid #ECECEF;"><image-slot id="ios-pop2" style="width: 100%; height: 84px; display: block;" shape="rect" placeholder=""></image-slot><div style="padding: 11px 13px;"><div style="font-size: 14px; font-weight: 700; color: #16181D;">Mobility</div><div style="font-size: 12px; color: #8A909C; margin-top: 3px;">50 min · $45</div></div></div>
+                </div>
+                <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em; color: #0F1115; margin-bottom: 14px;">Categories</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 12px;">
+                  <div style="display: flex; align-items: center; gap: 11px; padding: 15px; border-radius: 14px; background: #fff; border: 1px solid #ECECEF;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #EEEBFD; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#5B4BE3"/></svg></div><span style="font-size: 14px; font-weight: 700; color: #16181D;">Strength</span></div>
+                  <div style="display: flex; align-items: center; gap: 11px; padding: 15px; border-radius: 14px; background: #fff; border: 1px solid #ECECEF;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #E7F8EE; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-8 4 16 3-8h4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size: 14px; font-weight: 700; color: #16181D;">HIIT</span></div>
+                  <div style="display: flex; align-items: center; gap: 11px; padding: 15px; border-radius: 14px; background: #fff; border: 1px solid #ECECEF;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #EAEFFC; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="3" stroke="#2563EB" stroke-width="2"/><path d="M12 9v7m-4 4l4-4 4 4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size: 14px; font-weight: 700; color: #16181D;">Mobility</span></div>
+                  <div style="display: flex; align-items: center; gap: 11px; padding: 15px; border-radius: 14px; background: #fff; border: 1px solid #ECECEF;"><div style="width: 36px; height: 36px; border-radius: 10px; background: #FEF3D9; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3C9 6 7 8 7 12a5 5 0 0010 0c0-4-2-6-5-9z" stroke="#D97706" stroke-width="2" stroke-linejoin="round"/></svg></div><span style="font-size: 14px; font-weight: 700; color: #16181D;">Nutrition</span></div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 14px 26px; background: #fff; border-top: 1px solid #ECECEF;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8M5 9v11h14V9" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size: 10.5px; font-weight: 700; color: #5B4BE3;">Home</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#B6BBC4" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Explore</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#B6BBC4" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Bookings</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#B6BBC4" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Profile</span></div>
+              </div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Home</span>
+        </div>
+
+<!-- 2. SERVICE LIST -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 8px 20px 0;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 0 16px;"><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115;">Services</span><div style="width: 40px; height: 40px; border-radius: 12px; background: #fff; border: 1px solid #ECECEF; display: flex; align-items: center; justify-content: center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 5h18M6 12h12M10 19h4" stroke="#16181D" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+                <div style="display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px; border-radius: 13px; background: #fff; border: 1px solid #ECECEF; margin-bottom: 16px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 14.5px; color: #8A909C;">Search</span></div>
+                <div style="display: flex; gap: 8px; margin-bottom: 18px; overflow: hidden;"><span style="background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13px; padding: 8px 15px; border-radius: 999px;">All</span><span style="background: #fff; border: 1px solid #ECECEF; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 999px;">Strength</span><span style="background: #fff; border: 1px solid #ECECEF; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 999px;">HIIT</span><span style="background: #fff; border: 1px solid #ECECEF; color: #545A66; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 999px;">Recovery</span></div>
+                <div style="display: flex; flex-direction: column; gap: 13px; padding-bottom: 12px;">
+                  <div style="display: flex; gap: 13px; padding: 12px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; align-items: center;"><image-slot id="ios-ls1" style="width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0;" shape="rounded" radius="12" placeholder=""></image-slot><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">1:1 Strength Coaching</div><div style="font-size: 12.5px; color: #8A909C; margin: 3px 0 8px;">60 min · ★ 4.9</div><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 16px; font-weight: 800; color: #5B4BE3;">$65</span><span style="background: #EEEBFD; color: #4A3BD0; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 9px;">Book</span></div></div></div>
+                  <div style="display: flex; gap: 13px; padding: 12px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; align-items: center;"><image-slot id="ios-ls2" style="width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0;" shape="rounded" radius="12" placeholder=""></image-slot><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">HIIT Bootcamp</div><div style="font-size: 12.5px; color: #8A909C; margin: 3px 0 8px;">45 min · ★ 4.8</div><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 16px; font-weight: 800; color: #5B4BE3;">$30</span><span style="background: #EEEBFD; color: #4A3BD0; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 9px;">Book</span></div></div></div>
+                  <div style="display: flex; gap: 13px; padding: 12px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; align-items: center;"><image-slot id="ios-ls3" style="width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0;" shape="rounded" radius="12" placeholder=""></image-slot><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">Mobility &amp; Recovery</div><div style="font-size: 12.5px; color: #8A909C; margin: 3px 0 8px;">50 min · ★ 4.9</div><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 16px; font-weight: 800; color: #5B4BE3;">$45</span><span style="background: #EEEBFD; color: #4A3BD0; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 9px;">Book</span></div></div></div>
+                  <div style="display: flex; gap: 13px; padding: 12px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; align-items: center;"><image-slot id="ios-ls4" style="width: 64px; height: 64px; border-radius: 12px; flex-shrink: 0;" shape="rounded" radius="12" placeholder=""></image-slot><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">Nutrition Consult</div><div style="font-size: 12.5px; color: #8A909C; margin: 3px 0 8px;">40 min · ★ 5.0</div><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 16px; font-weight: 800; color: #5B4BE3;">$55</span><span style="background: #EEEBFD; color: #4A3BD0; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 9px;">Book</span></div></div></div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 14px 26px; background: #fff; border-top: 1px solid #ECECEF;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8M5 9v11h14V9" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Home</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#5B4BE3" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 700; color: #5B4BE3;">Explore</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#B6BBC4" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Bookings</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#B6BBC4" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Profile</span></div>
+              </div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Service list</span>
+        </div>
+
+        <!-- 3. SERVICE DETAIL -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; background: #fff; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto;">
+                <div style="position: relative;">
+                  <image-slot id="ios-detail" style="width: 100%; height: 250px; display: block;" shape="rect" placeholder="Service banner"></image-slot>
+                  <div style="position: absolute; top: 54px; left: 16px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;"><svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2L2 10l8 8" stroke="#16181D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                </div>
+                <div style="padding: 20px 20px 0;">
+                  <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;"><h3 style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115; margin: 0;">1:1 Strength Coaching</h3><span style="font-size: 22px; font-weight: 800; color: #5B4BE3; white-space: nowrap;">$65</span></div>
+                  <div style="display: flex; gap: 16px; margin: 10px 0 18px; font-size: 13.5px; color: #545A66; font-weight: 600;"><span>⏱ 60 min</span><span>★ 4.9 (212)</span><span>Coach Mia</span></div>
+                  <p style="font-size: 14.5px; line-height: 1.6; color: #545A66; margin: 0 0 20px;">A fully personalised strength session built around your goals, with form coaching and a progressive lifting plan.</p>
+                  <div style="font-size: 15px; font-weight: 800; color: #0F1115; margin-bottom: 12px;">What's included</div>
+                  <div style="display: flex; flex-direction: column; gap: 11px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #16181D;"><span style="width: 20px; height: 20px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personalised program</div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #16181D;"><span style="width: 20px; height: 20px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1-on-1 form coaching</div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #16181D;"><span style="width: 20px; height: 20px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Progress tracking</div>
+                  </div>
+                  <div style="font-size: 15px; font-weight: 800; color: #0F1115; margin-bottom: 12px;">Available today</div>
+                  <div style="display: flex; gap: 9px; padding-bottom: 16px;"><span style="border: 1px solid #ECECEF; font-size: 13.5px; font-weight: 700; color: #16181D; padding: 9px 15px; border-radius: 10px;">9:00</span><span style="border: 1.5px solid #5B4BE3; background: #EEEBFD; font-size: 13.5px; font-weight: 700; color: #4A3BD0; padding: 9px 15px; border-radius: 10px;">10:30</span><span style="border: 1px solid #ECECEF; font-size: 13.5px; font-weight: 700; color: #16181D; padding: 9px 15px; border-radius: 10px;">12:00</span><span style="border: 1px solid #ECECEF; font-size: 13.5px; font-weight: 700; color: #16181D; padding: 9px 15px; border-radius: 10px;">15:00</span></div>
+                </div>
+              </div>
+              <div style="padding: 14px 20px 30px; background: #fff; border-top: 1px solid #ECECEF; display: flex; align-items: center; gap: 14px;"><div><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">Total</div><div style="font-size: 19px; font-weight: 800; color: #0F1115;">$65</div></div><button style="flex: 1; font-family: inherit; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15.5px; padding: 15px; border-radius: 14px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Book Now</button></div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Service detail</span>
+        </div>
+
+        <!-- 4. BOOKING -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 8px 20px 0;">
+                <div style="display: flex; align-items: center; gap: 14px; padding: 8px 0 18px;"><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115;">Booking</span></div>
+                <div style="font-size: 14px; font-weight: 800; color: #16181D; margin-bottom: 12px;">Select date</div>
+                <div style="display: flex; gap: 8px; margin-bottom: 22px;">
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: 13px; background: #fff; border: 1px solid #ECECEF;"><div style="font-size: 11px; color: #8A909C; font-weight: 600;">MON</div><div style="font-size: 17px; font-weight: 800; color: #16181D; margin-top: 2px;">12</div></div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: 13px; background: #fff; border: 1px solid #ECECEF;"><div style="font-size: 11px; color: #8A909C; font-weight: 600;">TUE</div><div style="font-size: 17px; font-weight: 800; color: #16181D; margin-top: 2px;">13</div></div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: 13px; background: #5B4BE3; box-shadow: 0 6px 14px rgba(91,75,227,0.3);"><div style="font-size: 11px; color: #D9D3FA; font-weight: 600;">WED</div><div style="font-size: 17px; font-weight: 800; color: #fff; margin-top: 2px;">14</div></div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: 13px; background: #fff; border: 1px solid #ECECEF;"><div style="font-size: 11px; color: #8A909C; font-weight: 600;">THU</div><div style="font-size: 17px; font-weight: 800; color: #16181D; margin-top: 2px;">15</div></div>
+                  <div style="flex: 1; text-align: center; padding: 11px 0; border-radius: 13px; background: #fff; border: 1px solid #ECECEF;"><div style="font-size: 11px; color: #8A909C; font-weight: 600;">FRI</div><div style="font-size: 17px; font-weight: 800; color: #16181D; margin-top: 2px;">16</div></div>
+                </div>
+                <div style="font-size: 14px; font-weight: 800; color: #16181D; margin-bottom: 12px;">Select time</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 22px;">
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #fff; border: 1px solid #ECECEF; font-size: 14px; font-weight: 700; color: #16181D;">9:00 AM</div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #EEEBFD; border: 1.5px solid #5B4BE3; font-size: 14px; font-weight: 700; color: #4A3BD0;">10:30 AM</div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #fff; border: 1px solid #ECECEF; font-size: 14px; font-weight: 700; color: #16181D;">12:00 PM</div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #fff; border: 1px solid #ECECEF; font-size: 14px; font-weight: 700; color: #16181D;">3:00 PM</div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #fff; border: 1px solid #ECECEF; font-size: 14px; font-weight: 700; color: #16181D;">4:30 PM</div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 11px; background: #fff; border: 1px solid #ECECEF; font-size: 14px; font-weight: 700; color: #16181D;">6:00 PM</div>
+                </div>
+                <div style="font-size: 14px; font-weight: 800; color: #16181D; margin-bottom: 12px;">Your details</div>
+                <div style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px;">
+                  <div style="height: 46px; padding: 0 14px; display: flex; align-items: center; background: #fff; border: 1px solid #ECECEF; border-radius: 12px; font-size: 14.5px; color: #16181D;">Jordan Hayes</div>
+                  <div style="height: 46px; padding: 0 14px; display: flex; align-items: center; background: #fff; border: 1px solid #ECECEF; border-radius: 12px; font-size: 14.5px; color: #16181D;">+1 415 555 0199</div>
+                  <div style="min-height: 64px; padding: 12px 14px; background: #fff; border: 1px solid #ECECEF; border-radius: 12px; font-size: 14px; color: #8A909C;">Notes (optional)</div>
+                </div>
+              </div>
+              <div style="padding: 14px 20px 30px; background: #fff; border-top: 1px solid #ECECEF;"><button style="width: 100%; font-family: inherit; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15.5px; padding: 15px; border-radius: 14px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Confirm booking · $65</button></div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Booking</span>
+        </div>
+
+        <!-- 5. CONFIRMATION -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 30px 22px 0; display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 88px; height: 88px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center; margin: 24px 0 22px;"><div style="width: 60px; height: 60px; border-radius: 50%; background: #16A34A; display: flex; align-items: center; justify-content: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+                <h3 style="font-size: 25px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115; margin: 0 0 8px;">Booking confirmed</h3>
+                <p style="font-size: 14.5px; color: #8A909C; text-align: center; margin: 0 0 28px; line-height: 1.5;">Your session is booked. We've sent the details to your email.</p>
+                <div style="width: 100%; background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 20px 22px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px dashed #E2E3E9; margin-bottom: 14px;"><span style="font-size: 12.5px; color: #8A909C; font-weight: 600;">Booking ID</span><span style="font-size: 14px; font-weight: 800; color: #5B4BE3;">#BK-20416</span></div>
+                  <div style="display: flex; flex-direction: column; gap: 13px; font-size: 14px;"><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Service</span><span style="color: #16181D; font-weight: 700;">Strength Coaching</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Date &amp; time</span><span style="color: #16181D; font-weight: 700;">Jun 14 · 10:30 AM</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Coach</span><span style="color: #16181D; font-weight: 700;">Mia Reyes</span></div></div>
+                </div>
+              </div>
+              <div style="padding: 14px 20px 30px; background: #fff; border-top: 1px solid #ECECEF; display: flex; flex-direction: column; gap: 10px;"><button style="width: 100%; font-family: inherit; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 13px;">Add to Calendar</button><button style="width: 100%; font-family: inherit; background: #F2F2F5; border: none; color: #16181D; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 13px;">Back to Home</button></div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Confirmation</span>
+        </div>
+
+        <!-- 6. BOOKING HISTORY -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 8px 20px 0;">
+                <div style="padding: 8px 0 16px;"><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115;">My bookings</span></div>
+                <div style="display: flex; gap: 4px; padding: 4px; background: #ECECEF; border-radius: 12px; margin-bottom: 20px;"><span style="flex: 1; text-align: center; padding: 9px 0; border-radius: 9px; background: #fff; font-size: 13.5px; font-weight: 700; color: #16181D; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">Upcoming</span><span style="flex: 1; text-align: center; padding: 9px 0; font-size: 13.5px; font-weight: 600; color: #8A909C;">Completed</span><span style="flex: 1; text-align: center; padding: 9px 0; font-size: 13.5px; font-weight: 600; color: #8A909C;">Cancelled</span></div>
+                <div style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 12px;">
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: center;"><div style="width: 50px; height: 50px; border-radius: 13px; background: #EEEBFD; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;"><span style="font-size: 10px; font-weight: 700; color: #5B4BE3;">JUN</span><span style="font-size: 18px; font-weight: 800; color: #4A3BD0; line-height: 1;">14</span></div><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">Strength Coaching</div><div style="font-size: 12.5px; color: #8A909C; margin-top: 2px;">10:30 AM · Coach Mia</div></div><span style="background: #E7F8EE; color: #15803D; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px;">Confirmed</span></div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: center;"><div style="width: 50px; height: 50px; border-radius: 13px; background: #FEF3D9; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;"><span style="font-size: 10px; font-weight: 700; color: #B45309;">JUN</span><span style="font-size: 18px; font-weight: 800; color: #92400E; line-height: 1;">16</span></div><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">HIIT Bootcamp</div><div style="font-size: 12.5px; color: #8A909C; margin-top: 2px;">12:00 PM · Coach Dev</div></div><span style="background: #FEF3D9; color: #B45309; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px;">Pending</span></div>
+                  <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 16px; display: flex; gap: 14px; align-items: center;"><div style="width: 50px; height: 50px; border-radius: 13px; background: #EEEBFD; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;"><span style="font-size: 10px; font-weight: 700; color: #5B4BE3;">JUN</span><span style="font-size: 18px; font-weight: 800; color: #4A3BD0; line-height: 1;">19</span></div><div style="flex: 1; min-width: 0;"><div style="font-size: 15px; font-weight: 700; color: #16181D;">Mobility &amp; Recovery</div><div style="font-size: 12.5px; color: #8A909C; margin-top: 2px;">9:00 AM · Coach Mia</div></div><span style="background: #E7F8EE; color: #15803D; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px;">Confirmed</span></div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 14px 26px; background: #fff; border-top: 1px solid #ECECEF;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8M5 9v11h14V9" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Home</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#B6BBC4" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Explore</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 700; color: #5B4BE3;">Bookings</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#B6BBC4" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Profile</span></div>
+              </div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Booking history</span>
+        </div>
+
+        <!-- 7. PROFILE -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+            <div style="height: 100%; display: flex; flex-direction: column; padding-top: 50px; background: #F5F5F8; font-family: -apple-system, system-ui, sans-serif;">
+              <div style="flex: 1; overflow: auto; padding: 8px 20px 0;">
+                <div style="padding: 8px 0 18px;"><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #0F1115;">Profile</span></div>
+                <div style="display: flex; align-items: center; gap: 15px; background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 18px; margin-bottom: 22px;"><image-slot id="ios-prof" style="width: 60px; height: 60px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div style="flex: 1; min-width: 0;"><div style="font-size: 18px; font-weight: 800; color: #0F1115;">Jordan Hayes</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">jordan@email.com</div><div style="font-size: 13px; color: #8A909C;">+1 415 555 0199</div></div></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
+                  <div style="display: flex; align-items: center; gap: 13px; padding: 15px 17px; border-bottom: 1px solid #F4F4F6;"><div style="width: 34px; height: 34px; border-radius: 9px; background: #EEEBFD; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><span style="flex: 1; font-size: 15px; font-weight: 600; color: #16181D;">My bookings</span><span style="color: #C4C4CC;">›</span></div>
+                  <div style="display: flex; align-items: center; gap: 13px; padding: 15px 17px; border-bottom: 1px solid #F4F4F6;"><div style="width: 34px; height: 34px; border-radius: 9px; background: #EAEFFC; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#2563EB" stroke-width="2"/><path d="M3 10h18" stroke="#2563EB" stroke-width="2"/></svg></div><span style="flex: 1; font-size: 15px; font-weight: 600; color: #16181D;">Payment methods</span><span style="color: #C4C4CC;">›</span></div>
+                  <div style="display: flex; align-items: center; gap: 13px; padding: 15px 17px;"><div style="width: 34px; height: 34px; border-radius: 9px; background: #FEF3D9; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="flex: 1; font-size: 15px; font-weight: 600; color: #16181D;">Notifications</span><span style="width: 40px; height: 24px; border-radius: 999px; background: #5B4BE3; position: relative; flex-shrink: 0;"><span style="position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff;"></span></span></div>
+                </div>
+                <button style="width: 100%; font-family: inherit; background: #fff; border: 1px solid #ECECEF; color: #E11D48; font-weight: 700; font-size: 15px; padding: 15px; border-radius: 14px;">Log out</button>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 14px 26px; background: #fff; border-top: 1px solid #ECECEF;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8M5 9v11h14V9" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Home</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#B6BBC4" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Explore</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#B6BBC4" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#B6BBC4" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 600; color: #B6BBC4;">Bookings</span></div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#5B4BE3" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 10.5px; font-weight: 700; color: #5B4BE3;">Profile</span></div>
+              </div>
+            </div>
+          </x-import>
+          <span style="font-size: 13px; font-weight: 700; color: #545A66;">Profile &amp; settings</span>
+        </div>
+
+      <!-- IOS-INSERT -->
+      </div>
+    </div>
+  </section>
+
+<section id="build" data-screen-label="Build Notes" style="max-width: 1340px; margin: 0 auto; padding: 90px 32px 100px;">
+    <div style="margin-bottom: 44px; max-width: 720px;">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; color: #5B4BE3; margin-bottom: 14px;">04 — UX FLOW &amp; BUILD NOTES</div>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; color: #0F1115;">From design to code</h2>
+      <p style="font-size: 18px; line-height: 1.6; color: #545A66; margin: 0;">The flows are intentionally linear and easy to implement in Angular and SwiftUI on a shared API.</p>
+    </div>
+
+    <!-- flows -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 26px 28px;">
+        <div style="font-size: 12px; font-weight: 700; color: #5B4BE3; letter-spacing: 0.06em; margin-bottom: 16px;">CUSTOMER FLOW</div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Home</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Services</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Detail</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Booking</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #E7F8EE; color: #15803D; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Confirmation</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">History</span>
+        </div>
+      </div>
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 26px 28px;">
+        <div style="font-size: 12px; font-weight: 700; color: #5B4BE3; letter-spacing: 0.06em; margin-bottom: 16px;">ADMIN FLOW</div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Dashboard</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Booking management</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Service management</span><span style="color: #C4C4CC;">→</span>
+          <span style="background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 14px; border-radius: 10px;">Add / edit service</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- responsive -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px 26px;"><div style="font-weight: 700; font-size: 15px; color: #16181D; margin-bottom: 6px;">Desktop · ≥1024px</div><div style="font-size: 13.5px; line-height: 1.6; color: #8A909C;">Full multi-column layouts, persistent admin sidebar, 3-col service grids, side-by-side booking form + summary.</div></div>
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px 26px;"><div style="font-weight: 700; font-size: 15px; color: #16181D; margin-bottom: 6px;">Tablet · 768–1023px</div><div style="font-size: 13.5px; line-height: 1.6; color: #8A909C;">2-col grids, collapsible sidebar, summary stacks under the form, condensed tables with horizontal scroll.</div></div>
+      <div style="background: #fff; border: 1px solid #E2E3E9; border-radius: 18px; padding: 24px 26px;"><div style="font-weight: 700; font-size: 15px; color: #16181D; margin-bottom: 6px;">Mobile · &lt;768px</div><div style="font-size: 13.5px; line-height: 1.6; color: #8A909C;">Single column, bottom tab bar, sticky CTAs, cards replace tables — matching the native iOS layouts.</div></div>
+    </div>
+
+    <!-- spec CTA -->
+    <a href="BookEase%20Developer%20Spec.dc.html" style="display: block; text-decoration: none;">
+      <div style="background: linear-gradient(158deg, #4A3DAE, #2C2370); border-radius: 20px; padding: 36px 40px; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; transition: transform .2s;" style-hover="transform: translateY(-2px);">
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: #C8F25C; margin-bottom: 12px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #C8F25C;"></span>IMPLEMENTATION-READY</div>
+          <div style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 8px;">Full Developer Specification</div>
+          <div style="font-size: 15.5px; color: #C7C2E8; max-width: 58ch; line-height: 1.55;">Per-screen breakdown, Angular &amp; SwiftUI component maps, PostgreSQL schema, REST endpoints, and the build order — everything to start coding.</div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 10px; background: #C8F25C; color: #1B2906; font-weight: 700; font-size: 15px; padding: 15px 26px; border-radius: 13px; white-space: nowrap;">Open the spec <span style="font-size: 17px;">→</span></div>
+      </div>
+    </a>
+  </section>
+
+  <!-- INSERT -->
+
+</div>
+
+</x-dc>
+</body>
+</html>

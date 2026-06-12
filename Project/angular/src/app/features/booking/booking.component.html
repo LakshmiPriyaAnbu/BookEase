@@ -1,0 +1,134 @@
+<!-- App nav -->
+<div class="app-nav">
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>
+    </div>
+    <a routerLink="/" class="nav-name">BookEase</a>
+  </div>
+</div>
+
+<!-- Page -->
+<div class="page">
+  <h2 class="page-title">Book your session</h2>
+
+  <!-- Step indicator -->
+  <div class="steps">
+    <span class="step step--active">
+      <span class="step__num step__num--active">1</span>Service
+    </span>
+    <span class="step__line step__line--active"></span>
+    <span class="step step--active">
+      <span class="step__num step__num--active">2</span>Details
+    </span>
+    <span class="step__line"></span>
+    <span class="step step--inactive">
+      <span class="step__num step__num--inactive">3</span>Confirm
+    </span>
+  </div>
+
+  <div class="layout">
+    <!-- Left: form -->
+    <div class="form-card">
+
+      <!-- Date picker -->
+      <div class="section-label">Select a date</div>
+      <div class="date-grid">
+        <div *ngFor="let d of datePills; let i = index"
+          (click)="selectDate(i)"
+          [class.date-pill]="true"
+          [class.date-pill--active]="selectedDateIdx === i">
+          <div class="date-pill__weekday">{{ d.weekday }}</div>
+          <div class="date-pill__day">{{ d.day }}</div>
+        </div>
+      </div>
+
+      <!-- Time slots -->
+      <div class="section-label">Available time slots</div>
+      <div class="slot-grid">
+        <div *ngFor="let slot of slots"
+          (click)="selectSlot(slot)"
+          [class.slot]="true"
+          [class.slot--selected]="selectedSlot?.id === slot.id"
+          [class.slot--taken]="slot.isBooked">
+          {{ slot.startsAt | date:'h:mm a' }}
+        </div>
+      </div>
+      <div *ngIf="slotError" class="field-error">Please select an available time slot.</div>
+
+      <!-- Customer details -->
+      <div class="section-label">Your details</div>
+      <div class="fields-row">
+        <div class="field">
+          <label class="field__label">Full name</label>
+          <input
+            class="field__input"
+            [class.field__input--error]="fullNameError"
+            [(ngModel)]="form.fullName"
+            placeholder="Jordan Hayes" />
+          <div *ngIf="fullNameError" class="field-error">This field is required.</div>
+        </div>
+        <div class="field">
+          <label class="field__label">Phone</label>
+          <input
+            class="field__input"
+            [class.field__input--error]="phoneError"
+            [(ngModel)]="form.phone"
+            placeholder="+1 415 555 0199"
+            type="tel" />
+          <div *ngIf="phoneError" class="field-error">This field is required.</div>
+        </div>
+      </div>
+      <div class="field field--full">
+        <label class="field__label">Email</label>
+        <input class="field__input" [(ngModel)]="form.email" placeholder="jordan@email.com" type="email" />
+      </div>
+      <div class="field field--full">
+        <label class="field__label">Notes <span class="field__opt">(optional)</span></label>
+        <textarea class="field__textarea" [(ngModel)]="form.notes" rows="3"
+          placeholder="Recovering from a minor knee strain — please keep impact low."></textarea>
+      </div>
+    </div>
+
+    <!-- Right: summary -->
+    <div class="summary-card">
+      <div class="summary__title">Booking summary</div>
+
+      <div class="summary__service" *ngIf="service">
+        <div class="summary__thumb">💪</div>
+        <div>
+          <div class="summary__name">{{ service.name }}</div>
+          <div class="summary__coach">with {{ service.coachName }}</div>
+        </div>
+      </div>
+
+      <div class="summary__rows">
+        <div class="summary__row">
+          <span class="summary__lbl">Date</span>
+          <span class="summary__val">{{ summaryDate() }}</span>
+        </div>
+        <div class="summary__row">
+          <span class="summary__lbl">Time</span>
+          <span class="summary__val">{{ selectedSlot ? (selectedSlot.startsAt | date:'h:mm a') : '—' }}</span>
+        </div>
+        <div class="summary__row" *ngIf="service">
+          <span class="summary__lbl">Duration</span>
+          <span class="summary__val">{{ service.durationMin }} min</span>
+        </div>
+      </div>
+
+      <div class="summary__total" *ngIf="service">
+        <span class="summary__total-lbl">Total</span>
+        <span class="summary__total-val">{{ formattedTotal() }}</span>
+      </div>
+
+      <button class="confirm-btn"
+        [class.confirm-btn--disabled]="submitting"
+        [disabled]="submitting"
+        (click)="confirm()">
+        {{ submitting ? 'Confirming…' : 'Confirm booking' }}
+      </button>
+      <div class="summary__note">Free cancellation up to 12h before</div>
+    </div>
+  </div>
+</div>

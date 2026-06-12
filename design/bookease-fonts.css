@@ -1,0 +1,57 @@
+/* ============================================================
+   BookEase — Typography
+   Two families. Space Grotesk for display/headings & numerics,
+   Plus Jakarta Sans for UI & body. The native iOS app uses the
+   system font (SF Pro) — mapped 1:1 to the scale below.
+
+   Web: keep the <link> tags in your <head>, then @import this file.
+   ============================================================
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ---- Families ---- */
+  --be-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; /* headings, display, $ amounts, numerics */
+  --be-font-ui:      "Plus Jakarta Sans", system-ui, -apple-system, sans-serif; /* everything else */
+  --be-font-ios:     -apple-system, system-ui, "SF Pro Text", sans-serif;   /* native iOS */
+
+  /* ---- Weights ---- */
+  --be-w-regular:  400;
+  --be-w-medium:   500;
+  --be-w-semibold: 600;
+  --be-w-bold:     700;
+  --be-w-extra:    800;   /* iOS headings / heavy UI titles */
+}
+
+/* ============================================================
+   TYPE SCALE  (font-size / line-height / letter-spacing / weight / family)
+   Use these classes directly, or copy the values into components.
+   ============================================================ */
+
+/* Display — hero & cover headlines */
+.be-display-xl { font-family: var(--be-font-display); font-size: 84px; line-height: 0.98; letter-spacing: -0.035em; font-weight: 700; color: var(--be-ink-800); }
+.be-display-lg { font-family: var(--be-font-display); font-size: 58px; line-height: 1.00; letter-spacing: -0.035em; font-weight: 700; color: var(--be-ink-800); }
+.be-display    { font-family: var(--be-font-display); font-size: 46px; line-height: 1.02; letter-spacing: -0.030em; font-weight: 700; color: var(--be-ink-800); }
+
+/* Headings */
+.be-h1 { font-family: var(--be-font-display); font-size: 34px; line-height: 1.05; letter-spacing: -0.02em; font-weight: 700; color: var(--be-ink-800); }
+.be-h2 { font-family: var(--be-font-display); font-size: 30px; line-height: 1.10; letter-spacing: -0.02em; font-weight: 700; color: var(--be-ink-800); }
+.be-h3 { font-family: var(--be-font-ui);      font-size: 22px; line-height: 1.20; letter-spacing: -0.02em; font-weight: 800; color: var(--be-ink-800); } /* iOS section titles */
+
+/* Body */
+.be-body-lg { font-family: var(--be-font-ui); font-size: 18px;   line-height: 1.60; font-weight: 400; color: var(--be-text-600); }
+.be-body    { font-family: var(--be-font-ui); font-size: 16px;   line-height: 1.55; font-weight: 500; color: var(--be-text-600); }
+.be-body-sm { font-family: var(--be-font-ui); font-size: 14.5px; line-height: 1.55; font-weight: 500; color: var(--be-text-600); }
+
+/* Labels & meta */
+.be-label   { font-family: var(--be-font-ui); font-size: 13.5px; font-weight: 700; color: var(--be-ink-700); }
+.be-caption { font-family: var(--be-font-ui); font-size: 12.5px; font-weight: 600; color: var(--be-muted-500); }
+.be-eyebrow { font-family: var(--be-font-ui); font-size: 12px;   font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--be-primary-600); }
+
+/* Numeric — prices, stats, dates (always Space Grotesk, tight tracking) */
+.be-numeric { font-family: var(--be-font-display); font-weight: 700; letter-spacing: -0.02em; }

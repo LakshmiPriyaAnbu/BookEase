@@ -1,0 +1,29 @@
+# Android build outputs
+*.apk
+*.aab
+*.ap_
+build/
+app/build/
+captures/
+
+# Gradle
+.gradle/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystore — never commit signing keys
+*.jks
+*.keystore
+
+# OS
+.DS_Store
+Thumbs.db

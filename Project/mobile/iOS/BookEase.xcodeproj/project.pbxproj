@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001 /* BookEaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001 /* BookEaseApp.swift */; };
+		A002 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F002 /* RootTabView.swift */; };
+		A003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003 /* Theme.swift */; };
+		A004 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004 /* PrimaryButton.swift */; };
+		A005 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005 /* SearchBar.swift */; };
+		A006 /* FilterChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006 /* FilterChip.swift */; };
+		A007 /* ServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007 /* ServiceRow.swift */; };
+		A008 /* BookingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008 /* BookingCard.swift */; };
+		A009 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F009 /* StatusBadge.swift */; };
+		A010 /* DateChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010 /* DateChip.swift */; };
+		A011 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011 /* SettingsRow.swift */; };
+		A012 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* User.swift */; };
+		A013 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* Service.swift */; };
+		A014 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* Category.swift */; };
+		A015 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F015 /* Booking.swift */; };
+		A016 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016 /* TimeSlot.swift */; };
+		A017 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017 /* MockData.swift */; };
+		A018 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F018 /* HomeView.swift */; };
+		A019 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F019 /* HomeViewModel.swift */; };
+		A020 /* ServiceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F020 /* ServiceListView.swift */; };
+		A021 /* ServiceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021 /* ServiceListViewModel.swift */; };
+		A022 /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022 /* ServiceDetailView.swift */; };
+		A023 /* ServiceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023 /* ServiceDetailViewModel.swift */; };
+		A024 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024 /* BookingView.swift */; };
+		A025 /* BookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F025 /* BookingViewModel.swift */; };
+		A026 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026 /* ConfirmationView.swift */; };
+		A027 /* BookingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027 /* BookingsView.swift */; };
+		A028 /* BookingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028 /* BookingsViewModel.swift */; };
+		A029 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029 /* ProfileView.swift */; };
+		A030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F030 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F001 /* BookEaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEaseApp.swift; sourceTree = "<group>"; };
+		F002 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		F003 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		F004 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		F005 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		F006 /* FilterChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChip.swift; sourceTree = "<group>"; };
+		F007 /* ServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRow.swift; sourceTree = "<group>"; };
+		F008 /* BookingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCard.swift; sourceTree = "<group>"; };
+		F009 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadge.swift; sourceTree = "<group>"; };
+		F010 /* DateChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChip.swift; sourceTree = "<group>"; };
+		F011 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		F012 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F013 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		F014 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F015 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		F016 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		F017 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		F018 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F019 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F020 /* ServiceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListView.swift; sourceTree = "<group>"; };
+		F021 /* ServiceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListViewModel.swift; sourceTree = "<group>"; };
+		F022 /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
+		F023 /* ServiceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewModel.swift; sourceTree = "<group>"; };
+		F024 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		F025 /* BookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewModel.swift; sourceTree = "<group>"; };
+		F026 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		F027 /* BookingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsView.swift; sourceTree = "<group>"; };
+		F028 /* BookingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingsViewModel.swift; sourceTree = "<group>"; };
+		F029 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		MAIN_GROUP = {
+			isa = PBXGroup;
+			children = (
+				BOOKEASE_GROUP,
+			);
+			sourceTree = "<group>";
+		};
+		BOOKEASE_GROUP = {
+			isa = PBXGroup;
+			children = (
+				F001,
+				F002,
+				DESIGNSYSTEM_GROUP,
+				MODELS_GROUP,
+				FEATURES_GROUP,
+				F030,
+			);
+			name = BookEase;
+			path = BookEase;
+			sourceTree = "<group>";
+		};
+		DESIGNSYSTEM_GROUP = {
+			isa = PBXGroup;
+			children = (
+				F003,
+				COMPONENTS_GROUP,
+			);
+			name = DesignSystem;
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		COMPONENTS_GROUP = {
+			isa = PBXGroup;
+			children = (
+				F004,
+				F005,
+				F006,
+				F007,
+				F008,
+				F009,
+				F010,
+				F011,
+			);
+			name = Components;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		MODELS_GROUP = {
+			isa = PBXGroup;
+			children = (
+				F012,
+				F013,
+				F014,
+				F015,
+				F016,
+				F017,
+			);
+			name = Models;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FEATURES_GROUP = {
+			isa = PBXGroup;
+			children = (
+				HOME_GROUP,
+				SERVICES_GROUP,
+				BOOKING_GROUP,
+				BOOKINGS_GROUP,
+				PROFILE_GROUP,
+			);
+			name = Features;
+			path = Features;
+			sourceTree = "<group>";
+		};
+		HOME_GROUP = {
+			isa = PBXGroup;
+			children = (F018, F019);
+			name = Home;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		SERVICES_GROUP = {
+			isa = PBXGroup;
+			children = (F020, F021, F022, F023);
+			name = Services;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BOOKING_GROUP = {
+			isa = PBXGroup;
+			children = (F024, F025, F026);
+			name = Booking;
+			path = Booking;
+			sourceTree = "<group>";
+		};
+		BOOKINGS_GROUP = {
+			isa = PBXGroup;
+			children = (F027, F028);
+			name = Bookings;
+			path = Bookings;
+			sourceTree = "<group>";
+		};
+		PROFILE_GROUP = {
+			isa = PBXGroup;
+			children = (F029);
+			name = Profile;
+			path = Profile;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TARGET1 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BUILDCONFIGLIST;
+			buildPhases = (SOURCES_PHASE, RESOURCES_PHASE);
+			buildRules = ();
+			dependencies = ();
+			name = BookEase;
+			productName = BookEase;
+			productReference = PRODUCT_REF;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PROJECT = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					TARGET1 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = PROJECT_BUILDCONFIGLIST;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = MAIN_GROUP;
+			productRefGroup = PRODUCTS_GROUP;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (TARGET1);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		RESOURCES_PHASE = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A030);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		SOURCES_PHASE = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001, A002, A003, A004, A005, A006, A007, A008, A009, A010,
+				A011, A012, A013, A014, A015, A016, A017, A018, A019, A020,
+				A021, A022, A023, A024, A025, A026, A027, A028, A029,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DEBUG_CONFIG = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		RELEASE_CONFIG = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		TARGET_DEBUG = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bookease.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		TARGET_RELEASE = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bookease.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		PROJECT_BUILDCONFIGLIST = {
+			isa = XCConfigurationList;
+			buildConfigurations = (DEBUG_CONFIG, RELEASE_CONFIG);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BUILDCONFIGLIST = {
+			isa = XCConfigurationList;
+			buildConfigurations = (TARGET_DEBUG, TARGET_RELEASE);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin PBXFileReference section (product) */
+		PRODUCT_REF = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookEase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section (product) */
+
+/* Begin PBXGroup section (products) */
+		PRODUCTS_GROUP = {
+			isa = PBXGroup;
+			children = (PRODUCT_REF);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section (products) */
+
+	};
+	rootObject = PROJECT;
+}

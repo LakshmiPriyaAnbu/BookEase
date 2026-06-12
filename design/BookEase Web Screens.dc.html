@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #E7E7EB; font-family: "Plus Jakarta Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  @keyframes beShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  /* inspector chrome lives outside React-managed clicks */
+  .be-ins { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  .be-ins ::-webkit-scrollbar { width: 8px; }
+  .be-ins ::-webkit-scrollbar-thumb { background: #D2D4DC; border-radius: 8px; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #E7E7EB; color: #16181D;">
+
+  <!-- ===== STICKY HEADER ===== -->
+  <div style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.84); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #DEDFE6;">
+    <div style="max-width: 1340px; margin: 0 auto; padding: 13px 30px; display: flex; align-items: center; gap: 18px;">
+      <div style="display: flex; align-items: center; gap: 11px;">
+        <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(74,59,208,0.35);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>
+        </div>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: #0F1115;">BookEase</span>
+        <span style="font-size: 11px; font-weight: 700; color: #5B4BE3; background: #EEEBFD; border-radius: 999px; padding: 4px 10px; margin-left: 2px; white-space: nowrap;">WEB · 4 SCREENS</span>
+      </div>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: #545A66;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 3h6l1 4 4 1v6l-4 1-1 4H9l-1-4-4-1V8l4-1 1-4z" stroke="#5B4BE3" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.4" fill="#5B4BE3"/></svg>
+        <span>Click any element to inspect — size, padding, type & color tokens. <span style="color:#8A909C;">Press Esc to clear.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TITLE ===== -->
+  <div style="max-width: 1340px; margin: 0 auto; padding: 40px 30px 8px;">
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.025em; margin: 0 0 6px; color: #0F1115;">Web app screens</h1>
+    <p style="font-size: 15px; color: #545A66; margin: 0; max-width: 70ch; line-height: 1.55;">The full responsive web flow — landing, service discovery, booking and confirmation. Rendered at 1:1 on a 1200px canvas so nothing is ever cropped. Click any element for live measurements and matching design-system tokens.</p>
+  </div>
+
+  <!-- ===== BOARD ===== -->
+  <div id="be-board" style="max-width: 1340px; margin: 0 auto; padding: 28px 30px 120px; display: flex; flex-wrap: wrap; gap: 44px 36px; align-items: flex-start; justify-content: center;">
+    <div class="be-frame be-web" style="width:1200px;max-width:100%;">
+  <div class="be-frame-cap" style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><span style="width:9px;height:9px;border-radius:50%;background:#5B4BE3;"></span><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0F1115;">Landing page</span></div>
+  <div class="be-screen"><div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Landing page</span>
+          <span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ marketing</span>
+        </div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;">
+            <div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div>
+            <div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 12.5px; color: #8A909C;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#8A909C" stroke-width="2"/><path d="M8 11V8a4 4 0 018 0v3" stroke="#8A909C" stroke-width="2"/></svg>bookease.app</div>
+          </div>
+
+          <!-- LANDING CONTENT -->
+          <div style="background: #fff;">
+            <!-- navbar -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #F1F1F4;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div>
+                <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.02em;">BookEase</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 600; color: #545A66;"><span>Services</span><span>How it works</span><span>Pricing</span><span>Contact</span></div>
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <span style="font-size: 14.5px; font-weight: 700; color: #16181D;">Log in</span>
+                <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14px; padding: 11px 20px; border-radius: 11px; box-shadow: 0 4px 12px rgba(91,75,227,0.28);">Book Now</button>
+              </div>
+            </div>
+
+            <!-- hero -->
+            <div style="display: grid; grid-template-columns: 1.04fr 0.96fr; gap: 56px; padding: 72px 40px; align-items: center;">
+              <div>
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 999px; margin-bottom: 24px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #5B4BE3;"></span>Personal training, on your schedule</div>
+                <h1 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 58px; line-height: 1.0; letter-spacing: -0.035em; margin: 0 0 22px; color: #0F1115;">Train with the best. Book in seconds.</h1>
+                <p style="font-size: 18.5px; line-height: 1.6; color: #545A66; margin: 0 0 32px; max-width: 46ch;">Find a coach, pick a time that fits your week, and lock in your session — no calls, no back-and-forth.</p>
+                <div style="display: flex; gap: 14px; margin-bottom: 36px;">
+                  <button style="font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15.5px; padding: 15px 28px; border-radius: 13px; box-shadow: 0 8px 22px rgba(91,75,227,0.32);">Book Now <span style="font-size: 17px;">→</span></button>
+                  <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 15.5px; padding: 15px 28px; border-radius: 13px;">View Services</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <div style="display: flex;"><image-slot id="be-av-1" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%;" shape="circle" placeholder=""></image-slot><image-slot id="be-av-2" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%; margin-left: -12px;" shape="circle" placeholder=""></image-slot><image-slot id="be-av-3" style="width: 38px; height: 38px; border: 2px solid #fff; border-radius: 50%; margin-left: -12px;" shape="circle" placeholder=""></image-slot></div>
+                  <div><div style="font-weight: 700; font-size: 14px; color: #16181D;">★★★★★ 4.9</div><div style="font-size: 13px; color: #8A909C;">2,400+ sessions booked</div></div>
+                </div>
+              </div>
+              <div style="position: relative;">
+                <image-slot id="be-hero" style="width: 100%; height: 460px; border-radius: 22px;" shape="rounded" radius="22" placeholder="Drop a hero / trainer photo"></image-slot>
+                <div style="position: absolute; bottom: 22px; left: -24px; background: #fff; border: 1px solid #ECECEF; border-radius: 16px; padding: 16px 18px; box-shadow: 0 16px 40px rgba(16,17,22,0.16); display: flex; gap: 13px; align-items: center; animation: beFloat 5s ease-in-out infinite;">
+                  <div style="width: 46px; height: 46px; border-radius: 12px; background: #EEEBFD; display: flex; flex-direction: column; align-items: center; justify-content: center;"><span style="font-size: 10px; font-weight: 700; color: #5B4BE3;">JUN</span><span style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #4A3BD0; line-height: 1;">14</span></div>
+                  <div><div style="font-weight: 700; font-size: 14px; color: #16181D;">Session confirmed</div><div style="font-size: 12.5px; color: #8A909C;">10:30 AM · Coach Mia</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- services preview -->
+            <div style="padding: 8px 40px 72px;">
+              <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px;">
+                <div><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">SERVICES</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Popular services</h2></div>
+                <span style="font-size: 14.5px; font-weight: 700; color: #5B4BE3;">View all →</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-1" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">1:1 Strength Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$65</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">Personalised lifting program with a dedicated coach.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 60 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-2" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">HIIT Bootcamp</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$30</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">High-intensity group circuit to torch calories fast.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 45 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+                <div style="border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden; transition: all .2s;" style-hover="box-shadow: 0 16px 36px rgba(16,17,22,0.1); transform: translateY(-3px);">
+                  <image-slot id="be-svc-3" style="width: 100%; height: 150px; display: block;" shape="rect" placeholder="Service image"></image-slot>
+                  <div style="padding: 18px 20px;"><div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;"><span style="font-weight: 700; font-size: 16.5px; color: #16181D;">Mobility & Recovery</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3; font-size: 16px;">$45</span></div><p style="font-size: 13.5px; color: #8A909C; line-height: 1.5; margin: 8px 0 14px;">Guided stretch and recovery to keep you injury-free.</p><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">⏱ 50 min</span><button style="font-family: inherit; cursor: pointer; border: none; background: #EEEBFD; color: #4A3BD0; font-weight: 700; font-size: 13.5px; padding: 9px 18px; border-radius: 10px;">Book</button></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- how it works -->
+            <div style="background: #F7F7FA; padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 44px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">HOW IT WORKS</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Booked in three steps</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">1</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Choose a service</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">Browse coaches and programs, filter by what you need.</p></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">2</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Pick a time slot</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">See live availability and select the slot that fits.</p></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px;"><div style="width: 42px; height: 42px; border-radius: 12px; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">3</div><div style="font-weight: 700; font-size: 17px; margin-bottom: 8px; color: #16181D;">Confirm & go</div><p style="font-size: 14.5px; color: #8A909C; line-height: 1.6; margin: 0;">Get instant confirmation and a calendar invite.</p></div>
+              </div>
+            </div>
+
+            <!-- why choose us -->
+            <div style="padding: 64px 40px;">
+              <div style="margin-bottom: 36px; max-width: 600px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">WHY BOOKEASE</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Everything in one place</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#5B4BE3"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Instant booking</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Real-time availability, no waiting on a callback.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#5B4BE3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Verified coaches</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Every trainer is certified and client-reviewed.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#5B4BE3" stroke-width="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Flexible reschedule</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Move or cancel up to 12 hours before, free.</p></div>
+                <div><div style="width: 44px; height: 44px; border-radius: 12px; background: #EEEBFD; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2" stroke="#5B4BE3" stroke-width="2"/><path d="M2 20h20" stroke="#5B4BE3" stroke-width="2" stroke-linecap="round"/></svg></div><div style="font-weight: 700; font-size: 16px; margin-bottom: 7px; color: #16181D;">Secure payments</div><p style="font-size: 14px; color: #8A909C; line-height: 1.6; margin: 0;">Pay safely in-app with saved cards or Apple Pay.</p></div>
+              </div>
+            </div>
+
+            <!-- testimonials -->
+            <div style="background: #F7F7FA; padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 40px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">TESTIMONIALS</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Loved by clients & coaches</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 940px; margin: 0 auto;">
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 30px;"><div style="color: #C8A93C; font-size: 15px; margin-bottom: 14px;">★★★★★</div><p style="font-size: 16.5px; line-height: 1.6; color: #16181D; margin: 0 0 22px; font-weight: 500;">"I booked three sessions in under a minute. BookEase made finding a coach genuinely effortless."</p><div style="display: flex; align-items: center; gap: 12px;"><image-slot id="be-t-1" style="width: 44px; height: 44px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 14.5px;">Jordan Hayes</div><div style="font-size: 13px; color: #8A909C;">Member since 2025</div></div></div></div>
+                <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 30px;"><div style="color: #C8A93C; font-size: 15px; margin-bottom: 14px;">★★★★★</div><p style="font-size: 16.5px; line-height: 1.6; color: #16181D; margin: 0 0 22px; font-weight: 500;">"As a trainer, the admin dashboard saves me hours every week. My calendar finally runs itself."</p><div style="display: flex; align-items: center; gap: 12px;"><image-slot id="be-t-2" style="width: 44px; height: 44px; border-radius: 50%;" shape="circle" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 14.5px;">Coach Mia Reyes</div><div style="font-size: 13px; color: #8A909C;">Strength specialist</div></div></div></div>
+              </div>
+            </div>
+
+            <!-- pricing -->
+            <div style="padding: 64px 40px;">
+              <div style="text-align: center; margin-bottom: 44px;"><div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #5B4BE3; margin-bottom: 8px;">PACKAGES</div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Simple, fair pricing</h2></div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1000px; margin: 0 auto;">
+                <div style="border: 1px solid #ECECEF; border-radius: 20px; padding: 32px;"><div style="font-weight: 700; font-size: 15px; color: #8A909C; margin-bottom: 14px;">Starter</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$0</div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">Pay per session</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Book any service</span><span>✓ Reminders & calendar sync</span><span>✓ In-app payments</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px;">Get started</button></div>
+                <div style="border: 2px solid #5B4BE3; border-radius: 20px; padding: 42px 32px 32px; position: relative; box-shadow: 0 20px 44px rgba(91,75,227,0.18);"><span style="position: absolute; top: -13px; left: 32px; background: #5B4BE3; color: #fff; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px;">MOST POPULAR</span><div style="font-weight: 700; font-size: 15px; color: #5B4BE3; margin-bottom: 14px;">Pro</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$49<span style="font-size: 17px; color: #8A909C; font-weight: 600;">/mo</span></div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">8 sessions / month</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Everything in Starter</span><span>✓ Priority slots</span><span>✓ Free rescheduling</span><span>✓ Progress tracking</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Choose Pro</button></div>
+                <div style="border: 1px solid #ECECEF; border-radius: 20px; padding: 32px;"><div style="font-weight: 700; font-size: 15px; color: #8A909C; margin-bottom: 14px;">Elite</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: #0F1115;">$99<span style="font-size: 17px; color: #8A909C; font-weight: 600;">/mo</span></div><div style="font-size: 13.5px; color: #8A909C; margin: 4px 0 24px;">Unlimited sessions</div><div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #545A66;"><span>✓ Everything in Pro</span><span>✓ Dedicated coach</span><span>✓ Custom nutrition plan</span></div><button style="width: 100%; margin-top: 26px; font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 12px;">Choose Elite</button></div>
+              </div>
+            </div>
+
+            <!-- contact CTA + footer -->
+            <div style="background: linear-gradient(158deg, #4A3DAE, #2C2370); padding: 64px 40px; color: #fff;">
+              <div style="display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; max-width: 1000px; margin: 0 auto 56px;">
+                <div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 38px; letter-spacing: -0.025em; margin: 0 0 10px;">Ready to start training?</h2><p style="font-size: 17px; color: #C7C2E8; margin: 0;">Join thousands booking smarter with BookEase.</p></div>
+                <button style="font-family: inherit; cursor: pointer; border: none; background: #C8F25C; color: #1B2906; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 13px; white-space: nowrap;">Book your first session</button>
+              </div>
+              <div style="border-top: 1px solid rgba(255,255,255,0.14); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px;">BookEase</span></div>
+                <div style="display: flex; gap: 28px; font-size: 14px; color: #C7C2E8; font-weight: 500;"><span>Services</span><span>Pricing</span><span>About</span><span>Contact</span><span>Privacy</span></div>
+                <div style="font-size: 13px; color: #9890C9;">© 2026 BookEase Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+</div>
+<div class="be-frame be-web" style="width:1200px;max-width:100%;">
+  <div class="be-frame-cap" style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><span style="width:9px;height:9px;border-radius:50%;background:#5B4BE3;"></span><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0F1115;">Services listing</span></div>
+  <div class="be-screen"><div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Services listing</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ discovery</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/services</div></div>
+          <!-- app nav -->
+          <div style="display: flex; align-items: center; gap: 24px; padding: 16px 32px; border-bottom: 1px solid #F1F1F4;">
+            <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(145deg, #6B5BF0, #4A3BD0); display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 16px;">BookEase</span></div>
+            <div style="flex: 1; max-width: 440px; display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 14px; border: 1px solid #E2E3E9; border-radius: 11px; background: #F7F7FA;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8A909C" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#8A909C" stroke-width="2" stroke-linecap="round"/></svg><span style="font-size: 14px; color: #8A909C;">Search services or coaches…</span></div>
+            <div style="display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 600; color: #545A66;"><span>My bookings</span><span>Help</span></div>
+            <image-slot id="be-user" style="width: 36px; height: 36px; border-radius: 50%;" shape="circle" placeholder=""></image-slot>
+          </div>
+          <!-- content -->
+          <div style="padding: 32px 32px 40px; background: #FBFBFC;">
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 22px;"><div><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0 0 4px; color: #0F1115;">Browse services</h2><div style="font-size: 14px; color: #8A909C;">Showing 6 of 24 services</div></div><div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid #E2E3E9; border-radius: 10px; background: #fff; font-size: 13.5px; font-weight: 600; color: #16181D;">Sort: Popular <span style="color: #8A909C;">▾</span></div></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 26px;">
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">All</span>
+              <span style="background: #5B4BE3; color: #fff; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Strength</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">HIIT</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Mobility</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Recovery</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Nutrition</span>
+              <span style="background: #F2F2F5; color: #545A66; font-weight: 600; font-size: 13.5px; padding: 9px 17px; border-radius: 999px;">Online</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-1" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">1:1 Strength Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$65</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 60 min</span><span>★ 4.9 (212)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Personalised lifting program with a dedicated coach.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-2" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">HIIT Bootcamp</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$30</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 45 min</span><span>★ 4.8 (340)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">High-intensity group circuit to torch calories fast.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-3" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Mobility & Recovery</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$45</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 50 min</span><span>★ 4.9 (98)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Guided stretch and recovery to keep you injury-free.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-4" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Nutrition Consult</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$55</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 40 min</span><span>★ 5.0 (76)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Build a meal plan tailored to your training goals.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-5" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Online Coaching</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$40</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 30 min</span><span>★ 4.7 (154)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Remote video coaching with weekly check-ins.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; overflow: hidden;"><image-slot id="be-sl-6" style="width: 100%; height: 140px; display: block;" shape="rect" placeholder="Image"></image-slot><div style="padding: 17px 19px;"><div style="display: flex; justify-content: space-between; gap: 10px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Fitness Assessment</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #5B4BE3;">$35</span></div><div style="font-size: 13px; color: #8A909C; margin: 7px 0 12px; display: flex; gap: 12px;"><span>⏱ 45 min</span><span>★ 4.9 (61)</span></div><p style="font-size: 13px; color: #8A909C; line-height: 1.5; margin: 0 0 14px;">Full-body baseline test to map your starting point.</p><button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 13.5px; padding: 11px; border-radius: 10px;">Book</button></div></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+</div>
+<div class="be-frame be-web" style="width:1200px;max-width:100%;">
+  <div class="be-frame-cap" style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><span style="width:9px;height:9px;border-radius:50%;background:#5B4BE3;"></span><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0F1115;">Booking form</span></div>
+  <div class="be-screen"><div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Booking form</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ checkout</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/book</div></div>
+          <div style="padding: 36px 40px 44px; background: #FBFBFC;">
+            <div style="margin-bottom: 8px;"><h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0 0 18px; color: #0F1115;">Book your session</h2>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #5B4BE3;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #5B4BE3; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px;">1</span>Service</span>
+                <span style="width: 28px; height: 2px; background: #5B4BE3;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #5B4BE3;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #5B4BE3; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px;">2</span>Details</span>
+                <span style="width: 28px; height: 2px; background: #E2E3E9;"></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #B6BBC4;"><span style="width: 22px; height: 22px; border-radius: 50%; background: #E2E3E9; color: #8A909C; display: flex; align-items: center; justify-content: center; font-size: 12px;">3</span>Confirm</span>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start;">
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 28px 30px;">
+                <!-- date -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Select a date</div>
+                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 26px;">
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">MON</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">12</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">TUE</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">13</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; background: #5B4BE3; cursor: pointer; box-shadow: 0 6px 14px rgba(91,75,227,0.3);"><div style="font-size: 11.5px; color: #D9D3FA; font-weight: 600;">WED</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 3px;">14</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">THU</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">15</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">FRI</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">16</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; opacity: 0.45; cursor: not-allowed;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">SAT</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">17</div></div>
+                  <div style="text-align: center; padding: 12px 0; border-radius: 12px; border: 1px solid #ECECEF; cursor: pointer;"><div style="font-size: 11.5px; color: #8A909C; font-weight: 600;">SUN</div><div style="font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: #16181D; margin-top: 3px;">18</div></div>
+                </div>
+                <!-- time -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Available time slots</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 26px;">
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">9:00 AM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1.5px solid #5B4BE3; background: #EEEBFD; font-size: 14px; font-weight: 700; color: #4A3BD0; cursor: pointer;">10:30 AM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">12:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #B6BBC4; text-decoration: line-through; cursor: not-allowed;">1:30 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">3:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">4:30 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">6:00 PM</div>
+                  <div style="text-align: center; padding: 11px 0; border-radius: 10px; border: 1px solid #ECECEF; font-size: 14px; font-weight: 600; color: #16181D; cursor: pointer;">7:30 PM</div>
+                </div>
+                <!-- customer details -->
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 12px;">Your details</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                  <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Full name</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">Jordan Hayes</div></div>
+                  <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Phone</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">+1 415 555 0199</div></div>
+                </div>
+                <div style="margin-bottom: 14px;"><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Email</label><div style="height: 46px; padding: 0 14px; display: flex; align-items: center; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14.5px; color: #16181D; font-weight: 500;">jordan@email.com</div></div>
+                <div><label style="display: block; font-size: 12.5px; font-weight: 600; color: #545A66; margin-bottom: 6px;">Notes <span style="color: #B6BBC4; font-weight: 500;">(optional)</span></label><div style="min-height: 76px; padding: 12px 14px; border: 1px solid #DDDFE6; border-radius: 11px; background: #fff; font-size: 14px; color: #8A909C; line-height: 1.5;">Recovering from a minor knee strain — please keep impact low.</div></div>
+              </div>
+              <!-- summary -->
+              <div style="background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 26px;">
+                <div style="font-size: 13.5px; font-weight: 700; color: #16181D; margin-bottom: 18px;">Booking summary</div>
+                <div style="display: flex; gap: 13px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #F0F0F4; margin-bottom: 18px;"><image-slot id="be-sum" style="width: 54px; height: 54px; border-radius: 12px;" shape="rounded" radius="12" placeholder=""></image-slot><div><div style="font-weight: 700; font-size: 15px; color: #16181D;">1:1 Strength Coaching</div><div style="font-size: 13px; color: #8A909C; margin-top: 2px;">with Coach Mia</div></div></div>
+                <div style="display: flex; flex-direction: column; gap: 13px; font-size: 14px; margin-bottom: 18px;"><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Date</span><span style="color: #16181D; font-weight: 600;">Wed, Jun 14</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Time</span><span style="color: #16181D; font-weight: 600;">10:30 AM</span></div><div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Duration</span><span style="color: #16181D; font-weight: 600;">60 min</span></div></div>
+                <div style="display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid #F0F0F4; margin-bottom: 22px;"><span style="font-weight: 700; font-size: 16px; color: #16181D;">Total</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 20px; color: #5B4BE3;">$65.00</span></div>
+                <button style="width: 100%; font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 15px; padding: 14px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">Confirm booking</button>
+                <div style="text-align: center; font-size: 12px; color: #8A909C; margin-top: 12px;">Free cancellation up to 12h before</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+</div>
+<div class="be-frame be-web" style="width:1200px;max-width:100%;">
+  <div class="be-frame-cap" style="display:flex;align-items:center;gap:10px;margin-bottom:2px;"><span style="width:9px;height:9px;border-radius:50%;background:#5B4BE3;"></span><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0F1115;">Booking confirmation</span></div>
+  <div class="be-screen"><div style="margin-bottom: 44px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #0F1115;">Booking confirmation</span><span style="font-size: 12px; font-weight: 600; color: #8A909C;">/ success</span></div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid #D7D8E0; box-shadow: 0 24px 60px rgba(16,17,22,0.13); background: #fff;">
+          <div style="height: 46px; background: #F1F1F4; border-bottom: 1px solid #E6E6EB; display: flex; align-items: center; gap: 16px; padding: 0 18px;"><div style="display: flex; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E;"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840;"></span></div><div style="flex: 1; max-width: 380px; height: 28px; background: #fff; border: 1px solid #E6E6EB; border-radius: 8px; display: flex; align-items: center; padding: 0 12px; font-size: 12.5px; color: #8A909C;">bookease.app/confirmed</div></div>
+          <div style="padding: 64px 40px; background: #FBFBFC; display: flex; flex-direction: column; align-items: center;">
+            <div style="width: 76px; height: 76px; border-radius: 50%; background: #E7F8EE; display: flex; align-items: center; justify-content: center; margin-bottom: 22px;"><div style="width: 52px; height: 52px; border-radius: 50%; background: #16A34A; display: flex; align-items: center; justify-content: center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin: 0 0 8px; color: #0F1115;">Booking confirmed!</h2>
+            <p style="font-size: 16px; color: #545A66; margin: 0 0 32px; text-align: center;">We've sent the details and a calendar invite to <span style="color: #16181D; font-weight: 600;">jordan@email.com</span></p>
+            <div style="width: 100%; max-width: 460px; background: #fff; border: 1px solid #ECECEF; border-radius: 18px; padding: 26px 28px; margin-bottom: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px dashed #E2E3E9; margin-bottom: 16px;"><span style="font-size: 13px; color: #8A909C; font-weight: 600;">Booking ID</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 15px; color: #5B4BE3;">#BK-20416</span></div>
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14.5px;">
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Service</span><span style="color: #16181D; font-weight: 600;">1:1 Strength Coaching</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Date & time</span><span style="color: #16181D; font-weight: 600;">Wed, Jun 14 · 10:30 AM</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Coach</span><span style="color: #16181D; font-weight: 600;">Mia Reyes</span></div>
+                <div style="display: flex; justify-content: space-between;"><span style="color: #8A909C;">Customer</span><span style="color: #16181D; font-weight: 600;">Jordan Hayes</span></div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px;">
+              <button style="font-family: inherit; cursor: pointer; background: #fff; border: 1px solid #DDDFE6; color: #16181D; font-weight: 700; font-size: 14.5px; padding: 13px 26px; border-radius: 12px;">Back to Home</button>
+              <button style="font-family: inherit; cursor: pointer; border: none; background: #5B4BE3; color: #fff; font-weight: 700; font-size: 14.5px; padding: 13px 26px; border-radius: 12px; box-shadow: 0 8px 20px rgba(91,75,227,0.3);">View Bookings</button>
+            </div>
+          </div>
+        </div>
+      </div></div>
+</div>
+  </div>
+
+</div>
+
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.getElementById('be-board');
+    if (!root || root.__beWired) return;
+    root.__beWired = true;
+
+    // ---- token maps ----
+    const COLOR_TOKENS = {
+      '#5b4be3':'--be-primary-600','#4a3bd0':'--be-primary-700','#eeebfd':'--be-primary-soft',
+      '#c8f25c':'--be-accent-lime','#0e0f14':'--be-ink-900','#0f1115':'--be-ink-800',
+      '#16181d':'--be-ink-700','#545a66':'--be-text-600','#8a909c':'--be-muted-500',
+      '#b6bbc4':'--be-muted-400','#e2e3e9':'--be-border-200','#ececef':'--be-border-100',
+      '#f0f0f4':'--be-divider','#ffffff':'--be-surface-0','#fbfbfc':'--be-surface-50',
+      '#f4f4f7':'--be-surface-100','#f7f7fa':'--be-surface-150','#f2f2f5':'--be-surface-200',
+      '#f5f5f8':'--be-app-bg','#16a34a':'--be-success','#15803d':'--be-success-text',
+      '#e7f8ee':'--be-success-bg','#d97706':'--be-warning','#b45309':'--be-warning-text',
+      '#fef3d9':'--be-warning-bg','#e11d48':'--be-danger','#be123c':'--be-danger-text',
+      '#fce4e9':'--be-danger-bg','#2563eb':'--be-info','#1d4ed8':'--be-info-text',
+      '#eaeffc':'--be-info-bg','#4a3dae':'--be-primary-700','#2c2370':'--be-ink-900'
+    };
+    const RADIUS_TOKENS = {8:'--be-radius-sm',11:'--be-radius-md',14:'--be-radius-lg',18:'--be-radius-xl',22:'--be-radius-2xl',999:'--be-radius-pill'};
+    const SPACE_TOKENS = {4:'space-1',8:'space-2',12:'space-3',14:'space-4',16:'space-5',20:'space-6',24:'space-7',28:'space-8',32:'space-9',40:'space-10',48:'space-12',64:'space-16',72:'space-18'};
+    const FONT_LABEL = (fam) => {
+      const f = (fam||'').toLowerCase();
+      if (f.includes('space grotesk')) return 'Space Grotesk · display';
+      if (f.includes('plus jakarta')) return 'Plus Jakarta Sans · UI';
+      if (f.includes('apple') || f.includes('system')) return 'SF Pro / system';
+      return fam.split(',')[0].replace(/["']/g,'');
+    };
+
+    const rgbToHex = (s) => {
+      const m = (s||'').match(/rgba?\(([^)]+)\)/);
+      if (!m) return null;
+      const p = m[1].split(',').map(x=>x.trim());
+      const a = p[3] !== undefined ? parseFloat(p[3]) : 1;
+      if (a === 0) return null;
+      const h = p.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('');
+      return { hex: '#'+h, a };
+    };
+    const tok = (hex) => hex && COLOR_TOKENS[hex.toLowerCase()] ? COLOR_TOKENS[hex.toLowerCase()] : null;
+    const px = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? Math.round(n*10)/10 : 0; };
+    const sides = (cs, p) => [px(cs[p+'Top']||cs[p+'-top']), px(cs[p+'Right']), px(cs[p+'Bottom']), px(cs[p+'Left'])];
+    const fmtSides = (a) => (a[0]===a[1]&&a[1]===a[2]&&a[2]===a[3]) ? a[0]+'px' :
+      (a[0]===a[2]&&a[1]===a[3]) ? a[0]+'px '+a[1]+'px' : a.map(x=>x+'px').join(' ');
+
+    // ---- inspector DOM ----
+    const sel = document.createElement('div');
+    sel.className = 'be-ins';
+    sel.style.cssText = 'position:fixed;pointer-events:none;z-index:999996;border:1.5px solid #5B4BE3;background:rgba(91,75,227,0.07);border-radius:2px;display:none;box-shadow:0 0 0 1px rgba(255,255,255,0.6);';
+    const dim = document.createElement('div');
+    dim.style.cssText = 'position:absolute;left:50%;top:100%;transform:translate(-50%,6px);background:#5B4BE3;color:#fff;font-size:11px;font-weight:700;font-family:Space Grotesk,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 10px rgba(91,75,227,0.4);';
+    sel.appendChild(dim);
+    const hov = document.createElement('div');
+    hov.className = 'be-ins';
+    hov.style.cssText = 'position:fixed;pointer-events:none;z-index:999995;border:1px dashed #8273F0;background:rgba(91,75,227,0.04);border-radius:2px;display:none;';
+    document.body.append(sel, hov);
+
+    const panel = document.createElement('div');
+    panel.className = 'be-ins';
+    panel.style.cssText = 'position:fixed;top:74px;right:22px;width:316px;max-height:calc(100vh - 96px);overflow:auto;background:#fff;border:1px solid #E2E3E9;border-radius:16px;box-shadow:0 30px 70px -24px rgba(16,17,22,0.45);z-index:999997;display:none;';
+    document.body.appendChild(panel);
+
+    let selected = null;
+
+    const place = (box, el) => {
+      const r = el.getBoundingClientRect();
+      box.style.left = r.left+'px'; box.style.top = r.top+'px';
+      box.style.width = r.width+'px'; box.style.height = r.height+'px';
+      box.style.display = 'block';
+    };
+
+    const row = (label, val, mono) => val ? `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:12px;"><span style="color:#8A909C;font-weight:600;flex-shrink:0;">${label}</span><span style="color:#16181D;font-weight:600;text-align:right;${mono?'font-family:Space Grotesk,monospace;':''}">${val}</span></div>` : '';
+    const swatch = (hex) => `<span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:${hex};box-shadow:inset 0 0 0 1px rgba(0,0,0,0.12);vertical-align:-2px;margin-right:6px;"></span>`;
+    const colorRow = (label, info) => {
+      if (!info) return '';
+      const t = tok(info.hex);
+      return `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:12px;align-items:center;"><span style="color:#8A909C;font-weight:600;">${label}</span><span style="text-align:right;">${swatch(info.hex)}<span style="font-family:Space Grotesk,monospace;font-weight:600;color:#16181D;">${info.hex.toUpperCase()}</span>${t?`<div style="font-size:10.5px;color:#5B4BE3;font-weight:700;margin-top:1px;">${t}</div>`:''}</span></div>`;
+    };
+    const head = (txt) => `<div style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B6BBC4;margin:16px 0 2px;">${txt}</div>`;
+
+    const render = (el) => {
+      const cs = getComputedStyle(el);
+      const w = Math.round(el.offsetWidth*10)/10, h = Math.round(el.offsetHeight*10)/10;
+      const tag = el.tagName.toLowerCase();
+      let txt = ''; el.childNodes.forEach(n=>{ if(n.nodeType===3) txt += n.textContent; });
+      txt = txt.trim().replace(/\s+/g,' ').slice(0,40);
+      const hasText = txt.length > 0;
+
+      const pad = sides(cs,'padding'), mar = sides(cs,'margin');
+      const br = px(cs.borderTopLeftRadius);
+      const brTok = RADIUS_TOKENS[br] ? RADIUS_TOKENS[br] : (br===999?RADIUS_TOKENS[999]:null);
+      const bw = px(cs.borderTopWidth);
+      const bcol = bw>0 ? rgbToHex(cs.borderTopColor) : null;
+      const disp = cs.display;
+      const isFlex = disp.includes('flex'), isGrid = disp.includes('grid');
+      const gap = px(cs.gap||cs.gridGap);
+      const bg = rgbToHex(cs.backgroundColor);
+      const fg = rgbToHex(cs.color);
+      const shadow = cs.boxShadow && cs.boxShadow !== 'none' ? cs.boxShadow : null;
+      const opa = parseFloat(cs.opacity);
+      const spaceHint = (v) => SPACE_TOKENS[v] ? ` <span style="color:#5B4BE3;font-weight:700;">·${SPACE_TOKENS[v]}</span>` : '';
+
+      let html = '';
+      html += `<div style="position:sticky;top:0;background:#fff;padding:15px 18px 12px;border-bottom:1px solid #F0F0F4;display:flex;align-items:flex-start;gap:10px;">
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;gap:7px;"><span style="font-family:Space Grotesk,monospace;font-weight:700;font-size:14px;color:#5B4BE3;">&lt;${tag}&gt;</span></div>
+          ${hasText?`<div style="font-size:12px;color:#8A909C;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">"${txt}"</div>`:''}
+        </div>
+        <button id="be-close" style="flex-shrink:0;width:26px;height:26px;border:1px solid #E2E3E9;background:#F7F7FA;border-radius:8px;color:#8A909C;font-size:15px;cursor:pointer;line-height:1;">×</button>
+      </div>`;
+
+      html += '<div style="padding:4px 18px 18px;">';
+      // size
+      html += `<div style="display:flex;gap:8px;margin:14px 0 4px;">
+        <div style="flex:1;background:#F7F7FA;border-radius:10px;padding:10px 12px;"><div style="font-size:10px;color:#8A909C;font-weight:700;">WIDTH</div><div style="font-family:Space Grotesk,monospace;font-weight:700;font-size:17px;color:#0F1115;">${w}</div></div>
+        <div style="flex:1;background:#F7F7FA;border-radius:10px;padding:10px 12px;"><div style="font-size:10px;color:#8A909C;font-weight:700;">HEIGHT</div><div style="font-family:Space Grotesk,monospace;font-weight:700;font-size:17px;color:#0F1115;">${h}</div></div>
+      </div>`;
+
+      // box
+      html += head('Box');
+      html += row('Padding', fmtSides(pad)===0+'px'?'':fmtSides(pad)+spaceHint(pad[0]), true);
+      if (mar.some(x=>x!==0)) html += row('Margin', fmtSides(mar), true);
+      if (br>0) html += row('Radius', (br===999?'999 (pill)':br+'px') + (brTok?` <span style="color:#5B4BE3;font-weight:700;">·${brTok}</span>`:''), true);
+      if (bw>0 && bcol) html += `<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:12px;align-items:center;"><span style="color:#8A909C;font-weight:600;">Border</span><span style="text-align:right;">${bw}px ${swatch(bcol.hex)}<span style="font-family:Space Grotesk,monospace;font-weight:600;">${bcol.hex.toUpperCase()}</span></span></div>`;
+
+      // layout
+      if (isFlex || isGrid || gap>0) {
+        html += head('Layout');
+        html += row('Display', disp, true);
+        if (isFlex) html += row('Direction', cs.flexDirection, true);
+        if (gap>0) html += row('Gap', gap+'px'+spaceHint(gap), true);
+        if (isFlex||isGrid) { html += row('Align', cs.alignItems, true); html += row('Justify', cs.justifyContent, true); }
+      }
+
+      // type
+      if (hasText) {
+        html += head('Typography');
+        html += row('Font', FONT_LABEL(cs.fontFamily));
+        html += row('Size', px(cs.fontSize)+'px', true);
+        html += row('Weight', cs.fontWeight, true);
+        html += row('Line', px(cs.lineHeight)?px(cs.lineHeight)+'px':cs.lineHeight, true);
+        if (cs.letterSpacing && cs.letterSpacing!=='normal') html += row('Tracking', cs.letterSpacing, true);
+        if (cs.textAlign && cs.textAlign!=='start' && cs.textAlign!=='left') html += row('Align', cs.textAlign, true);
+        html += colorRow('Text', fg);
+      }
+
+      // fill
+      html += head('Fill & effects');
+      html += colorRow('Background', bg) || row('Background','transparent');
+      if (opa < 1) html += row('Opacity', opa, true);
+      if (shadow) html += `<div style="padding:6px 0;font-size:12px;"><span style="color:#8A909C;font-weight:600;">Shadow</span><div style="font-family:Space Grotesk,monospace;font-size:10.5px;color:#16181D;margin-top:4px;word-break:break-all;line-height:1.4;">${shadow}</div></div>`;
+
+      html += `<button id="be-copy" style="width:100%;margin-top:18px;font-family:inherit;cursor:pointer;border:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:13px;padding:11px;border-radius:10px;box-shadow:0 6px 16px rgba(91,75,227,0.28);">Copy CSS</button>`;
+      html += '</div>';
+      panel.innerHTML = html;
+
+      panel.querySelector('#be-close').onclick = clear;
+      panel.querySelector('#be-copy').onclick = (ev) => {
+        const lines = [];
+        lines.push('width: '+w+'px;'); lines.push('height: '+h+'px;');
+        if (fmtSides(pad)!=='0px') lines.push('padding: '+fmtSides(pad)+';');
+        if (br>0) lines.push('border-radius: '+(br===999?'999px':br+'px')+';');
+        if (bw>0 && bcol) lines.push('border: '+bw+'px solid '+bcol.hex+';');
+        if (isFlex||isGrid){ lines.push('display: '+disp+';'); if(gap>0)lines.push('gap: '+gap+'px;'); }
+        if (hasText){ lines.push('font-family: '+cs.fontFamily.split(',')[0].replace(/"/g,'')+';'); lines.push('font-size: '+px(cs.fontSize)+'px;'); lines.push('font-weight: '+cs.fontWeight+';'); if(fg)lines.push('color: '+fg.hex+';'); }
+        if (bg) lines.push('background: '+bg.hex+';');
+        if (shadow) lines.push('box-shadow: '+shadow+';');
+        const css = lines.join('\n');
+        navigator.clipboard && navigator.clipboard.writeText(css).then(()=>{
+          ev.target.textContent='Copied ✓'; setTimeout(()=>ev.target.textContent='Copy CSS',1300);
+        }).catch(()=>{ ev.target.textContent='Copied ✓'; setTimeout(()=>ev.target.textContent='Copy CSS',1300); });
+      };
+
+      dim.textContent = w+' × '+h;
+      place(sel, el);
+    };
+
+    const selectEl = (el) => { selected = el; panel.style.display='block'; render(el); };
+    const clear = () => { selected=null; panel.style.display='none'; sel.style.display='none'; };
+
+    root.addEventListener('mousemove', (e) => {
+      if (!selected || e.target !== selected) {
+        const t = e.target.closest && e.target.closest('.be-screen *');
+        if (t && t !== selected) { place(hov, t); return; }
+      }
+      hov.style.display='none';
+    });
+    root.addEventListener('mouseleave', () => hov.style.display='none');
+
+    root.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!t.closest || !t.closest('.be-screen')) return;
+      e.preventDefault(); e.stopPropagation();
+      hov.style.display='none';
+      selectEl(t === selected && t.parentElement && t.parentElement.closest('.be-screen') ? t.parentElement : t);
+    }, true);
+
+    const reposition = () => { if (selected) place(sel, selected); hov.style.display='none'; };
+    window.addEventListener('scroll', reposition, true);
+    window.addEventListener('resize', reposition);
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') clear(); });
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

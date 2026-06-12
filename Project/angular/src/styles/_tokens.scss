@@ -1,0 +1,133 @@
+// BookEase Design Tokens — mirrors bookease-tokens.css
+
+:root {
+  // Brand
+  --be-primary-600:   #5B4BE3;
+  --be-primary-700:   #4A3BD0;
+  --be-primary-soft:  #EEEBFD;
+  --be-accent-lime:   #C8F25C;
+  --be-accent-ink:    #1B2906;
+
+  // Ink & Text
+  --be-ink-900:    #0E0F14;
+  --be-ink-800:    #0F1115;
+  --be-ink-700:    #16181D;
+  --be-text-600:   #545A66;
+  --be-muted-500:  #8A909C;
+  --be-muted-400:  #B6BBC4;
+
+  // Surfaces & Borders
+  --be-border-200:   #E2E3E9;
+  --be-border-100:   #ECECEF;
+  --be-divider:      #F0F0F4;
+  --be-surface-0:    #FFFFFF;
+  --be-surface-50:   #FBFBFC;
+  --be-surface-100:  #F4F4F7;
+  --be-surface-150:  #F7F7FA;
+  --be-surface-200:  #F2F2F5;
+  --be-app-bg:       #F5F5F8;
+
+  // Status
+  --be-success:      #16A34A;
+  --be-success-text: #15803D;
+  --be-success-bg:   #E7F8EE;
+  --be-warning:      #D97706;
+  --be-warning-text: #B45309;
+  --be-warning-bg:   #FEF3D9;
+  --be-danger:       #E11D48;
+  --be-danger-text:  #BE123C;
+  --be-danger-bg:    #FCE4E9;
+  --be-info:         #2563EB;
+  --be-info-text:    #1D4ED8;
+  --be-info-bg:      #EAEFFC;
+
+  // Radius
+  --be-radius-sm:   8px;
+  --be-radius-md:   11px;
+  --be-radius-lg:   14px;
+  --be-radius-xl:   18px;
+  --be-radius-2xl:  22px;
+  --be-radius-pill: 999px;
+
+  // Spacing (4pt grid)
+  --be-space-1:  4px;   --be-space-2:  8px;
+  --be-space-3:  12px;  --be-space-4:  14px;
+  --be-space-5:  16px;  --be-space-6:  20px;
+  --be-space-7:  24px;  --be-space-8:  28px;
+  --be-space-9:  32px;  --be-space-10: 40px;
+  --be-space-12: 48px;  --be-space-16: 64px;
+  --be-space-18: 72px;
+
+  // Elevation
+  --be-shadow-card:   0 24px 60px rgba(16,17,22,0.13);
+  --be-shadow-pop:    0 16px 40px rgba(16,17,22,0.16);
+  --be-shadow-btn:    0 8px 20px rgba(91,75,227,0.30);
+  --be-shadow-btn-sm: 0 4px 12px rgba(91,75,227,0.28);
+  --be-shadow-ring:   0 0 0 4px rgba(91,75,227,0.13);
+
+  // Motion
+  --be-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --be-dur-fast: 0.15s;
+  --be-dur-base: 0.20s;
+
+  // Typography
+  --be-font-display: 'Space Grotesk', system-ui, sans-serif;
+  --be-font-ui:      'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+// SCSS shorthand variables for use in component styles
+$primary:      #5B4BE3;
+$primary-700:  #4A3BD0;
+$primary-soft: #EEEBFD;
+$accent-lime:  #C8F25C;
+
+$ink-800:   #0F1115;
+$ink-700:   #16181D;
+$text-600:  #545A66;
+$muted-500: #8A909C;
+$muted-400: #B6BBC4;
+
+$border-200:  #E2E3E9;
+$border-100:  #ECECEF;
+$surface-0:   #FFFFFF;
+$surface-50:  #FBFBFC;
+$surface-100: #F4F4F7;
+$surface-150: #F7F7FA;
+$surface-200: #F2F2F5;
+
+$success:      #16A34A;
+$success-text: #15803D;
+$success-bg:   #E7F8EE;
+$warning:      #D97706;
+$warning-text: #B45309;
+$warning-bg:   #FEF3D9;
+$danger:       #E11D48;
+$danger-text:  #BE123C;
+$danger-bg:    #FCE4E9;
+$info:         #2563EB;
+$info-text:    #1D4ED8;
+$info-bg:      #EAEFFC;
+
+$radius-sm:   8px;
+$radius-md:   11px;
+$radius-lg:   14px;
+$radius-xl:   18px;
+$radius-2xl:  22px;
+$radius-pill: 999px;
+
+$shadow-card:   0 24px 60px rgba(16,17,22,0.13);
+$shadow-btn:    0 8px 20px rgba(91,75,227,0.30);
+$shadow-btn-sm: 0 4px 12px rgba(91,75,227,0.28);
+
+$ease:      cubic-bezier(0.4, 0, 0.2, 1);
+$dur-fast:  0.15s;
+$dur-base:  0.20s;
+
+$font-display: 'Space Grotesk', system-ui, sans-serif;
+$font-ui:      'Plus Jakarta Sans', system-ui, sans-serif;
+
+// Breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;

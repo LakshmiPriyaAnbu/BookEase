@@ -1,0 +1,76 @@
+/* ============================================================
+   BookEase — Design Tokens
+   One source of truth for color, spacing, radius, shadow & motion.
+   Shared across the Angular web app and the SwiftUI iOS app.
+   Import this file once at the root of your stylesheet:
+       @import "bookease-tokens.css";
+   ============================================================ */
+
+:root {
+  /* ---- Brand ---- */
+  --be-primary-600:   #5B4BE3;   /* primary actions, links, active states */
+  --be-primary-700:   #4A3BD0;   /* hover / pressed primary */
+  --be-primary-soft:  #EEEBFD;   /* tinted surfaces, soft buttons, chips */
+  --be-accent-lime:   #C8F25C;   /* high-emphasis accent (logo bolt, CTA on dark) */
+  --be-accent-ink:    #1B2906;   /* text on lime */
+
+  /* ---- Ink / Text ---- */
+  --be-ink-900:       #0E0F14;   /* maximum-contrast ink */
+  --be-ink-800:       #0F1115;   /* display & headings */
+  --be-ink-700:       #16181D;   /* default body text / strong labels */
+  --be-text-600:      #545A66;   /* secondary text, paragraph copy */
+  --be-muted-500:     #8A909C;   /* captions, metadata, placeholders */
+  --be-muted-400:     #B6BBC4;   /* disabled text, faint icons */
+
+  /* ---- Lines & Surfaces ---- */
+  --be-border-200:    #E2E3E9;   /* default 1px border */
+  --be-border-100:    #ECECEF;   /* lighter card border */
+  --be-divider:       #F0F0F4;   /* hairline divider inside cards */
+  --be-surface-0:     #FFFFFF;   /* cards, sheets */
+  --be-surface-50:    #FBFBFC;   /* app canvas (web) */
+  --be-surface-100:   #F4F4F7;   /* muted fill */
+  --be-surface-150:   #F7F7FA;   /* section bands, search fields */
+  --be-surface-200:   #F2F2F5;   /* inactive chips */
+  --be-app-bg:        #F5F5F8;   /* iOS app background */
+
+  /* ---- Status ---- */
+  --be-success:       #16A34A;  --be-success-text: #15803D;  --be-success-bg: #E7F8EE;
+  --be-warning:       #D97706;  --be-warning-text: #B45309;  --be-warning-bg: #FEF3D9;
+  --be-danger:        #E11D48;  --be-danger-text:  #BE123C;  --be-danger-bg:  #FCE4E9;
+  --be-info:          #2563EB;  --be-info-text:    #1D4ED8;  --be-info-bg:    #EAEFFC;
+
+  /* ---- Radius ---- */
+  --be-radius-sm:     8px;    /* inputs inside chips, small controls */
+  --be-radius-md:     11px;   /* buttons, inputs */
+  --be-radius-lg:     14px;   /* inner cards, list rows */
+  --be-radius-xl:     18px;   /* primary cards, panels */
+  --be-radius-2xl:    22px;   /* feature media, hero image */
+  --be-radius-pill:   999px;  /* chips, badges, avatars */
+
+  /* ---- Spacing scale (4pt-ish) ---- */
+  --be-space-1:  4px;
+  --be-space-2:  8px;
+  --be-space-3:  12px;
+  --be-space-4:  14px;
+  --be-space-5:  16px;
+  --be-space-6:  20px;
+  --be-space-7:  24px;
+  --be-space-8:  28px;
+  --be-space-9:  32px;
+  --be-space-10: 40px;
+  --be-space-12: 48px;
+  --be-space-16: 64px;
+  --be-space-18: 72px;
+
+  /* ---- Elevation ---- */
+  --be-shadow-card:    0 24px 60px rgba(16,17,22,0.13);   /* floating browser/app mock, big cards */
+  --be-shadow-pop:     0 16px 40px rgba(16,17,22,0.16);   /* floating notification chips */
+  --be-shadow-btn:     0 8px 20px rgba(91,75,227,0.30);   /* primary button */
+  --be-shadow-btn-sm:  0 4px 12px rgba(91,75,227,0.28);   /* compact primary button */
+  --be-shadow-ring:    0 0 0 4px rgba(91,75,227,0.13);    /* input focus ring */
+
+  /* ---- Motion ---- */
+  --be-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+  --be-dur-fast:      0.15s;
+  --be-dur-base:      0.20s;
+}

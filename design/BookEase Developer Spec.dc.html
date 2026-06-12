@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #ECECEF; font-family: "Plus Jakarta Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #5B4BE3; color: #fff; }
+  .be-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  @media print { .be-noprint { display: none !important; } body { background: #fff; } .be-page { box-shadow: none !important; } }
+</style>
+</helmet>
+
+<div style="background: #ECECEF; min-height: 100vh; color: #16181D;">
+  <div style="max-width: 940px; margin: 0 auto; padding: 0 0 80px;">
+
+    <!-- HEADER -->
+    <div style="background: linear-gradient(158deg, #4A3DAE 0%, #362C86 60%, #2C2370 100%); color: #fff; padding: 56px 56px 48px; border-radius: 0 0 4px 4px;">
+      <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 26px;">
+        <div style="width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg></div>
+        <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 17px;">BookEase</span>
+        <span style="font-size: 11px; font-weight: 700; color: #DCD9F2; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 3px 10px; margin-left: 4px;">SPEC v1.0</span>
+        <a href="BookEase.dc.html" class="be-noprint" style="margin-left: auto; font-size: 13px; font-weight: 700; color: #fff; text-decoration: none; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); padding: 8px 15px; border-radius: 9px;">← Back to case study</a>
+      </div>
+      <h1 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 44px; line-height: 1.04; letter-spacing: -0.03em; margin: 0 0 14px;">Developer Specification</h1>
+      <p style="font-size: 17px; line-height: 1.6; color: #C7C2E8; margin: 0; max-width: 60ch;">An implementation-ready breakdown of every screen, plus the Angular, SwiftUI, Node/Express and PostgreSQL architecture for building BookEase end to end.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px;">
+        <span style="font-size: 12.5px; font-weight: 600; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); padding: 7px 13px; border-radius: 8px;">Angular + TypeScript</span>
+        <span style="font-size: 12.5px; font-weight: 600; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); padding: 7px 13px; border-radius: 8px;">SwiftUI</span>
+        <span style="font-size: 12.5px; font-weight: 600; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); padding: 7px 13px; border-radius: 8px;">Node.js + Express</span>
+        <span style="font-size: 12.5px; font-weight: 600; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16); padding: 7px 13px; border-radius: 8px;">PostgreSQL</span>
+      </div>
+    </div>
+
+    <!-- GLOBAL CONVENTIONS -->
+    <div class="be-page" style="background: #fff; margin: 24px 24px 0; border-radius: 16px; padding: 40px 44px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #5B4BE3; margin-bottom: 10px;">00 — GLOBAL CONVENTIONS</div>
+      <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; margin: 0 0 22px; color: #0F1115;">Foundations every screen shares</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px;">
+        <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 18px 20px;"><div style="font-size: 12px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">Color tokens</div><div class="be-mono" style="font-size: 12.5px; line-height: 1.9; color: #16181D;">primary <span style="color:#5B4BE3;">#5B4BE3</span> · primary-700 <span style="color:#4A3BD0;">#4A3BD0</span><br>accent <span style="color:#7a8a30;">#C8F25C</span> · ink <span>#0E0F14</span> · text #545A66<br>muted #8A909C · border #E2E3E9 · surface #F4F4F7<br>success #16A34A · warning #D97706 · danger #E11D48</div></div>
+        <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 18px 20px;"><div style="font-size: 12px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">Type / spacing / radius</div><div class="be-mono" style="font-size: 12.5px; line-height: 1.9; color: #16181D;">display: Space Grotesk · body: Plus Jakarta Sans<br>scale: 12 / 14 / 16 / 18 / 24 / 32 / 46px<br>spacing: 4 8 12 16 20 24 32 48 (4pt grid)<br>radius: input 11 · card 16-18 · pill 999</div></div>
+      </div>
+      <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 18px 20px;"><div style="font-size: 12px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;">Shared enums &amp; conventions</div><div style="font-size: 14px; line-height: 1.7; color: #545A66;"><b style="color:#16181D;">BookingStatus</b>: <span class="be-mono" style="font-size:12.5px;">pending · confirmed · completed · cancelled</span> &nbsp;·&nbsp; <b style="color:#16181D;">Money</b> stored in cents (integer). &nbsp;·&nbsp; <b style="color:#16181D;">IDs</b> UUID v4. &nbsp;·&nbsp; <b style="color:#16181D;">Dates</b> ISO-8601 UTC. &nbsp;·&nbsp; <b style="color:#16181D;">Naming</b>: Angular kebab-case files + PascalCase classes; SwiftUI PascalCase views; REST routes plural nouns.</div></div>
+    </div>
+
+    <!-- WEB SCREENS -->
+    <div style="padding: 44px 44px 8px;">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #5B4BE3; margin-bottom: 10px;">01 — WEB SCREENS (ANGULAR)</div>
+      <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">Web app — 7 screens</h2>
+    </div>
+    <div style="padding: 0 24px;">
+      <sc-for list="{{ webScreens }}" as="screen" hint-placeholder-count="3">
+        <div class="be-page" style="background: #fff; border-radius: 16px; padding: 32px 36px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #F0F0F4;">
+            <span style="width: 30px; height: 30px; border-radius: 9px; background: #EEEBFD; color: #4A3BD0; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center;">{{ screen.num }}</span>
+            <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em; color: #0F1115;">{{ screen.name }}</span>
+            <span style="margin-left: auto; font-size: 11.5px; font-weight: 700; color: #5B4BE3; background: #EEEBFD; padding: 5px 11px; border-radius: 999px;">{{ screen.route }}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px;">
+            <div style="grid-column: span 2;"><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Purpose</div><div style="font-size: 14px; line-height: 1.6; color: #16181D;">{{ screen.purpose }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Layout structure</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.layout }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Components used</div><div style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ screen.components }}" as="c" hint-placeholder-count="4"><span style="font-size: 12px; font-weight: 600; color: #4A3BD0; background: #F4F2FE; border: 1px solid #E6E1FB; padding: 4px 9px; border-radius: 7px;">{{ c }}</span></sc-for></div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">States</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.states }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Fields</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.fields }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Button actions</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.actions }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Navigation flow</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.nav }}</div></div>
+            <div style="grid-column: span 2; background: #FAFAFB; border: 1px solid #F0F0F4; border-radius: 12px; padding: 16px 18px;"><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;">API data needed</div><div class="be-mono" style="font-size: 12.5px; line-height: 1.85; color: #16181D;"><sc-for list="{{ screen.api }}" as="a" hint-placeholder-count="2"><div>{{ a }}</div></sc-for></div></div>
+            <div style="grid-column: span 2;"><div style="font-size: 11.5px; font-weight: 700; color: #5B4BE3; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;">Angular component breakdown</div><div style="display: flex; flex-direction: column; gap: 6px;"><sc-for list="{{ screen.build }}" as="b" hint-placeholder-count="3"><div style="display: flex; gap: 9px; align-items: baseline; font-size: 13.5px; line-height: 1.5;"><span style="color: #C8B8F7;">▸</span><span class="be-mono" style="font-size: 12.5px; color: #4A3BD0; font-weight: 600;">{{ b.name }}</span><span style="color: #8A909C;">{{ b.desc }}</span></div></sc-for></div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="padding: 44px 44px 8px;">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #5B4BE3; margin-bottom: 10px;">02 — iOS SCREENS (SWIFTUI)</div>
+      <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0; color: #0F1115;">iOS app — 7 screens</h2>
+    </div>
+    <div style="padding: 0 24px;">
+      <sc-for list="{{ iosScreens }}" as="screen" hint-placeholder-count="3">
+        <div class="be-page" style="background: #fff; border-radius: 16px; padding: 32px 36px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #F0F0F4;">
+            <span style="width: 30px; height: 30px; border-radius: 9px; background: #E7F8EE; color: #15803D; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center;">{{ screen.num }}</span>
+            <span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em; color: #0F1115;">{{ screen.name }}</span>
+            <span style="margin-left: auto; font-size: 11.5px; font-weight: 700; color: #15803D; background: #E7F8EE; padding: 5px 11px; border-radius: 999px;">{{ screen.route }}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px;">
+            <div style="grid-column: span 2;"><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Purpose</div><div style="font-size: 14px; line-height: 1.6; color: #16181D;">{{ screen.purpose }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Layout structure</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.layout }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Components used</div><div style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{ screen.components }}" as="c" hint-placeholder-count="4"><span style="font-size: 12px; font-weight: 600; color: #4A3BD0; background: #F4F2FE; border: 1px solid #E6E1FB; padding: 4px 9px; border-radius: 7px;">{{ c }}</span></sc-for></div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">States</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.states }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Fields</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.fields }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Button actions</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.actions }}</div></div>
+            <div><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;">Navigation flow</div><div style="font-size: 14px; line-height: 1.6; color: #545A66;">{{ screen.nav }}</div></div>
+            <div style="grid-column: span 2; background: #FAFAFB; border: 1px solid #F0F0F4; border-radius: 12px; padding: 16px 18px;"><div style="font-size: 11.5px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;">API data needed</div><div class="be-mono" style="font-size: 12.5px; line-height: 1.85; color: #16181D;"><sc-for list="{{ screen.api }}" as="a" hint-placeholder-count="2"><div>{{ a }}</div></sc-for></div></div>
+            <div style="grid-column: span 2;"><div style="font-size: 11.5px; font-weight: 700; color: #15803D; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;">SwiftUI view breakdown</div><div style="display: flex; flex-direction: column; gap: 6px;"><sc-for list="{{ screen.build }}" as="b" hint-placeholder-count="3"><div style="display: flex; gap: 9px; align-items: baseline; font-size: 13.5px; line-height: 1.5;"><span style="color: #9BDDB5;">▸</span><span class="be-mono" style="font-size: 12.5px; color: #15803D; font-weight: 600;">{{ b.name }}</span><span style="color: #8A909C;">{{ b.desc }}</span></div></sc-for></div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- IOS-SCREENS-INSERT -->
+    <div style="padding: 44px 44px 8px;">
+      <div style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; color: #5B4BE3; margin-bottom: 10px;">03 — ARCHITECTURE &amp; FOLDER STRUCTURE</div>
+      <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; margin: 0 0 6px; color: #0F1115;">How to lay out the project</h2>
+      <p style="font-size: 15px; color: #545A66; margin: 0; max-width: 64ch;">Three independent repos (or a monorepo with three packages) sharing the same API contract and design tokens.</p>
+    </div>
+    <div style="padding: 0 24px;">
+
+      <!-- ANGULAR -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #FCE4E9; color: #DD0031; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;">A</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px;">Angular frontend</span><span class="be-mono" style="margin-left: auto; font-size: 12px; color: #8A909C;">bookease-web/</span></div>
+        <pre class="be-mono" style="margin: 0; background: #FAFAFB; border: 1px solid #F0F0F4; border-radius: 12px; padding: 20px 22px; font-size: 12.5px; line-height: 1.7; color: #16181D; overflow-x: auto;">src/app/
+├─ core/                 <span style="color:#8A909C;"># singletons: api, auth, interceptors, guards</span>
+│  ├─ services/          <span style="color:#8A909C;">services.service.ts, bookings.service.ts, auth.service.ts</span>
+│  ├─ interceptors/      <span style="color:#8A909C;">auth.interceptor.ts, error.interceptor.ts</span>
+│  └─ guards/            <span style="color:#8A909C;">admin.guard.ts</span>
+├─ shared/               <span style="color:#8A909C;"># reusable UI + models + pipes</span>
+│  ├─ components/        <span style="color:#8A909C;">button, service-card, status-badge, data-table,</span>
+│  │                     <span style="color:#8A909C;">input-field, search-bar, filter-chip, empty-state…</span>
+│  ├─ models/            <span style="color:#8A909C;">service.model.ts, booking.model.ts, user.model.ts</span>
+│  └─ pipes/             <span style="color:#8A909C;">money.pipe.ts, duration.pipe.ts</span>
+├─ features/
+│  ├─ landing/           <span style="color:#8A909C;">landing-page.component</span>
+│  ├─ services/          <span style="color:#8A909C;">services-page, service-detail</span>
+│  ├─ booking/           <span style="color:#8A909C;">booking-page, confirmation-page</span>
+│  └─ admin/             <span style="color:#8A909C;">admin-layout, dashboard, bookings, services</span>
+├─ styles/               <span style="color:#8A909C;">_tokens.scss (color/type/spacing), _base.scss</span>
+└─ app.routes.ts         <span style="color:#8A909C;"># lazy-loaded feature routes</span></pre>
+      </div>
+
+      <!-- SWIFTUI -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #EAEFFC; color: #2563EB; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;">S</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px;">SwiftUI iOS app</span><span class="be-mono" style="margin-left: auto; font-size: 12px; color: #8A909C;">BookEase/</span></div>
+        <pre class="be-mono" style="margin: 0; background: #FAFAFB; border: 1px solid #F0F0F4; border-radius: 12px; padding: 20px 22px; font-size: 12.5px; line-height: 1.7; color: #16181D; overflow-x: auto;">BookEase/
+├─ App/                  <span style="color:#8A909C;">BookEaseApp.swift, RootTabView.swift</span>
+├─ DesignSystem/         <span style="color:#8A909C;"># the shared tokens, as code</span>
+│  ├─ Theme.swift        <span style="color:#8A909C;">Color+Tokens, Font+Tokens, Spacing</span>
+│  └─ Components/        <span style="color:#8A909C;">PrimaryButton, ServiceRow, StatusBadge,</span>
+│                         <span style="color:#8A909C;">SearchBar, FilterChip, BookingCard, EmptyState…</span>
+├─ Features/
+│  ├─ Home/              <span style="color:#8A909C;">HomeView, HomeViewModel</span>
+│  ├─ Services/          <span style="color:#8A909C;">ServiceListView, ServiceDetailView (+VMs)</span>
+│  ├─ Booking/           <span style="color:#8A909C;">BookingView, ConfirmationView (+VMs)</span>
+│  ├─ Bookings/          <span style="color:#8A909C;">BookingsView, BookingsViewModel</span>
+│  └─ Profile/           <span style="color:#8A909C;">ProfileView, SessionStore</span>
+├─ Models/               <span style="color:#8A909C;">Service.swift, Booking.swift, User.swift (Codable)</span>
+├─ Networking/           <span style="color:#8A909C;">APIClient.swift, Endpoint.swift</span>
+└─ Resources/            <span style="color:#8A909C;">Assets.xcassets, Info.plist</span></pre>
+      </div>
+
+      <!-- NODE -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #E7F8EE; color: #16A34A; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center;">N</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px;">Node.js + Express backend</span><span class="be-mono" style="margin-left: auto; font-size: 12px; color: #8A909C;">bookease-api/</span></div>
+        <pre class="be-mono" style="margin: 0; background: #FAFAFB; border: 1px solid #F0F0F4; border-radius: 12px; padding: 20px 22px; font-size: 12.5px; line-height: 1.7; color: #16181D; overflow-x: auto;">src/
+├─ config/               <span style="color:#8A909C;">env.ts, db.ts (pg Pool)</span>
+├─ middleware/           <span style="color:#8A909C;">auth.ts, errorHandler.ts, validate.ts</span>
+├─ modules/
+│  ├─ services/          <span style="color:#8A909C;">service.routes / .controller / .repository</span>
+│  ├─ bookings/          <span style="color:#8A909C;">booking.routes / .controller / .repository</span>
+│  ├─ availability/      <span style="color:#8A909C;">availability.controller (slot logic)</span>
+│  ├─ auth/              <span style="color:#8A909C;">auth.routes / .controller (JWT)</span>
+│  └─ admin/             <span style="color:#8A909C;">stats + analytics controllers</span>
+├─ db/
+│  ├─ migrations/        <span style="color:#8A909C;">001_init.sql … (node-pg-migrate / Knex)</span>
+│  └─ seeds/             <span style="color:#8A909C;">services, demo bookings</span>
+├─ schemas/              <span style="color:#8A909C;">zod request/response validators</span>
+├─ app.ts                <span style="color:#8A909C;"># express app + route mounting</span>
+└─ server.ts             <span style="color:#8A909C;"># http listen</span></pre>
+      </div>
+
+      <!-- POSTGRES -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #EAEFFC; color: #2563EB; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center;">DB</span><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px;">PostgreSQL tables</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">users</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · full_name · email uniq · phone · password_hash · role (customer|staff|owner) · created_at</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">categories</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · name · slug uniq · sort_order</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">services</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · name · description · price_cents int · duration_min int · category_id FK · image_url · rating · active bool · created_at</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">coaches</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · user_id FK · bio · specialties text[] · avatar_url</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">availability</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · coach_id FK · service_id FK · starts_at timestamptz · is_booked bool</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">bookings</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · ref (BK-xxxxx) · user_id FK · service_id FK · coach_id FK · starts_at · status enum · notes · price_cents · created_at</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">payments</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · booking_id FK · amount_cents · provider · status · created_at</div></div>
+          <div style="border: 1px solid #ECECEF; border-radius: 12px; padding: 15px 18px;"><div class="be-mono" style="font-size: 13.5px; font-weight: 700; color: #2563EB; margin-bottom: 8px;">reviews</div><div class="be-mono" style="font-size: 12px; line-height: 1.7; color: #545A66;">id uuid PK · booking_id FK · service_id FK · rating int · comment · created_at</div></div>
+        </div>
+      </div>
+
+<!-- API ENDPOINTS -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;"><span style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px;">API endpoints</span><span style="margin-left: auto; font-size: 12px; color: #8A909C;">REST · JSON · JWT bearer</span></div>
+        <div style="border: 1px solid #ECECEF; border-radius: 12px; overflow: hidden;">
+          <div style="display: grid; grid-template-columns: 90px 1.6fr 2fr; gap: 14px; padding: 11px 18px; background: #FAFAFB; font-size: 11px; font-weight: 700; color: #8A909C; text-transform: uppercase; letter-spacing: 0.05em;"><span>Method</span><span>Path</span><span>Purpose</span></div>
+        <sc-for list="{{ endpoints }}" as="e" hint-placeholder-count="6">
+          <div style="display: grid; grid-template-columns: 90px 1.6fr 2fr; gap: 14px; padding: 11px 18px; align-items: center; border-top: 1px solid #F4F4F6;"><span class="be-mono" style="font-size: 11px; font-weight: 700; color: {{ e.color }};">{{ e.method }}</span><span class="be-mono" style="font-size: 12.5px; color: #16181D;">{{ e.path }}</span><span style="font-size: 13px; color: #545A66;">{{ e.purpose }}</span></div>
+        </sc-for>
+        </div>
+      </div>
+
+      <!-- REUSABLE COMPONENTS -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 6px;">Reusable component library</div>
+        <p style="font-size: 13.5px; color: #8A909C; margin: 0 0 18px;">One conceptual component = an Angular component and a SwiftUI view sharing the same props and tokens.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">PrimaryButton</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">SecondaryButton</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">ServiceCard</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">BookingCard</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">StatusBadge</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">InputField</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">SearchBar</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">FilterChip</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">DateTimeSelector</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">StatCard</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">DataTable / TableRow</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">EmptyState</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">ErrorState</span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #16181D; background: #F4F4F7; border: 1px solid #E8E8ED; padding: 7px 13px; border-radius: 8px;">LoadingSkeleton</span>
+        </div>
+      </div>
+
+      <!-- DEV ORDER -->
+      <div class="be-page" style="background: #fff; border-radius: 16px; padding: 30px 34px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(16,17,22,0.05);">
+        <div style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 20px;">Development order — UI to backend</div>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <sc-for list="{{ devOrder }}" as="step" hint-placeholder-count="7">
+            <div style="display: flex; gap: 16px; padding-bottom: 22px; position: relative;">
+              <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;"><span style="width: 30px; height: 30px; border-radius: 50%; background: #5B4BE3; color: #fff; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; z-index: 1;">{{ step.n }}</span><span style="flex: 1; width: 2px; background: #ECE9FB; margin-top: 2px;"></span></div>
+              <div style="padding-top: 3px;"><div style="font-weight: 700; font-size: 15px; color: #16181D; margin-bottom: 3px;">{{ step.title }}</div><div style="font-size: 13.5px; line-height: 1.55; color: #545A66;">{{ step.desc }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="text-align: center; padding: 28px 0 8px; color: #8A909C; font-size: 13px;">BookEase Developer Specification · v1.0 · © 2026</div>
+
+      <!-- ARCH-INSERT2 -->
+    </div>
+
+    <!-- ARCH-INSERT -->
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { webScreens: WEB_SCREENS, iosScreens: IOS_SCREENS, endpoints: ENDPOINTS, devOrder: DEV_ORDER };
+  }
+}
+const WEB_SCREENS = [
+  {
+    num: "1", name: "Landing Page", route: "/",
+    purpose: "Convert visitors into bookings. Communicate value, surface popular services, and drive to the booking flow with a primary \u201cBook Now\u201d CTA.",
+    layout: "Sticky navbar \u2192 two-column hero \u2192 services preview grid \u2192 how-it-works (3 steps) \u2192 why-choose-us (4 features) \u2192 testimonials \u2192 pricing (3 tiers) \u2192 contact CTA + footer.",
+    components: ["Navbar", "PrimaryButton", "SecondaryButton", "ServiceCard", "StepCard", "FeatureItem", "TestimonialCard", "PricingCard", "Footer"],
+    states: "Default static marketing content; services preview shows Loading skeletons then data, with an Error fallback if the featured-services call fails.",
+    fields: "None (read-only). Newsletter/contact inputs optional: email.",
+    actions: "Book Now \u2192 /services · View Services \u2192 /services · Choose plan \u2192 /book?plan= · nav anchors scroll to sections.",
+    nav: "Entry point. Outbound to /services and /book. Log in \u2192 /auth/login.",
+    api: ["GET /api/services?featured=true&limit=3", "\u2192 [{ id, name, priceCents, durationMin, category, imageUrl, rating }]"],
+    build: [
+      { name: "landing-page.component", desc: "route container" },
+      { name: "app-navbar", desc: "shared header, @Input transparent" },
+      { name: "app-hero", desc: "headline + CTAs + ratings" },
+      { name: "service-card", desc: "*ngFor over featured services" },
+      { name: "pricing-card", desc: "@Input tier; highlighted variant" },
+      { name: "app-footer", desc: "shared footer" }
+    ]
+  },
+  {
+    num: "2", name: "Services Listing", route: "/services",
+    purpose: "Let customers discover and filter bookable services, then jump into a booking.",
+    layout: "App navbar with inline search \u2192 page title + result count + sort \u2192 horizontal category filter chips \u2192 responsive 3-col service-card grid (1-col on mobile) \u2192 pagination / infinite scroll.",
+    components: ["Navbar", "SearchBar", "FilterChip", "SortDropdown", "ServiceCard", "Pagination", "EmptyState", "LoadingSkeleton"],
+    states: "Default grid; Loading skeleton cards; Empty (no results for filter) with reset CTA; Error retry banner.",
+    fields: "search: string · category: enum · sort: enum(popular|price|rating).",
+    actions: "Chip click \u2192 filter query param · Search \u2192 debounced query · Book \u2192 /book?serviceId= · card \u2192 service detail.",
+    nav: "From landing/nav. Outbound to /book and (mobile) service detail.",
+    api: ["GET /api/services?category=&q=&sort=&page=", "\u2192 { items:[Service], total, page, pageSize }", "GET /api/categories \u2192 [{ id, name }]"],
+    build: [
+      { name: "services-page.component", desc: "holds filter state + query" },
+      { name: "search-bar", desc: "@Output search debounced 300ms" },
+      { name: "filter-chip-group", desc: "@Input categories, @Output change" },
+      { name: "service-card", desc: "reused from landing" },
+      { name: "services.service.ts", desc: "HttpClient data access" }
+    ]
+  },
+  {
+    num: "3", name: "Booking Form", route: "/book",
+    purpose: "Capture date, time, and customer details for a chosen service and create a booking.",
+    layout: "Step indicator (Service \u00b7 Details \u00b7 Confirm) \u2192 two-column: left form card (week date picker, time-slot grid, customer fields, notes), right sticky summary card with total + confirm.",
+    components: ["StepIndicator", "DatePicker", "TimeSlotGrid", "InputField", "Textarea", "SummaryCard", "PrimaryButton"],
+    states: "Default; slot Loading per selected date; slot Empty (\u201cno availability\u201d); inline field validation Error; submit Loading; success \u2192 redirect.",
+    fields: "fullName · email · phone · serviceId · date · timeSlot · notes(optional).",
+    actions: "Select date \u2192 fetch slots · Select slot \u2192 enable confirm · Confirm booking \u2192 POST then /confirmation/:id.",
+    nav: "From service card/detail. On success \u2192 /confirmation/:id.",
+    api: ["GET /api/services/:id \u2192 Service", "GET /api/availability?serviceId=&date= \u2192 [TimeSlot]", "POST /api/bookings { serviceId, date, slot, customer, notes } \u2192 Booking"],
+    build: [
+      { name: "booking-page.component", desc: "reactive form + steps" },
+      { name: "date-picker", desc: "@Input availableDates" },
+      { name: "time-slot-grid", desc: "@Input slots, @Output pick" },
+      { name: "booking-summary", desc: "@Input service+selection" },
+      { name: "FormGroup + Validators", desc: "email/phone/required" }
+    ]
+  },
+  {
+    num: "4", name: "Booking Confirmation", route: "/confirmation/:id",
+    purpose: "Reassure the customer the booking succeeded and give them next actions.",
+    layout: "Centered success icon \u2192 confirmation heading + email line \u2192 detail card (booking ID, service, date/time, coach, customer) \u2192 two action buttons.",
+    components: ["SuccessIcon", "DetailCard", "PrimaryButton", "SecondaryButton"],
+    states: "Success (default); Loading while fetching booking by id; Error/not-found fallback.",
+    fields: "Read-only: bookingId, service, datetime, coach, customer.",
+    actions: "Back to Home \u2192 / · View Bookings \u2192 /account/bookings · (optional) Add to calendar \u2192 .ics download.",
+    nav: "Reached after POST /bookings. Outbound to home + account.",
+    api: ["GET /api/bookings/:id \u2192 Booking (with service + coach expanded)"],
+    build: [
+      { name: "confirmation-page.component", desc: "resolves :id route param" },
+      { name: "detail-row", desc: "label/value list item" },
+      { name: "ics.util.ts", desc: "builds calendar file" }
+    ]
+  },
+  {
+    num: "5", name: "Admin Dashboard", route: "/admin",
+    purpose: "Give business owners an at-a-glance view of bookings, revenue, and pending actions.",
+    layout: "Fixed left sidebar nav \u2192 top bar (title, date, search, new-booking) \u2192 4 KPI stat cards \u2192 two-column: recent-bookings table (2fr) + weekly bookings bar chart (1fr).",
+    components: ["AdminSidebar", "AdminTopbar", "StatCard", "DataTable", "StatusBadge", "BarChart"],
+    states: "Default with data; Loading skeletons in cards/table; Empty (new account) prompts; Error per-widget retry.",
+    fields: "Global search: string · date range filter.",
+    actions: "Sidebar \u2192 route change · +New booking \u2192 modal/route · View all \u2192 /admin/bookings · row \u2192 booking detail.",
+    nav: "Admin entry. Outbound to /admin/bookings, /admin/services, /admin/clients.",
+    api: ["GET /api/admin/stats \u2192 { total, today, revenueCents, pending, deltas }", "GET /api/admin/bookings?limit=5&sort=recent", "GET /api/admin/analytics/weekly \u2192 [{ day, count }]"],
+    build: [
+      { name: "admin-layout.component", desc: "sidebar + router-outlet" },
+      { name: "stat-card", desc: "@Input label,value,delta,icon" },
+      { name: "data-table", desc: "generic @Input columns,rows" },
+      { name: "status-badge", desc: "@Input status enum \u2192 color" },
+      { name: "bar-chart", desc: "lightweight SVG/ngx-charts" }
+    ]
+  },
+  {
+    num: "6", name: "Booking Management", route: "/admin/bookings",
+    purpose: "Let staff find, review, and act on every appointment (view / edit / cancel).",
+    layout: "Admin shell \u2192 title \u2192 status filter tabs + date filter + search \u2192 full data table (customer, service, date/time, status, actions) \u2192 pagination.",
+    components: ["AdminSidebar", "FilterTabs", "DateFilter", "SearchBar", "DataTable", "StatusBadge", "RowActions", "Pagination", "EmptyState"],
+    states: "Default; Loading rows; Empty (no bookings for filter) clean illustration; Error retry; per-row action confirm dialog.",
+    fields: "status: enum · dateRange · q: string.",
+    actions: "Tab \u2192 filter by status · View \u2192 detail drawer · Edit \u2192 edit form · Cancel \u2192 confirm dialog \u2192 PATCH status.",
+    nav: "From sidebar. Drawer/modal overlays; no full navigation away.",
+    api: ["GET /api/admin/bookings?status=&from=&to=&q=&page=", "PATCH /api/bookings/:id { status }", "PUT /api/bookings/:id { date, slot, \u2026 }"],
+    build: [
+      { name: "bookings-page.component", desc: "filter + table state" },
+      { name: "filter-tabs", desc: "@Input counts, @Output select" },
+      { name: "data-table", desc: "reused, with action column" },
+      { name: "confirm-dialog", desc: "shared cancel confirmation" },
+      { name: "bookings.service.ts", desc: "list/patch/cancel" }
+    ]
+  },
+  {
+    num: "7", name: "Service Management", route: "/admin/services",
+    purpose: "Create, edit, and remove the services customers can book.",
+    layout: "Admin shell \u2192 title + Add service button \u2192 two-column: services table (name+category, price, duration, actions) left, add/edit form panel right (cover, name, price, duration, category, save/cancel).",
+    components: ["AdminSidebar", "DataTable", "RowActions", "ServiceForm", "ImageUpload", "SelectField", "PrimaryButton", "ConfirmDialog"],
+    states: "Default list; Add (empty form) vs Edit (prefilled) form; saving Loading; validation Error; delete confirm; Empty list state.",
+    fields: "name · category · priceCents · durationMin · description · imageUrl · active.",
+    actions: "Add service \u2192 open form · Edit \u2192 prefill form · Save \u2192 POST/PUT · Delete \u2192 confirm \u2192 DELETE.",
+    nav: "From sidebar. Form is inline panel (no route change).",
+    api: ["GET /api/admin/services", "POST /api/services { \u2026 }", "PUT /api/services/:id { \u2026 }", "DELETE /api/services/:id"],
+    build: [
+      { name: "services-admin.component", desc: "table + selected service" },
+      { name: "service-form", desc: "@Input service|null, @Output save" },
+      { name: "image-upload", desc: "drag/drop \u2192 upload URL" },
+      { name: "select-field", desc: "category dropdown" }
+    ]
+  }
+];
+const IOS_SCREENS = [
+  {
+    num: "1", name: "Home", route: "HomeView",
+    purpose: "Welcome the user and surface the fastest paths: search, popular services, categories, and their next upcoming booking.",
+    layout: "ScrollView: greeting header + avatar/bell \u2192 search bar \u2192 upcoming-session highlight card \u2192 horizontal popular services \u2192 category grid (2-col). Fixed bottom TabView.",
+    components: ["SearchBar", "UpcomingCard", "ServiceCardSmall", "CategoryTile", "TabBar"],
+    states: "Default with data; redacted/skeleton while loading; Empty upcoming \u2192 \u201cNo upcoming sessions\u201d; Error toast on fetch fail.",
+    fields: "search: String (binding).",
+    actions: "Tap service \u2192 ServiceDetail · Tap category \u2192 ServiceList(filter) · Upcoming card \u2192 BookingDetail · Tab \u2192 switch root.",
+    nav: "Tab root. NavigationStack push to detail/list.",
+    api: ["GET /api/services?featured=true", "GET /api/bookings?upcoming=true&limit=1"],
+    build: [
+      { name: "HomeView", desc: "NavigationStack root" },
+      { name: "HomeViewModel", desc: "@Observable, async load()" },
+      { name: "UpcomingCard", desc: "gradient highlight" },
+      { name: "CategoryTile", desc: "icon + label" },
+      { name: "RootTabView", desc: "TabView host" }
+    ]
+  },
+  {
+    num: "2", name: "Service List", route: "ServiceListView",
+    purpose: "Browse and filter all services in a scannable vertical list.",
+    layout: "Large title + filter button \u2192 search bar \u2192 horizontal scrollable filter chips \u2192 vertical list of service rows (thumb, name, meta, price, Book). Bottom TabView.",
+    components: ["SearchBar", "FilterChip", "ServiceRow", "PriceTag", "TabBar"],
+    states: "Default list; ProgressView loading; Empty filtered result; Error retry row.",
+    fields: "query: String · selectedCategory: Category.",
+    actions: "Chip tap \u2192 filter · Row tap \u2192 ServiceDetail · Book \u2192 BookingView(service).",
+    nav: "Tab root (Explore). Push ServiceDetail / BookingView.",
+    api: ["GET /api/services?category=&q=&sort=", "GET /api/categories"],
+    build: [
+      { name: "ServiceListView", desc: "List + searchable" },
+      { name: "ServiceListViewModel", desc: "filter + fetch" },
+      { name: "ServiceRow", desc: "HStack thumb+info" },
+      { name: "FilterChipBar", desc: "ScrollView(.horizontal)" }
+    ]
+  },
+  {
+    num: "3", name: "Service Detail", route: "ServiceDetailView",
+    purpose: "Sell a single service: imagery, details, what\u2019s included, and quick slot preview, then book.",
+    layout: "Hero banner image w/ back button \u2192 title + price \u2192 meta row \u2192 description \u2192 \u201cWhat\u2019s included\u201d checklist \u2192 available-slots chips. Pinned bottom bar with total + Book Now.",
+    components: ["HeroImage", "MetaRow", "IncludedList", "SlotChip", "BottomActionBar"],
+    states: "Default; loading hero placeholder; slots Empty; Error inline.",
+    fields: "Read-only service; selectedSlot: TimeSlot?",
+    actions: "Back \u2192 pop · Slot tap \u2192 preselect · Book Now \u2192 BookingView(service, slot).",
+    nav: "Pushed from list/home. Push BookingView.",
+    api: ["GET /api/services/:id", "GET /api/availability?serviceId=&date=today"],
+    build: [
+      { name: "ServiceDetailView", desc: "ScrollView + safeAreaInset" },
+      { name: "HeroImageHeader", desc: "AsyncImage + overlay" },
+      { name: "IncludedRow", desc: "checkmark + text" },
+      { name: "BottomBookBar", desc: "safeAreaInset(edge:.bottom)" }
+    ]
+  },
+  {
+    num: "4", name: "Booking", route: "BookingView",
+    purpose: "Pick date and time, confirm details, and submit the booking.",
+    layout: "Title \u2192 horizontal date selector \u2192 time-slot grid (3-col) \u2192 detail fields (name, phone, notes). Pinned bottom Confirm button with price.",
+    components: ["DateSelector", "TimeSlotGrid", "TextField", "NotesField", "BottomActionBar"],
+    states: "Default; slots loading on date change; validation Error highlights; submit ProgressView; success \u2192 push confirmation.",
+    fields: "date · timeSlot · fullName · phone · notes.",
+    actions: "Date tap \u2192 fetch slots · Slot tap \u2192 select · Confirm \u2192 POST \u2192 ConfirmationView.",
+    nav: "Pushed from detail. On success push ConfirmationView (and reset stack).",
+    api: ["GET /api/availability?serviceId=&date=", "POST /api/bookings { \u2026 } \u2192 Booking"],
+    build: [
+      { name: "BookingView", desc: "Form-like VStack" },
+      { name: "BookingViewModel", desc: "validation + submit()" },
+      { name: "DateSelector", desc: "horizontal day pills" },
+      { name: "TimeSlotGrid", desc: "LazyVGrid 3 cols" }
+    ]
+  },
+  {
+    num: "5", name: "Booking Confirmation", route: "ConfirmationView",
+    purpose: "Confirm success and offer calendar + home actions.",
+    layout: "Centered success circle icon \u2192 heading + subtitle \u2192 detail card (ID, service, date/time, coach). Pinned bottom: Add to Calendar + Back to Home.",
+    components: ["SuccessIcon", "DetailCard", "PrimaryButton", "SecondaryButton"],
+    states: "Success (default); brief loading if fetched by id; Error fallback.",
+    fields: "Read-only booking summary.",
+    actions: "Add to Calendar \u2192 EventKit · Back to Home \u2192 pop to root tab.",
+    nav: "Terminal of booking flow. Resets NavigationStack to Home.",
+    api: ["(uses POST response) or GET /api/bookings/:id"],
+    build: [
+      { name: "ConfirmationView", desc: "VStack centered" },
+      { name: "SuccessBadge", desc: "animated checkmark" },
+      { name: "EventKitService", desc: "add to calendar" }
+    ]
+  },
+  {
+    num: "6", name: "Booking History", route: "BookingsView",
+    purpose: "Let users review upcoming, completed, and cancelled bookings.",
+    layout: "Large title \u2192 segmented Picker (Upcoming/Completed/Cancelled) \u2192 vertical list of booking cards (date chip, service, coach, status badge). Bottom TabView.",
+    components: ["SegmentedPicker", "BookingCard", "DateChip", "StatusBadge", "TabBar", "EmptyState"],
+    states: "Default per segment; loading; Empty per segment (\u201cNo cancelled bookings\u201d); Error retry.",
+    fields: "segment: enum(upcoming|completed|cancelled).",
+    actions: "Segment change \u2192 filter · Card tap \u2192 BookingDetail · swipe \u2192 cancel (upcoming).",
+    nav: "Tab root (Bookings). Push BookingDetail.",
+    api: ["GET /api/bookings?status=upcoming|completed|cancelled"],
+    build: [
+      { name: "BookingsView", desc: "Picker + List" },
+      { name: "BookingsViewModel", desc: "segment + fetch" },
+      { name: "BookingCard", desc: "HStack date+info+badge" },
+      { name: "StatusBadge", desc: "color from status" }
+    ]
+  },
+  {
+    num: "7", name: "Profile & Settings", route: "ProfileView",
+    purpose: "Show account info and entry points to bookings, payments, notifications, and logout.",
+    layout: "Large title \u2192 profile header card (avatar, name, email, phone) \u2192 grouped settings list (My bookings, Payment methods, Notifications toggle) \u2192 Log out button. Bottom TabView.",
+    components: ["ProfileHeader", "SettingsRow", "Toggle", "DestructiveButton", "TabBar"],
+    states: "Default; loading profile; saving toggle; Error toast; logged-out redirect.",
+    fields: "name · email · phone · notificationsEnabled: Bool.",
+    actions: "Row tap \u2192 push subscreen · Toggle \u2192 PATCH prefs · Log out \u2192 clear session \u2192 Auth.",
+    nav: "Tab root (Profile). Push detail subscreens; logout \u2192 AuthView.",
+    api: ["GET /api/me \u2192 User", "PATCH /api/me/preferences { notificationsEnabled }", "POST /api/auth/logout"],
+    build: [
+      { name: "ProfileView", desc: "List with sections" },
+      { name: "ProfileHeader", desc: "avatar + identity" },
+      { name: "SettingsRow", desc: "icon + label + chevron" },
+      { name: "SessionStore", desc: "@Observable auth state" }
+    ]
+  }
+];
+
+const G = "#16A34A", B = "#2563EB", O = "#D97706", R = "#E11D48";
+const ENDPOINTS = [
+  { method: "POST", color: O, path: "/api/auth/register", purpose: "Create a customer account" },
+  { method: "POST", color: O, path: "/api/auth/login", purpose: "Authenticate \u2192 JWT" },
+  { method: "GET", color: G, path: "/api/categories", purpose: "List service categories" },
+  { method: "GET", color: G, path: "/api/services", purpose: "List/filter/search services (paginated)" },
+  { method: "GET", color: G, path: "/api/services/:id", purpose: "Service detail" },
+  { method: "POST", color: O, path: "/api/services", purpose: "Create service (admin)" },
+  { method: "PUT", color: B, path: "/api/services/:id", purpose: "Update service (admin)" },
+  { method: "DELETE", color: R, path: "/api/services/:id", purpose: "Remove service (admin)" },
+  { method: "GET", color: G, path: "/api/availability", purpose: "Open slots for service + date" },
+  { method: "POST", color: O, path: "/api/bookings", purpose: "Create a booking" },
+  { method: "GET", color: G, path: "/api/bookings", purpose: "List my bookings (by status)" },
+  { method: "GET", color: G, path: "/api/bookings/:id", purpose: "Booking detail" },
+  { method: "PATCH", color: B, path: "/api/bookings/:id", purpose: "Update status (confirm/cancel)" },
+  { method: "GET", color: G, path: "/api/me", purpose: "Current user profile" },
+  { method: "GET", color: G, path: "/api/admin/stats", purpose: "Dashboard KPIs + deltas" },
+  { method: "GET", color: G, path: "/api/admin/analytics/weekly", purpose: "Bookings per day for chart" }
+];
+const DEV_ORDER = [
+  { n: "1", title: "Design tokens + component library first", desc: "Build the shared tokens (color/type/spacing) and the reusable components in Angular and SwiftUI from this spec, with mock data \u2014 button, card, badge, input, table, states." },
+  { n: "2", title: "Static screens with mock data", desc: "Assemble all 7 web + 7 iOS screens using hard-coded fixtures. Lock layout, navigation, and the empty/loading/error states before any network code." },
+  { n: "3", title: "Database + migrations", desc: "Create the PostgreSQL schema (users, services, categories, availability, bookings, payments, reviews), run migrations, and seed demo services." },
+  { n: "4", title: "Backend API", desc: "Implement Express modules + zod validation: auth \u2192 services \u2192 availability \u2192 bookings \u2192 admin stats. Test each route against the contract above." },
+  { n: "5", title: "Wire customer flow", desc: "Connect Services \u2192 Detail \u2192 Booking \u2192 Confirmation \u2192 History to the API on both platforms. Replace fixtures with real calls + loading/error handling." },
+  { n: "6", title: "Wire admin flow", desc: "Connect dashboard stats, booking management (filter/cancel/edit), and service CRUD. Add the admin route guard." },
+  { n: "7", title: "Auth, payments & polish", desc: "JWT sessions, payment provider on confirm, notifications, calendar export, then QA passes against every screen state." }
+];</script>
+</body>
+</html>
