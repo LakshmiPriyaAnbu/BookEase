@@ -6,6 +6,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
 import { BookingsService } from '../../../core/services/bookings.service';
 import { Booking, BookingStatus } from '../../../shared/models/models';
 import { MoneyPipe } from '../../../shared/pipes/money.pipe';
+import { APP_STRINGS } from '../../../core/constants';
 
 @Component({
   selector: 'be-admin-bookings',
@@ -15,15 +16,15 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <h1 class="header__title">Bookings</h1>
+        <h1 class="header__title">{{ appStrings.ADMIN.BOOKINGS_TITLE }}</h1>
         <div class="header__controls">
-          <input class="search" [(ngModel)]="search" (ngModelChange)="filter()" placeholder="Search ref or customer…" />
+          <input class="search" [(ngModel)]="search" (ngModelChange)="filter()" [placeholder]="S.ADMIN.SEARCH_PLACEHOLDER" />
           <select class="select" [(ngModel)]="statusFilter" (ngModelChange)="filter()">
-            <option value="">All statuses</option>
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
+            <option value="">{{ appStrings.ADMIN.FILTER_ALL_STATUSES }}</option>
+            <option value="pending">{{ appStrings.ADMIN.FILTER_PENDING }}</option>
+            <option value="confirmed">{{ appStrings.ADMIN.FILTER_CONFIRMED }}</option>
+            <option value="completed">{{ appStrings.ADMIN.FILTER_COMPLETED }}</option>
+            <option value="cancelled">{{ appStrings.ADMIN.FILTER_CANCELLED }}</option>
           </select>
         </div>
       </div>
@@ -42,8 +43,8 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
         <table class="table">
           <thead>
             <tr>
-              <th>Ref</th><th>Customer</th><th>Service</th><th>Coach</th>
-              <th>Date & time</th><th>Amount</th><th>Status</th><th>Actions</th>
+              <th>{{ appStrings.ADMIN.TABLE_COL_REF }}</th><th>{{ appStrings.ADMIN.TABLE_COL_CUSTOMER }}</th><th>{{ appStrings.ADMIN.TABLE_COL_SERVICE }}</th><th>{{ appStrings.ADMIN.TABLE_COL_COACH }}</th>
+              <th>{{ appStrings.ADMIN.TABLE_COL_DATE_TIME }}</th><th>{{ appStrings.ADMIN.TABLE_COL_AMOUNT }}</th><th>{{ appStrings.ADMIN.TABLE_COL_STATUS }}</th><th>{{ appStrings.ADMIN.TABLE_COL_ACTIONS }}</th>
             </tr>
           </thead>
           <tbody>
@@ -63,23 +64,26 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
               <td>
                 <div class="actions">
                   <button class="action action--confirm" *ngIf="b.status === 'pending'"
-                    (click)="updateStatus(b, 'confirmed')">Confirm</button>
+                    (click)="updateStatus(b, 'confirmed')">{{ appStrings.ADMIN.ACTION_CONFIRM }}</button>
                   <button class="action action--cancel" *ngIf="b.status !== 'cancelled' && b.status !== 'completed'"
-                    (click)="updateStatus(b, 'cancelled')">Cancel</button>
+                    (click)="updateStatus(b, 'cancelled')">{{ appStrings.ADMIN.ACTION_CANCEL }}</button>
                   <button class="action action--complete" *ngIf="b.status === 'confirmed'"
-                    (click)="updateStatus(b, 'completed')">Complete</button>
+                    (click)="updateStatus(b, 'completed')">{{ appStrings.ADMIN.ACTION_COMPLETE }}</button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="pagination">
-          Showing {{ filtered.length }} of {{ all.length }} bookings
+          {{ appStrings.ADMIN.SHOWING_COUNT_PREFIX }} {{ filtered.length }} {{ appStrings.ADMIN.SHOWING_COUNT_OF }} {{ all.length }} {{ appStrings.ADMIN.SHOWING_COUNT_SUFFIX }}
         </div>
       </div>
 
       <ng-template #empty>
-        <be-empty-state icon="📅" title="No bookings found" message="Try adjusting your search or status filter." />
+        <be-empty-state
+          icon="📅"
+          [title]="S.ADMIN.EMPTY_BOOKINGS_TITLE"
+          [message]="S.ADMIN.EMPTY_BOOKINGS_MESSAGE" />
       </ng-template>
     </div>
   `,
@@ -132,6 +136,7 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
   `],
 })
 export class AdminBookingsComponent implements OnInit {
+  readonly appStrings = APP_STRINGS;
   all: Booking[] = [];
   filtered: Booking[] = [];
   search = '';
@@ -139,10 +144,10 @@ export class AdminBookingsComponent implements OnInit {
 
   tabs = [
     { label: 'All',       value: '' },
-    { label: 'Pending',   value: 'pending' },
-    { label: 'Confirmed', value: 'confirmed' },
-    { label: 'Completed', value: 'completed' },
-    { label: 'Cancelled', value: 'cancelled' },
+    { label: APP_STRINGS.ADMIN.FILTER_PENDING,   value: 'pending' },
+    { label: APP_STRINGS.ADMIN.FILTER_CONFIRMED, value: 'confirmed' },
+    { label: APP_STRINGS.ADMIN.FILTER_COMPLETED, value: 'completed' },
+    { label: APP_STRINGS.ADMIN.FILTER_CANCELLED, value: 'cancelled' },
   ];
 
   private svc = inject(BookingsService);

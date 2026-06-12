@@ -15,12 +15,12 @@ struct ConfirmationView: View {
                         .padding(.top, 24)
                         .padding(.bottom, 22)
 
-                    Text("Booking confirmed")
+                    Text(AppStrings.Confirmation.bookingConfirmedTitle)
                         .font(.jakarta(25, weight: .heavy))
                         .foregroundColor(.beInk800)
                         .padding(.bottom, 8)
 
-                    Text("Your session is booked. We've sent the details to your email.")
+                    Text(AppStrings.Confirmation.bookingConfirmedMessage)
                         .font(.jakarta(14.5, weight: .regular))
                         .foregroundColor(.beMuted500)
                         .multilineTextAlignment(.center)
@@ -73,7 +73,7 @@ struct ConfirmationView: View {
         VStack(spacing: 0) {
             // Booking ID row
             HStack {
-                Text("Booking ID")
+                Text(AppStrings.Confirmation.bookingIdLabel)
                     .font(.jakarta(12.5, weight: .semibold))
                     .foregroundColor(.beMuted500)
                 Spacer()
@@ -86,9 +86,9 @@ struct ConfirmationView: View {
             dashedDivider
                 .padding(.bottom, Spacing.md)
 
-            detailRow(label: "Service",    value: booking.serviceName)
-            detailRow(label: "Date & time", value: booking.formattedDateTime)
-            detailRow(label: "Coach",       value: booking.coachName)
+            detailRow(label: AppStrings.Confirmation.serviceLabel,     value: booking.serviceName)
+            detailRow(label: AppStrings.Confirmation.dateAndTimeLabel, value: booking.formattedDateTime)
+            detailRow(label: AppStrings.Confirmation.coachLabel,       value: booking.coachName)
         }
         .padding(.horizontal, 22)
         .padding(.vertical, Spacing.lg)
@@ -128,7 +128,7 @@ struct ConfirmationView: View {
     private var bottomButtons: some View {
         VStack(spacing: 10) {
             Button {} label: {
-                Text("Add to Calendar")
+                Text(AppStrings.Booking.addToCalendar)
                     .font(.jakarta(15, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -140,7 +140,7 @@ struct ConfirmationView: View {
             Button {
                 dismiss()
             } label: {
-                Text("Back to Home")
+                Text(AppStrings.Common.backToHome)
                     .font(.jakarta(15, weight: .bold))
                     .foregroundColor(.beInk700)
                     .frame(maxWidth: .infinity)

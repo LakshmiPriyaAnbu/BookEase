@@ -16,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.data.mock.MockData
 import com.bookease.app.ui.theme.*
 
@@ -38,7 +40,7 @@ fun ProfileScreen(
         // Title
         item {
             Text(
-                text = "Profile",
+                text = stringResource(R.string.profile_title),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontSize = 26.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -120,7 +122,7 @@ fun ProfileScreen(
                     icon = Icons.Default.CalendarToday,
                     iconBg = BeColor.primarySoft,
                     iconTint = BeColor.primary,
-                    title = "My bookings",
+                    title = stringResource(R.string.profile_my_bookings),
                     onClick = onMyBookingsClick
                 )
                 HorizontalDivider(
@@ -131,7 +133,7 @@ fun ProfileScreen(
                     icon = Icons.Default.CreditCard,
                     iconBg = BeColor.infoBg,
                     iconTint = BeColor.infoText,
-                    title = "Payment methods",
+                    title = stringResource(R.string.profile_payment_methods),
                     onClick = {}
                 )
                 HorizontalDivider(
@@ -161,7 +163,7 @@ fun ProfileScreen(
                 border = androidx.compose.foundation.BorderStroke(1.dp, BeColor.border)
             ) {
                 Text(
-                    text = "Log out",
+                    text = stringResource(R.string.profile_log_out),
                     style = MaterialTheme.typography.labelLarge.copy(
                         color = BeColor.dangerText,
                         fontSize = 15.sp,
@@ -247,7 +249,7 @@ private fun NotificationsRow(
             )
         }
         Text(
-            text = "Notifications",
+            text = stringResource(R.string.profile_notifications),
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 15.sp

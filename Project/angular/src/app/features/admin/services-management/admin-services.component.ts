@@ -6,6 +6,7 @@ import { ServicesService } from '../../../core/services/services.service';
 import { Service, Category, MOCK_CATEGORIES } from '../../../shared/models/models';
 import { MoneyPipe } from '../../../shared/pipes/money.pipe';
 import { DurationPipe } from '../../../shared/pipes/duration.pipe';
+import { APP_STRINGS } from '../../../core/constants';
 
 @Component({
   selector: 'be-admin-services',
@@ -15,8 +16,8 @@ import { DurationPipe } from '../../../shared/pipes/duration.pipe';
     <div class="page">
       <!-- Header -->
       <div class="header">
-        <h1 class="header__title">Services</h1>
-        <button class="header__add" (click)="openForm()">+ Add service</button>
+        <h1 class="header__title">{{ appStrings.ADMIN.SERVICES_TITLE }}</h1>
+        <button class="header__add" (click)="openForm()">{{ appStrings.ADMIN.ADD_SERVICE_BUTTON }}</button>
       </div>
 
       <div class="layout">
@@ -24,7 +25,7 @@ import { DurationPipe } from '../../../shared/pipes/duration.pipe';
         <div class="card table-card">
           <table class="table" *ngIf="services.length > 0; else empty">
             <thead>
-              <tr><th>Service</th><th>Category</th><th>Duration</th><th>Price</th><th>Rating</th><th>Status</th><th>Actions</th></tr>
+              <tr><th>{{ appStrings.ADMIN.TABLE_COL_SERVICE }}</th><th>{{ appStrings.ADMIN.TABLE_COL_CATEGORY }}</th><th>{{ appStrings.ADMIN.TABLE_COL_DURATION }}</th><th>{{ appStrings.ADMIN.TABLE_COL_PRICE }}</th><th>{{ appStrings.ADMIN.TABLE_COL_RATING }}</th><th>{{ appStrings.ADMIN.TABLE_COL_SERVICE_STATUS }}</th><th>{{ appStrings.ADMIN.TABLE_COL_ACTIONS }}</th></tr>
             </thead>
             <tbody>
               <tr *ngFor="let s of services">
@@ -43,65 +44,65 @@ import { DurationPipe } from '../../../shared/pipes/duration.pipe';
                 <td>{{ s.rating ? '⭐ ' + s.rating : '—' }}</td>
                 <td>
                   <span class="status-dot" [class.status-dot--active]="s.active">
-                    {{ s.active ? 'Active' : 'Inactive' }}
+                    {{ s.active ? appStrings.ADMIN.SERVICE_ACTIVE : appStrings.ADMIN.SERVICE_INACTIVE }}
                   </span>
                 </td>
                 <td>
                   <div class="row-actions">
-                    <button class="ra ra--edit" (click)="editService(s)">Edit</button>
-                    <button class="ra ra--del" (click)="deleteService(s)">Remove</button>
+                    <button class="ra ra--edit" (click)="editService(s)">{{ appStrings.ADMIN.ACTION_EDIT }}</button>
+                    <button class="ra ra--del" (click)="deleteService(s)">{{ appStrings.ADMIN.ACTION_REMOVE }}</button>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
           <ng-template #empty>
-            <be-empty-state icon="🏋️" title="No services yet" message="Add your first service using the button above." />
+            <be-empty-state icon="🏋️" [title]="S.ADMIN.EMPTY_SERVICES_TITLE" [message]="S.ADMIN.EMPTY_SERVICES_MESSAGE" />
           </ng-template>
         </div>
 
         <!-- Form panel -->
         <div class="card form-card" *ngIf="showForm">
-          <h3 class="form-title">{{ editingId ? 'Edit service' : 'Add service' }}</h3>
+          <h3 class="form-title">{{ editingId ? appStrings.ADMIN.FORM_EDIT_TITLE : appStrings.ADMIN.FORM_ADD_TITLE }}</h3>
 
           <div class="field">
-            <label class="field__label">Name *</label>
-            <input class="field__input" [(ngModel)]="form.name" placeholder="e.g. Power Strength" />
+            <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_NAME }}</label>
+            <input class="field__input" [(ngModel)]="form.name" [placeholder]="S.ADMIN.FORM_PLACEHOLDER_NAME" />
           </div>
           <div class="field">
-            <label class="field__label">Description</label>
+            <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_DESCRIPTION }}</label>
             <textarea class="field__textarea" [(ngModel)]="form.description" rows="3"></textarea>
           </div>
           <div class="fields-2">
             <div class="field">
-              <label class="field__label">Price (cents) *</label>
-              <input class="field__input" type="number" [(ngModel)]="form.priceCents" placeholder="6500" />
+              <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_PRICE }}</label>
+              <input class="field__input" type="number" [(ngModel)]="form.priceCents" [placeholder]="S.ADMIN.FORM_PLACEHOLDER_PRICE" />
             </div>
             <div class="field">
-              <label class="field__label">Duration (min) *</label>
-              <input class="field__input" type="number" [(ngModel)]="form.durationMin" placeholder="60" />
+              <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_DURATION }}</label>
+              <input class="field__input" type="number" [(ngModel)]="form.durationMin" [placeholder]="S.ADMIN.FORM_PLACEHOLDER_DURATION" />
             </div>
           </div>
           <div class="field">
-            <label class="field__label">Category</label>
+            <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_CATEGORY }}</label>
             <select class="field__select" [(ngModel)]="form.categoryId">
-              <option value="">Select…</option>
+              <option value="">{{ appStrings.ADMIN.FORM_CATEGORY_PLACEHOLDER }}</option>
               <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
             </select>
           </div>
           <div class="field">
-            <label class="field__label">Coach name</label>
-            <input class="field__input" [(ngModel)]="form.coachName" placeholder="Marcus Reid" />
+            <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_COACH }}</label>
+            <input class="field__input" [(ngModel)]="form.coachName" [placeholder]="S.ADMIN.FORM_PLACEHOLDER_COACH" />
           </div>
           <div class="field">
-            <label class="field__label">Image URL</label>
-            <input class="field__input" [(ngModel)]="form.imageUrl" placeholder="https://…" />
+            <label class="field__label">{{ appStrings.ADMIN.FORM_LABEL_IMAGE_URL }}</label>
+            <input class="field__input" [(ngModel)]="form.imageUrl" [placeholder]="S.ADMIN.FORM_PLACEHOLDER_IMAGE" />
           </div>
 
           <div class="form-actions">
-            <button class="btn-cancel" (click)="showForm = false">Cancel</button>
+            <button class="btn-cancel" (click)="showForm = false">{{ appStrings.ADMIN.FORM_CANCEL }}</button>
             <button class="btn-save" [disabled]="saving" (click)="save()">
-              {{ saving ? 'Saving…' : (editingId ? 'Update' : 'Add service') }}
+              {{ saving ? appStrings.COMMON.SAVING : (editingId ? appStrings.ADMIN.FORM_SAVE_UPDATE : appStrings.ADMIN.FORM_SAVE_ADD) }}
             </button>
           </div>
         </div>
@@ -111,11 +112,11 @@ import { DurationPipe } from '../../../shared/pipes/duration.pipe';
     <!-- Confirm delete dialog -->
     <div class="overlay" *ngIf="confirmDeleteId" (click)="confirmDeleteId = null">
       <div class="dialog" (click)="$event.stopPropagation()">
-        <h3 class="dialog__title">Remove service?</h3>
-        <p class="dialog__desc">This will deactivate the service and hide it from bookings.</p>
+        <h3 class="dialog__title">{{ appStrings.ADMIN.DELETE_DIALOG_TITLE }}</h3>
+        <p class="dialog__desc">{{ appStrings.ADMIN.DELETE_DIALOG_DESC }}</p>
         <div class="dialog__actions">
-          <button class="btn-cancel" (click)="confirmDeleteId = null">Cancel</button>
-          <button class="btn-danger" (click)="confirmDelete()">Remove</button>
+          <button class="btn-cancel" (click)="confirmDeleteId = null">{{ appStrings.ADMIN.FORM_CANCEL }}</button>
+          <button class="btn-danger" (click)="confirmDelete()">{{ appStrings.ADMIN.DELETE_DIALOG_CONFIRM }}</button>
         </div>
       </div>
     </div>
@@ -174,6 +175,7 @@ import { DurationPipe } from '../../../shared/pipes/duration.pipe';
   `],
 })
 export class AdminServicesComponent implements OnInit {
+  readonly appStrings = APP_STRINGS;
   services: Service[] = [];
   categories: Category[] = MOCK_CATEGORIES;
   showForm = false;

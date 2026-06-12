@@ -16,20 +16,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.data.models.Booking
 import com.bookease.app.data.models.BookingStatus
 import com.bookease.app.ui.components.BookingCard
+import com.bookease.app.ui.components.EmptyStateVariant
+import com.bookease.app.ui.components.EmptyStateView
 import com.bookease.app.ui.theme.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
 fun BookingsScreen(
-    vm: BookingsViewModel = viewModel()
+    vm: BookingsViewModel = viewModel(),
+    onBrowseServices: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -38,7 +43,7 @@ fun BookingsScreen(
     ) {
         // Title
         Text(
-            text = "My bookings",
+            text = stringResource(R.string.bookings_title),
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontSize = 26.sp,
                 fontWeight = FontWeight.ExtraBold
@@ -49,7 +54,11 @@ fun BookingsScreen(
         )
 
         // Segmented control
-        val segments = listOf("Upcoming", "Completed", "Cancelled")
+        val segments = listOf(
+            stringResource(R.string.bookings_segment_upcoming),
+            stringResource(R.string.bookings_segment_completed),
+            stringResource(R.string.bookings_segment_cancelled)
+        )
         SegmentedPicker(
             segments = segments,
             selectedIndex = vm.selectedSegment,
@@ -62,9 +71,28 @@ fun BookingsScreen(
         // List
         val bookings = vm.filteredBookings
         if (bookings.isEmpty()) {
-            BookingsEmptyState(
-                segment = vm.selectedSegment,
-                modifier = Modifier
+            val emptyTitle = when (vm.selectedSegment) {
+                0    -> stringResource(R.string.bookings_empty_upcoming_title)
+                1    -> stringResource(R.string.bookings_empty_completed_title)
+                2    -> stringResource(R.string.bookings_empty_cancelled_title)
+                else -> stringResource(R.string.bookings_empty_generic_title)
+            }
+            val emptyMessage = when (vm.selectedSegment) {
+                0    -> stringResource(R.string.bookings_empty_upcoming_message)
+                1    -> stringResource(R.string.bookings_empty_completed_message)
+                2    -> stringResource(R.string.bookings_empty_cancelled_message)
+                else -> stringResource(R.string.bookings_empty_generic_message)
+            }
+            EmptyStateView(
+                variant = if (vm.selectedSegment == 0)
+                    EmptyStateVariant.Bookings
+                else
+                    EmptyStateVariant.Generic(Icons.Default.CalendarToday),
+                title       = emptyTitle,
+                message     = emptyMessage,
+                actionLabel = if (vm.selectedSegment == 0) stringResource(R.string.common_browse_services) else null,
+                onAction    = if (vm.selectedSegment == 0) onBrowseServices else null,
+                modifier    = Modifier
                     .fillMaxSize()
                     .weight(1f)
             )
@@ -189,39 +217,12 @@ private fun SwipeToCancel(
                 contentAlignment = Alignment.CenterEnd
             ) {
                 Text(
-                    text = "Cancel",
+                    text = stringResource(R.string.bookings_swipe_cancel),
                     style = MaterialTheme.typography.labelLarge.copy(color = BeColor.dangerText)
                 )
             }
         }
     ) {
         content()
-    }
-}
-
-// ── Empty State ───────────────────────────────────────────────────────────────
-
-@Composable
-private fun BookingsEmptyState(segment: Int, modifier: Modifier = Modifier) {
-    val (title, subtitle) = when (segment) {
-        0    -> "No upcoming bookings" to "Book a session to get started"
-        1    -> "No completed sessions" to "Your finished sessions will appear here"
-        2    -> "No cancelled bookings" to "Cancelled bookings will appear here"
-        else -> "" to ""
-    }
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Icon(
-            imageVector = Icons.Default.CalendarToday,
-            contentDescription = null,
-            tint = BeColor.ink300,
-            modifier = Modifier.size(56.dp)
-        )
-        Spacer(Modifier.height(BeSp.md))
-        Text(text = title, style = MaterialTheme.typography.headlineSmall.copy(color = BeColor.ink500))
-        Text(text = subtitle, style = MaterialTheme.typography.bodyMedium)
     }
 }

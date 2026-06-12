@@ -30,7 +30,7 @@ struct ServiceRow: View {
                     .foregroundColor(.bePrimary)
 
                 Button(action: onBook) {
-                    Text("Book")
+                    Text(AppStrings.Common.book)
                         .font(.jakarta(12.5, weight: .bold))
                         .foregroundColor(Color(hex: "4A3BD0"))
                         .padding(.horizontal, 14)

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ToastService } from '../../shared/services/toast.service';
+import { APP_STRINGS } from '../../core/constants';
 
 @Component({
   selector: 'be-contact',
@@ -16,17 +17,17 @@ import { ToastService } from '../../shared/services/toast.service';
         <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,#6B5BF0,#4A3BD0);display:flex;align-items:center;justify-content:center;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>
         </div>
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:#0F1115;">BookEase</span>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:#0F1115;">{{ appStrings.BRAND.NAME }}</span>
       </div>
       <div style="display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:600;color:#545A66;">
-        <a routerLink="/services-page" [style.color]="activeRoute() === '/services-page' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/services-page' ? '700' : '600'" style="text-decoration:none;">Services</a>
-        <a routerLink="/how-it-works" [style.color]="activeRoute() === '/how-it-works' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/how-it-works' ? '700' : '600'" style="text-decoration:none;">How it works</a>
-        <a routerLink="/pricing" [style.color]="activeRoute() === '/pricing' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/pricing' ? '700' : '600'" style="text-decoration:none;">Pricing</a>
-        <a routerLink="/contact" [style.color]="activeRoute() === '/contact' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/contact' ? '700' : '600'" style="text-decoration:none;">Contact</a>
+        <a routerLink="/services-page" [style.color]="activeRoute() === '/services-page' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/services-page' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.SERVICES }}</a>
+        <a routerLink="/how-it-works" [style.color]="activeRoute() === '/how-it-works' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/how-it-works' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.HOW_IT_WORKS }}</a>
+        <a routerLink="/pricing" [style.color]="activeRoute() === '/pricing' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/pricing' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.PRICING }}</a>
+        <a routerLink="/contact" [style.color]="activeRoute() === '/contact' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/contact' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.CONTACT }}</a>
       </div>
       <div style="display:flex;align-items:center;gap:14px;">
-        <a routerLink="/login" style="font-size:14.5px;font-weight:700;color:#16181D;text-decoration:none;">Log in</a>
-        <a routerLink="/book" style="text-decoration:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;box-shadow:0 4px 12px rgba(91,75,227,0.28);">Book Now</a>
+        <a routerLink="/login" style="font-size:14.5px;font-weight:700;color:#16181D;text-decoration:none;">{{ appStrings.NAV.LOG_IN }}</a>
+        <a routerLink="/book" style="text-decoration:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;box-shadow:0 4px 12px rgba(91,75,227,0.28);">{{ appStrings.NAV.BOOK_NOW }}</a>
       </div>
     </nav>
 
@@ -35,82 +36,82 @@ import { ToastService } from '../../shared/services/toast.service';
 
       <!-- Left: Form -->
       <div style="padding:56px 44px;">
-        <div style="font-size:12.5px;font-weight:700;letter-spacing:0.1em;color:#5B4BE3;margin-bottom:12px;">GET IN TOUCH</div>
-        <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-0.025em;margin:0 0 14px;color:#0F1115;">We'd love to hear from you</h1>
-        <p style="font-size:15.5px;color:#545A66;line-height:1.6;margin:0 0 32px;">Questions about a service, your booking, or partnering as a coach? Send us a note and we'll reply within a day.</p>
+        <div style="font-size:12.5px;font-weight:700;letter-spacing:0.1em;color:#5B4BE3;margin-bottom:12px;">{{ appStrings.CONTACT.EYEBROW }}</div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-0.025em;margin:0 0 14px;color:#0F1115;">{{ appStrings.CONTACT.HEADING }}</h1>
+        <p style="font-size:15.5px;color:#545A66;line-height:1.6;margin:0 0 32px;">{{ appStrings.CONTACT.SUBTEXT }}</p>
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" style="display:flex;flex-direction:column;gap:18px;">
           <!-- Name row -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
             <div>
-              <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">First name</label>
+              <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">{{ appStrings.CONTACT.LABEL_FIRST_NAME }}</label>
               <input
                 formControlName="firstName"
                 type="text"
                 [style.border]="fieldInvalid('firstName') ? '1px solid #E11D48' : '1px solid #DDDFE6'"
                 style="width:100%;height:48px;padding:0 14px;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:500;color:#16181D;box-sizing:border-box;outline:none;" />
               <div *ngIf="fieldInvalid('firstName')" style="color:#BE123C;font-size:12px;margin-top:5px;font-weight:500;">
-                <span *ngIf="ctrl('firstName').errors?.['required']">This field is required.</span>
-                <span *ngIf="ctrl('firstName').errors?.['minlength']">Must be at least 2 characters.</span>
+                <span *ngIf="ctrl('firstName').errors?.['required']">{{ appStrings.CONTACT.ERROR_REQUIRED }}</span>
+                <span *ngIf="ctrl('firstName').errors?.['minlength']">{{ appStrings.CONTACT.ERROR_MIN_LENGTH_NAME }}</span>
               </div>
             </div>
             <div>
-              <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">Last name</label>
+              <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">{{ appStrings.CONTACT.LABEL_LAST_NAME }}</label>
               <input
                 formControlName="lastName"
                 type="text"
                 [style.border]="fieldInvalid('lastName') ? '1px solid #E11D48' : '1px solid #DDDFE6'"
                 style="width:100%;height:48px;padding:0 14px;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:500;color:#16181D;box-sizing:border-box;outline:none;" />
               <div *ngIf="fieldInvalid('lastName')" style="color:#BE123C;font-size:12px;margin-top:5px;font-weight:500;">
-                <span *ngIf="ctrl('lastName').errors?.['required']">This field is required.</span>
-                <span *ngIf="ctrl('lastName').errors?.['minlength']">Must be at least 2 characters.</span>
+                <span *ngIf="ctrl('lastName').errors?.['required']">{{ appStrings.CONTACT.ERROR_REQUIRED }}</span>
+                <span *ngIf="ctrl('lastName').errors?.['minlength']">{{ appStrings.CONTACT.ERROR_MIN_LENGTH_NAME }}</span>
               </div>
             </div>
           </div>
 
           <!-- Email -->
           <div>
-            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">Email</label>
+            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">{{ appStrings.CONTACT.LABEL_EMAIL }}</label>
             <input
               formControlName="email"
               type="email"
               [style.border]="fieldInvalid('email') ? '1px solid #E11D48' : '1px solid #DDDFE6'"
               style="width:100%;height:48px;padding:0 14px;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:500;color:#16181D;box-sizing:border-box;outline:none;" />
             <div *ngIf="fieldInvalid('email')" style="color:#BE123C;font-size:12px;margin-top:5px;font-weight:500;">
-              <span *ngIf="ctrl('email').errors?.['required']">This field is required.</span>
-              <span *ngIf="ctrl('email').errors?.['email']">Enter a valid email address.</span>
+              <span *ngIf="ctrl('email').errors?.['required']">{{ appStrings.CONTACT.ERROR_REQUIRED }}</span>
+              <span *ngIf="ctrl('email').errors?.['email']">{{ appStrings.CONTACT.ERROR_EMAIL }}</span>
             </div>
           </div>
 
           <!-- Topic -->
           <div>
-            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">Topic</label>
+            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">{{ appStrings.CONTACT.LABEL_TOPIC }}</label>
             <select
               formControlName="topic"
               [style.border]="fieldInvalid('topic') ? '1px solid #E11D48' : '1px solid #DDDFE6'"
               style="width:100%;height:48px;padding:0 14px;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:500;color:#16181D;box-sizing:border-box;outline:none;background:#fff;appearance:auto;">
-              <option value="">Select a topic</option>
-              <option value="booking">Booking help</option>
-              <option value="coach">Partner as a coach</option>
-              <option value="billing">Billing question</option>
-              <option value="other">Other</option>
+              <option value="">{{ appStrings.CONTACT.TOPIC_PLACEHOLDER }}</option>
+              <option value="booking">{{ appStrings.CONTACT.TOPIC_BOOKING }}</option>
+              <option value="coach">{{ appStrings.CONTACT.TOPIC_COACH }}</option>
+              <option value="billing">{{ appStrings.CONTACT.TOPIC_BILLING }}</option>
+              <option value="other">{{ appStrings.CONTACT.TOPIC_OTHER }}</option>
             </select>
             <div *ngIf="fieldInvalid('topic')" style="color:#BE123C;font-size:12px;margin-top:5px;font-weight:500;">
-              This field is required.
+              {{ appStrings.CONTACT.ERROR_REQUIRED }}
             </div>
           </div>
 
           <!-- Message -->
           <div>
-            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">Message</label>
+            <label style="display:block;font-size:13.5px;font-weight:600;color:#16181D;margin-bottom:6px;">{{ appStrings.CONTACT.LABEL_MESSAGE }}</label>
             <textarea
               formControlName="message"
-              placeholder="Tell us a bit about what you need…"
+              [placeholder]="appStrings.CONTACT.PLACEHOLDER_MESSAGE"
               [style.border]="fieldInvalid('message') ? '1px solid #E11D48' : '1px solid #DDDFE6'"
               style="width:100%;min-height:110px;padding:14px;border-radius:11px;font-family:inherit;font-size:14.5px;font-weight:500;color:#16181D;box-sizing:border-box;outline:none;resize:vertical;"></textarea>
             <div *ngIf="fieldInvalid('message')" style="color:#BE123C;font-size:12px;margin-top:5px;font-weight:500;">
-              <span *ngIf="ctrl('message').errors?.['required']">This field is required.</span>
-              <span *ngIf="ctrl('message').errors?.['minlength']">Message must be at least 10 characters.</span>
+              <span *ngIf="ctrl('message').errors?.['required']">{{ appStrings.CONTACT.ERROR_REQUIRED }}</span>
+              <span *ngIf="ctrl('message').errors?.['minlength']">{{ appStrings.CONTACT.ERROR_MIN_LENGTH_MESSAGE }}</span>
             </div>
           </div>
 
@@ -121,7 +122,7 @@ import { ToastService } from '../../shared/services/toast.service';
             [style.opacity]="contactForm.invalid ? '0.6' : '1'"
             [style.cursor]="contactForm.invalid ? 'not-allowed' : 'pointer'"
             style="width:100%;font-family:inherit;border:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:15.5px;padding:15px;border-radius:13px;box-shadow:0 8px 20px rgba(91,75,227,0.30);">
-            Send message
+            {{ appStrings.CONTACT.SUBMIT_BUTTON }}
           </button>
         </form>
       </div>
@@ -138,8 +139,8 @@ import { ToastService } from '../../shared/services/toast.service';
             </svg>
           </div>
           <div>
-            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">Email us</div>
-            <div style="font-size:15.5px;font-weight:700;color:#16181D;">hello&#64;bookease.app</div>
+            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">{{ appStrings.CONTACT.CONTACT_EMAIL_LABEL }}</div>
+            <div style="font-size:15.5px;font-weight:700;color:#16181D;">{{ appStrings.CONTACT.CONTACT_EMAIL_VALUE }}</div>
           </div>
         </div>
 
@@ -151,8 +152,8 @@ import { ToastService } from '../../shared/services/toast.service';
             </svg>
           </div>
           <div>
-            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">Call us</div>
-            <div style="font-size:15.5px;font-weight:700;color:#16181D;">+1 (415) 555-0100</div>
+            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">{{ appStrings.CONTACT.CONTACT_PHONE_LABEL }}</div>
+            <div style="font-size:15.5px;font-weight:700;color:#16181D;">{{ appStrings.CONTACT.CONTACT_PHONE_VALUE }}</div>
           </div>
         </div>
 
@@ -165,33 +166,33 @@ import { ToastService } from '../../shared/services/toast.service';
             </svg>
           </div>
           <div>
-            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">Visit the studio</div>
-            <div style="font-size:15.5px;font-weight:700;color:#16181D;">540 Market St, San Francisco</div>
+            <div style="font-size:12.5px;color:#8A909C;font-weight:600;margin-bottom:3px;">{{ appStrings.CONTACT.CONTACT_LOCATION_LABEL }}</div>
+            <div style="font-size:15.5px;font-weight:700;color:#16181D;">{{ appStrings.CONTACT.CONTACT_LOCATION_VALUE }}</div>
           </div>
         </div>
 
         <!-- Hours card -->
         <div style="background:#fff;border:1px solid #ECECEF;border-radius:16px;padding:20px 22px;">
-          <div style="font-size:13.5px;font-weight:700;color:#16181D;margin-bottom:12px;">Opening hours</div>
+          <div style="font-size:13.5px;font-weight:700;color:#16181D;margin-bottom:12px;">{{ appStrings.CONTACT.HOURS_TITLE }}</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="display:flex;justify-content:space-between;font-size:13.5px;">
-              <span style="color:#545A66;">Mon &ndash; Fri</span>
-              <span style="font-weight:600;color:#16181D;">6:00 AM &ndash; 9:00 PM</span>
+              <span style="color:#545A66;">{{ appStrings.CONTACT.HOURS_WEEKDAYS_LABEL }}</span>
+              <span style="font-weight:600;color:#16181D;">{{ appStrings.CONTACT.HOURS_WEEKDAYS_VALUE }}</span>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:13.5px;">
-              <span style="color:#545A66;">Saturday</span>
-              <span style="font-weight:600;color:#16181D;">8:00 AM &ndash; 6:00 PM</span>
+              <span style="color:#545A66;">{{ appStrings.CONTACT.HOURS_SATURDAY_LABEL }}</span>
+              <span style="font-weight:600;color:#16181D;">{{ appStrings.CONTACT.HOURS_SATURDAY_VALUE }}</span>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:13.5px;">
-              <span style="color:#545A66;">Sunday</span>
-              <span style="font-weight:600;color:#16181D;">Closed</span>
+              <span style="color:#545A66;">{{ appStrings.CONTACT.HOURS_SUNDAY_LABEL }}</span>
+              <span style="font-weight:600;color:#16181D;">{{ appStrings.CONTACT.HOURS_SUNDAY_VALUE }}</span>
             </div>
           </div>
         </div>
 
         <!-- Map placeholder -->
         <div style="width:100%;height:150px;background:#EEEBFD;border-radius:16px;display:flex;align-items:center;justify-content:center;">
-          <span style="font-size:14px;color:#8A909C;font-weight:500;">Map / studio photo</span>
+          <span style="font-size:14px;color:#8A909C;font-weight:500;">{{ appStrings.CONTACT.MAP_PLACEHOLDER }}</span>
         </div>
 
       </div>
@@ -200,6 +201,7 @@ import { ToastService } from '../../shared/services/toast.service';
   styles: [`:host { display:block; background:#fff; }`],
 })
 export class ContactComponent {
+  readonly appStrings = APP_STRINGS;
   private router = inject(Router);
   private fb = inject(FormBuilder);
   private toastService = inject(ToastService);
@@ -225,11 +227,11 @@ export class ContactComponent {
 
   onSubmit(): void {
     if (this.contactForm.valid) {
-      this.toastService.show("Message sent! We'll be in touch within a day.", 'success');
+      this.toastService.show(APP_STRINGS.CONTACT.TOAST_SUCCESS, 'success');
       this.contactForm.reset({ topic: 'booking' });
     } else {
       this.contactForm.markAllAsTouched();
-      this.toastService.show('Please fill in all required fields.', 'error');
+      this.toastService.show(APP_STRINGS.CONTACT.TOAST_ERROR, 'error');
     }
   }
 }

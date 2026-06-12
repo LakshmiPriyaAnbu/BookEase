@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.data.models.Service
 import com.bookease.app.ui.theme.*
 
@@ -43,7 +45,7 @@ fun ServicesMarketingScreen(
         // ── Title block ──────────────────────────────────────────────────────
         item {
             Text(
-                text  = "Services",
+                text  = stringResource(R.string.services_title),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontSize   = 26.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -51,7 +53,7 @@ fun ServicesMarketingScreen(
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(
-                text  = "24 services across 6 categories",
+                text  = stringResource(R.string.services_subtitle),
                 style = MaterialTheme.typography.bodySmall.copy(
                     color      = BeColor.ink300,
                     fontSize   = 13.5.sp,
@@ -63,6 +65,8 @@ fun ServicesMarketingScreen(
 
         // ── Search bar ───────────────────────────────────────────────────────
         item {
+            val searchContentDesc = stringResource(R.string.services_search_content_desc)
+            val searchPlaceholder = stringResource(R.string.services_search_placeholder)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -76,12 +80,12 @@ fun ServicesMarketingScreen(
             ) {
                 Icon(
                     imageVector        = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = searchContentDesc,
                     tint               = BeColor.ink300,
                     modifier           = Modifier.size(18.dp)
                 )
                 Text(
-                    text  = "Search services or coaches…",
+                    text  = searchPlaceholder,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color    = BeColor.ink300,
                         fontSize = 14.sp
@@ -94,7 +98,7 @@ fun ServicesMarketingScreen(
         // ── Browse by category header ────────────────────────────────────────
         item {
             Text(
-                text  = "Browse by category",
+                text  = stringResource(R.string.services_browse_by_category),
                 style = MaterialTheme.typography.headlineSmall.copy(
                     fontSize   = 16.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -126,7 +130,7 @@ fun ServicesMarketingScreen(
         // ── Featured header ──────────────────────────────────────────────────
         item {
             Text(
-                text  = "Featured",
+                text  = stringResource(R.string.services_featured),
                 style = MaterialTheme.typography.headlineSmall.copy(
                     fontSize   = 16.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -189,7 +193,7 @@ private fun CategoryCard(
         )
         Spacer(Modifier.height(2.dp))
         Text(
-            text  = "${category.count} services",
+            text  = stringResource(R.string.services_category_service_count, category.count),
             style = MaterialTheme.typography.labelMedium.copy(
                 color      = BeColor.ink300,
                 fontSize   = 12.5.sp,
@@ -221,6 +225,9 @@ private fun FeaturedServiceRow(
     onBookClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val bookContentDesc = stringResource(R.string.services_book_content_desc_prefix) + service.name
+    val bookLabel = stringResource(R.string.common_book)
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -286,11 +293,11 @@ private fun FeaturedServiceRow(
                         .clickable(
                             onClick = onBookClick
                         )
-                        .semantics { contentDescription = "Book ${service.name}" }
+                        .semantics { contentDescription = bookContentDesc }
                         .padding(horizontal = 14.dp, vertical = 7.dp)
                 ) {
                     Text(
-                        text  = "Book",
+                        text  = bookLabel,
                         style = MaterialTheme.typography.labelMedium.copy(
                             color      = BeColor.primaryDark,
                             fontSize   = 12.5.sp,

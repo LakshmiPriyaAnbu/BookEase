@@ -35,7 +35,7 @@ data class Service(
     val coachName: String,
     val included: List<String> = emptyList()
 ) {
-    val formattedPrice: String get() = "$${priceCents / 100}"
+    val formattedPrice: String get() = "₹${priceCents / 100}"
     val formattedDuration: String get() = "$durationMin min"
 }
 
@@ -62,7 +62,7 @@ data class Booking(
     val status: BookingStatus,
     val priceCents: Int
 ) {
-    val formattedPrice: String get() = "$${priceCents / 100}"
+    val formattedPrice: String get() = "₹${priceCents / 100}"
 
     val formattedDateTime: String get() {
         val date = java.util.Date(startsAt)

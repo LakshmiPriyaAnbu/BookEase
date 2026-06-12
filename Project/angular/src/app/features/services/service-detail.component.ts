@@ -7,6 +7,7 @@ import { ServicesService } from '../../core/services/services.service';
 import { Service, TimeSlot } from '../../shared/models/models';
 import { MoneyPipe } from '../../shared/pipes/money.pipe';
 import { DurationPipe } from '../../shared/pipes/duration.pipe';
+import { APP_STRINGS } from '../../core/constants';
 
 @Component({
   selector: 'be-service-detail',
@@ -17,7 +18,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
 
     <div class="page" *ngIf="service; else loading">
       <div class="container">
-        <button class="back" (click)="goBack()">← Back to services</button>
+        <button class="back" (click)="goBack()">{{ appStrings.SERVICES.BACK_TO_SERVICES }}</button>
 
         <div class="layout">
           <!-- Left: details -->
@@ -37,7 +38,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
             <p class="desc">{{ service.description }}</p>
 
             <div class="included" *ngIf="service.included?.length">
-              <h3 class="included__title">What's included</h3>
+              <h3 class="included__title">{{ appStrings.SERVICES.WHATS_INCLUDED }}</h3>
               <ul class="included__list">
                 <li *ngFor="let item of service.included" class="included__item">
                   <span class="included__check">✓</span> {{ item }}
@@ -48,13 +49,13 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
 
           <!-- Right: booking panel -->
           <div class="panel card">
-            <h3 class="panel__title">Book this session</h3>
+            <h3 class="panel__title">{{ appStrings.SERVICES.BOOK_SESSION_PANEL_TITLE }}</h3>
             <div class="panel__price">{{ service.priceCents | money }}<span class="panel__per"> / session</span></div>
             <p class="panel__dur">⏱ {{ service.durationMin | duration }}</p>
 
             <!-- Date picker -->
             <div class="panel__section">
-              <label class="panel__label">Choose a date</label>
+              <label class="panel__label">{{ appStrings.SERVICES.CHOOSE_DATE_LABEL }}</label>
               <div class="date-pills">
                 <button *ngFor="let d of datePills; let i = index"
                   class="date-pill" [class.date-pill--active]="selectedDateIdx === i"
@@ -67,7 +68,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
 
             <!-- Time slots -->
             <div class="panel__section">
-              <label class="panel__label">Select time</label>
+              <label class="panel__label">{{ appStrings.SERVICES.SELECT_TIME_LABEL }}</label>
               <div class="slots" *ngIf="slots.length > 0; else noSlots">
                 <button *ngFor="let slot of slots"
                   class="slot" [class.slot--active]="selectedSlot?.id === slot.id"
@@ -76,11 +77,11 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
                   {{ slot.startsAt | date:'h:mm a' }}
                 </button>
               </div>
-              <ng-template #noSlots><p class="no-slots">No slots available for this date.</p></ng-template>
+              <ng-template #noSlots><p class="no-slots">{{ appStrings.SERVICES.NO_SLOTS }}</p></ng-template>
             </div>
 
             <button class="book-btn" [disabled]="!selectedSlot" (click)="bookNow()">
-              {{ selectedSlot ? 'Book for ' + (service.priceCents | money) : 'Select a time slot' }}
+              {{ selectedSlot ? appStrings.COMMON.BOOK + ' for ' + (service.priceCents | money) : appStrings.SERVICES.SELECT_TIME }}
             </button>
           </div>
         </div>
@@ -88,7 +89,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
     </div>
 
     <ng-template #loading>
-      <div class="loading-state"><p>Loading…</p></div>
+      <div class="loading-state"><p>{{ appStrings.COMMON.LOADING }}</p></div>
     </ng-template>
   `,
   styles: [`
@@ -143,6 +144,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
   `],
 })
 export class ServiceDetailComponent implements OnInit {
+  readonly appStrings = APP_STRINGS;
   service: Service | undefined;
   slots: TimeSlot[] = [];
   selectedSlot: TimeSlot | null = null;

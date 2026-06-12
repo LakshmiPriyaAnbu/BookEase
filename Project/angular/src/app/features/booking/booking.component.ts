@@ -6,6 +6,7 @@ import { ServicesService } from '../../core/services/services.service';
 import { BookingsService } from '../../core/services/bookings.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { Service, TimeSlot } from '../../shared/models/models';
+import { APP_STRINGS } from '../../core/constants';
 
 @Component({
   selector: 'be-booking',
@@ -23,6 +24,8 @@ export class BookingComponent implements OnInit {
   submitAttempted = false;
   datePills: { weekday: string; day: string; fullDate: string; date: Date }[] = [];
   form = { fullName: '', phone: '', email: '', notes: '' };
+
+  readonly appStrings = APP_STRINGS;
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -86,7 +89,7 @@ export class BookingComponent implements OnInit {
     this.submitAttempted = true;
 
     if (!this.canConfirm) {
-      this.toastService.show('Please select a time slot and fill in your details.', 'error');
+      this.toastService.show(APP_STRINGS.BOOKING.TOAST_MISSING, 'error');
       return;
     }
 
@@ -105,12 +108,12 @@ export class BookingComponent implements OnInit {
     }).subscribe({
       next: b => {
         this.submitting = false;
-        this.toastService.show('Booking confirmed! Check your email for details.', 'success');
+        this.toastService.show(APP_STRINGS.BOOKING.TOAST_CONFIRMED, 'success');
         this.router.navigate(['/confirmation', b.id]);
       },
       error: () => {
         this.submitting = false;
-        this.toastService.show('Something went wrong. Please try again.', 'error');
+        this.toastService.show(APP_STRINGS.BOOKING.TOAST_ERROR, 'error');
       },
     });
   }

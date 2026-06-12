@@ -23,7 +23,7 @@ struct BookingView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     // Title
-                    Text("Booking")
+                    Text(AppStrings.Booking.title)
                         .font(.jakarta(26, weight: .heavy))
                         .foregroundColor(.beInk800)
                         .padding(.horizontal, Spacing.lg)
@@ -61,7 +61,7 @@ struct BookingView: View {
 
     private var dateSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Select date")
+            Text(AppStrings.Booking.selectDate)
                 .font(.jakarta(14, weight: .heavy))
                 .foregroundColor(.beInk700)
                 .padding(.horizontal, Spacing.lg)
@@ -81,7 +81,7 @@ struct BookingView: View {
             .padding(.horizontal, Spacing.lg)
 
             if showDateError {
-                FieldErrorLabel(message: "Please select a date")
+                FieldErrorLabel(message: AppStrings.Booking.errorSelectDate)
                     .padding(.horizontal, Spacing.lg)
             }
         }
@@ -91,7 +91,7 @@ struct BookingView: View {
 
     private var timeSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Select time")
+            Text(AppStrings.Booking.selectTime)
                 .font(.jakarta(14, weight: .heavy))
                 .foregroundColor(.beInk700)
                 .padding(.horizontal, Spacing.lg)
@@ -124,7 +124,7 @@ struct BookingView: View {
             .padding(.horizontal, Spacing.lg)
 
             if showSlotError {
-                FieldErrorLabel(message: "Please select a time slot")
+                FieldErrorLabel(message: AppStrings.Booking.errorSelectTimeSlot)
                     .padding(.horizontal, Spacing.lg)
             }
         }
@@ -134,7 +134,7 @@ struct BookingView: View {
 
     private var detailsSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Your details")
+            Text(AppStrings.Booking.yourDetails)
                 .font(.jakarta(14, weight: .heavy))
                 .foregroundColor(.beInk700)
                 .padding(.horizontal, Spacing.lg)
@@ -152,13 +152,13 @@ struct BookingView: View {
                 .clipShape(RoundedRectangle(cornerRadius: Radius.md))
                 .overlay(RoundedRectangle(cornerRadius: Radius.md).stroke(Color.beBorder100, lineWidth: 1))
                 .overlay(
-                    TextField("Full name", text: $vm.fullName)
+                    TextField(AppStrings.Booking.fullNamePlaceholder, text: $vm.fullName)
                         .font(.jakarta(14.5, weight: .medium))
                         .foregroundColor(.beInk700)
                         .padding(.horizontal, Spacing.md)
                 )
 
-                TextField("+1 415 555 0199", text: $vm.phone)
+                TextField(AppStrings.Booking.phonePlaceholder, text: $vm.phone)
                     .font(.jakarta(14.5, weight: .medium))
                     .foregroundColor(.beInk700)
                     .keyboardType(.phonePad)
@@ -170,7 +170,7 @@ struct BookingView: View {
 
                 ZStack(alignment: .topLeading) {
                     if vm.notes.isEmpty {
-                        Text("Notes (optional)")
+                        Text(AppStrings.Booking.notesPlaceholder)
                             .font(.jakarta(14, weight: .medium))
                             .foregroundColor(.beMuted500)
                             .padding(.top, 12)
@@ -198,7 +198,7 @@ struct BookingView: View {
         Button {
             confirmBooking()
         } label: {
-            Text("Confirm booking · \(service.formattedPrice)")
+            Text(AppStrings.Booking.confirmBookingButton + service.formattedPrice)
                 .font(.jakarta(15.5, weight: .bold))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
@@ -245,7 +245,7 @@ struct BookingView: View {
 
         let booking = vm.buildConfirmedBooking()
         confirmedBooking = booking
-        toastManager.show("Booking confirmed! Check your email.", type: .success)
+        toastManager.show(AppStrings.Booking.toastBookingConfirmed, type: .success)
         showConfirmation = true
     }
 }

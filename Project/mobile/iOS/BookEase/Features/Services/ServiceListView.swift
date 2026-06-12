@@ -10,7 +10,7 @@ struct ServiceListView: View {
         VStack(spacing: 0) {
             // Top bar
             HStack {
-                Text("Services")
+                Text(AppStrings.Services.title)
                     .font(.jakarta(26, weight: .heavy))
                     .foregroundColor(.beInk800)
                 Spacer()
@@ -33,7 +33,7 @@ struct ServiceListView: View {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 17))
                     .foregroundColor(.beMuted500)
-                TextField("Search", text: $vm.searchText)
+                TextField(AppStrings.Services.searchPlaceholder, text: $vm.searchText)
                     .font(.jakarta(14.5, weight: .medium))
                     .foregroundColor(.beInk700)
             }
@@ -85,10 +85,10 @@ struct ServiceListView: View {
                         .font(.system(size: 44))
                         .foregroundColor(.beMuted400)
                         .accessibilityHidden(true)
-                    Text("No services found")
+                    Text(AppStrings.Services.noServicesFound)
                         .font(.beH3)
                         .foregroundColor(.beInk700)
-                    Text("Try adjusting your search or filters.")
+                    Text(AppStrings.Services.noServicesFoundSubtitle)
                         .font(.beBodySm)
                         .foregroundColor(.beMuted500)
                 }

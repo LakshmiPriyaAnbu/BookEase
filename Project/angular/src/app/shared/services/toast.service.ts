@@ -5,6 +5,7 @@ export type ToastType = 'success' | 'error' | 'info' | 'warning';
 export interface Toast {
   id: number;
   message: string;
+  title?: string;
   type: ToastType;
 }
 
@@ -15,9 +16,9 @@ export class ToastService {
 
   readonly toasts = signal<Toast[]>([]);
 
-  show(message: string, type: ToastType, durationMs = 3500): void {
+  show(message: string, type: ToastType, title?: string, durationMs = 3500): void {
     const id = ++this._nextId;
-    const toast: Toast = { id, message, type };
+    const toast: Toast = { id, message, type, title };
 
     this.toasts.update(current => {
       const updated = [...current, toast];

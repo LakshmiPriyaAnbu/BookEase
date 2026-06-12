@@ -108,7 +108,7 @@ struct ServiceDetailView: View {
 
     private var includedSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("What's included")
+            Text(AppStrings.Services.whatsIncluded)
                 .font(.jakarta(15, weight: .heavy))
                 .foregroundColor(.beInk800)
 
@@ -133,7 +133,7 @@ struct ServiceDetailView: View {
 
     private var timeSlotsSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Available today")
+            Text(AppStrings.Services.availableToday)
                 .font(.jakarta(15, weight: .heavy))
                 .foregroundColor(.beInk800)
 
@@ -166,7 +166,7 @@ struct ServiceDetailView: View {
     private var bottomActionBar: some View {
         HStack(spacing: Spacing.lg) {
             VStack(alignment: .leading, spacing: 2) {
-                Text("Total")
+                Text(AppStrings.Common.total)
                     .font(.jakarta(11.5, weight: .semibold))
                     .foregroundColor(.beMuted500)
                 Text(service.formattedPrice)
@@ -175,7 +175,7 @@ struct ServiceDetailView: View {
             }
 
             NavigationLink(destination: BookingView(service: service, selectedSlot: vm.selectedSlot)) {
-                Text("Book Now")
+                Text(AppStrings.Services.bookNow)
                     .font(.jakarta(15.5, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)

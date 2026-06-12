@@ -1,6 +1,7 @@
 import { Component, signal, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { APP_STRINGS } from '../../core/constants';
 
 interface ServiceCard {
   id: number;
@@ -24,27 +25,27 @@ interface ServiceCard {
         <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,#6B5BF0,#4A3BD0);display:flex;align-items:center;justify-content:center;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z" fill="#C8F25C"/></svg>
         </div>
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:#0F1115;">BookEase</span>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:#0F1115;">{{ appStrings.BRAND.NAME }}</span>
       </div>
       <div style="display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:600;color:#545A66;">
-        <a routerLink="/services-page" [style.color]="activeRoute() === '/services-page' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/services-page' ? '700' : '600'" style="text-decoration:none;">Services</a>
-        <a routerLink="/how-it-works" [style.color]="activeRoute() === '/how-it-works' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/how-it-works' ? '700' : '600'" style="text-decoration:none;">How it works</a>
-        <a routerLink="/pricing" [style.color]="activeRoute() === '/pricing' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/pricing' ? '700' : '600'" style="text-decoration:none;">Pricing</a>
-        <a routerLink="/contact" [style.color]="activeRoute() === '/contact' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/contact' ? '700' : '600'" style="text-decoration:none;">Contact</a>
+        <a routerLink="/services-page" [style.color]="activeRoute() === '/services-page' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/services-page' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.SERVICES }}</a>
+        <a routerLink="/how-it-works" [style.color]="activeRoute() === '/how-it-works' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/how-it-works' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.HOW_IT_WORKS }}</a>
+        <a routerLink="/pricing" [style.color]="activeRoute() === '/pricing' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/pricing' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.PRICING }}</a>
+        <a routerLink="/contact" [style.color]="activeRoute() === '/contact' ? '#5B4BE3' : '#545A66'" [style.fontWeight]="activeRoute() === '/contact' ? '700' : '600'" style="text-decoration:none;">{{ appStrings.NAV.CONTACT }}</a>
       </div>
       <div style="display:flex;align-items:center;gap:14px;">
-        <a routerLink="/login" style="font-size:14.5px;font-weight:700;color:#16181D;text-decoration:none;">Log in</a>
-        <a routerLink="/book" style="text-decoration:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;box-shadow:0 4px 12px rgba(91,75,227,0.28);">Book Now</a>
+        <a routerLink="/login" style="font-size:14.5px;font-weight:700;color:#16181D;text-decoration:none;">{{ appStrings.NAV.LOG_IN }}</a>
+        <a routerLink="/book" style="text-decoration:none;background:#5B4BE3;color:#fff;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;box-shadow:0 4px 12px rgba(91,75,227,0.28);">{{ appStrings.NAV.BOOK_NOW }}</a>
       </div>
     </nav>
 
     <!-- Page Header -->
     <div style="background:#F7F7FA;padding:60px 40px 40px;text-align:center;border-bottom:1px solid #F1F1F4;">
       <div style="display:inline-flex;align-items:center;gap:8px;background:#EEEBFD;color:#4A3BD0;font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;margin-bottom:20px;">
-        24 services across 6 categories
+        {{ appStrings.SERVICES.PAGE_EYEBROW }}
       </div>
-      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;letter-spacing:-0.03em;margin:0 0 16px;color:#0F1115;">Find the training that fits you</h1>
-      <p style="font-size:17px;color:#545A66;line-height:1.6;margin:0 auto;max-width:54ch;">From 1:1 strength coaching to mobility and nutrition — every session is led by a verified coach and bookable in seconds.</p>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;letter-spacing:-0.03em;margin:0 0 16px;color:#0F1115;">{{ appStrings.SERVICES.PAGE_HEADING }}</h1>
+      <p style="font-size:17px;color:#545A66;line-height:1.6;margin:0 auto;max-width:54ch;">{{ appStrings.SERVICES.PAGE_SUBTEXT }}</p>
     </div>
 
     <!-- Category Chips -->
@@ -83,7 +84,7 @@ interface ServiceCard {
             <div style="font-size:13px;color:#8A909C;font-weight:600;margin-bottom:14px;">
               &#x23F1; {{ s.durationMin }}min &nbsp;&middot;&nbsp; &#x2605; {{ s.rating }}
             </div>
-            <a routerLink="/book" style="text-decoration:none;display:inline-block;background:#EEEBFD;color:#4A3BD0;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:10px;">Book</a>
+            <a routerLink="/book" style="text-decoration:none;display:inline-block;background:#EEEBFD;color:#4A3BD0;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:10px;">{{ appStrings.COMMON.BOOK }}</a>
           </div>
         </div>
       </div>
@@ -92,15 +93,16 @@ interface ServiceCard {
     <!-- CTA Band -->
     <div style="background:linear-gradient(158deg,#4A3DAE,#2C2370);padding:48px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
       <div>
-        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em;color:#fff;margin:0 0 10px;">Not sure where to start?</h2>
-        <p style="font-size:16px;color:#C7C2E8;margin:0;">Book a free fitness assessment and we'll match you to a coach.</p>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em;color:#fff;margin:0 0 10px;">{{ appStrings.SERVICES.CTA_HEADING }}</h2>
+        <p style="font-size:16px;color:#C7C2E8;margin:0;">{{ appStrings.SERVICES.CTA_SUBTEXT }}</p>
       </div>
-      <a routerLink="/book" style="text-decoration:none;background:#C8F25C;color:#1B2906;font-weight:700;font-size:16px;padding:16px 30px;border-radius:13px;white-space:nowrap;">Book assessment</a>
+      <a routerLink="/book" style="text-decoration:none;background:#C8F25C;color:#1B2906;font-weight:700;font-size:16px;padding:16px 30px;border-radius:13px;white-space:nowrap;">{{ appStrings.SERVICES.CTA_BUTTON }}</a>
     </div>
   `,
   styles: [`:host { display:block; background:#fff; }`],
 })
 export class ServicesPageComponent {
+  readonly appStrings = APP_STRINGS;
   private router = inject(Router);
 
   readonly activeRoute = computed(() => this.router.url.split('?')[0]);

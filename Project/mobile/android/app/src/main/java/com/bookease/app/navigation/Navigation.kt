@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.*
 import androidx.navigation.compose.*
+import com.bookease.app.core.constants.AppStrings
 import com.bookease.app.data.models.*
 import com.bookease.app.ui.components.ToastHost
 import com.bookease.app.ui.components.ToastType
@@ -31,6 +32,7 @@ import com.bookease.app.ui.screens.howitworks.HowItWorksScreen
 import com.bookease.app.ui.screens.login.LoginScreen
 import com.bookease.app.ui.screens.pricing.PricingScreen
 import com.bookease.app.ui.screens.profile.ProfileScreen
+import com.bookease.app.ui.screens.notfound.NotFoundScreen
 import com.bookease.app.ui.screens.services.ServicesMarketingScreen
 import com.bookease.app.ui.theme.BeColor
 import androidx.compose.ui.Alignment
@@ -39,10 +41,10 @@ import androidx.compose.ui.unit.dp
 // ── Routes ─────────────────────────────────────────────────────────────────────
 
 sealed class Tab(val route: String, val label: String, val icon: ImageVector) {
-    object Home     : Tab("home",     "Home",     Icons.Default.Home)
-    object Explore  : Tab("explore",  "Explore",  Icons.Default.Explore)
-    object Bookings : Tab("bookings", "Bookings", Icons.Default.CalendarMonth)
-    object Profile  : Tab("profile",  "Profile",  Icons.Default.Person)
+    object Home     : Tab("home",     AppStrings.Navigation.HOME,     Icons.Default.Home)
+    object Explore  : Tab("explore",  AppStrings.Navigation.EXPLORE,  Icons.Default.Explore)
+    object Bookings : Tab("bookings", AppStrings.Navigation.BOOKINGS, Icons.Default.CalendarMonth)
+    object Profile  : Tab("profile",  AppStrings.Navigation.PROFILE,  Icons.Default.Person)
 }
 
 private val tabs = listOf(Tab.Home, Tab.Explore, Tab.Bookings, Tab.Profile)
@@ -165,6 +167,21 @@ fun BookEaseApp() {
                     vm        = viewModel()
                 )
             }
+
+            composable("not_found") {
+                NotFoundScreen(
+                    onBackToHome = {
+                        rootNavController.navigate("tabs") {
+                            popUpTo("not_found") { inclusive = true }
+                        }
+                    },
+                    onBrowseServices = {
+                        rootNavController.navigate("services_marketing") {
+                            popUpTo("not_found") { inclusive = true }
+                        }
+                    }
+                )
+            }
         }
 
         // Toast overlay
@@ -249,7 +266,10 @@ private fun TabScaffold(
             }
 
             composable(Tab.Bookings.route) {
-                BookingsScreen(vm = viewModel())
+                BookingsScreen(
+                    vm               = viewModel(),
+                    onBrowseServices = { onNavigateTo("services_marketing") }
+                )
             }
 
             composable(Tab.Profile.route) {

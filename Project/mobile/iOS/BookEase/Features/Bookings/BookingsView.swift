@@ -7,7 +7,7 @@ struct BookingsView: View {
         VStack(spacing: 0) {
             // Title
             HStack {
-                Text("My bookings")
+                Text(AppStrings.Bookings.title)
                     .font(.jakarta(26, weight: .heavy))
                     .foregroundColor(.beInk800)
                 Spacer()
@@ -22,7 +22,7 @@ struct BookingsView: View {
                 .padding(.bottom, Spacing.lg)
 
             if vm.filteredBookings.isEmpty {
-                emptyState
+                emptyStateView
             } else {
                 ScrollView {
                     LazyVStack(spacing: 12) {
@@ -34,7 +34,7 @@ struct BookingsView: View {
                                         Button(role: .destructive) {
                                             vm.cancelBooking(id: booking.id)
                                         } label: {
-                                            Label("Cancel", systemImage: "xmark.circle")
+                                            Label(AppStrings.Bookings.swipeActionCancel, systemImage: "xmark.circle")
                                         }
                                     }
                                 }
@@ -80,46 +80,14 @@ struct BookingsView: View {
 
     // MARK: - Empty State
 
-    private var emptyState: some View {
-        VStack(spacing: Spacing.lg) {
-            Spacer()
-            Image(systemName: emptyIcon)
-                .font(.system(size: 44))
-                .foregroundColor(.beMuted400)
-            Text(emptyTitle)
-                .font(.beH3)
-                .foregroundColor(.beInk700)
-            Text(emptyMessage)
-                .font(.beBodySm)
-                .foregroundColor(.beMuted500)
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .padding(.horizontal, Spacing.xxl)
-    }
-
-    private var emptyIcon: String {
-        switch vm.selectedSegment {
-        case .upcoming:  return "calendar.badge.plus"
-        case .completed: return "checkmark.seal"
-        case .cancelled: return "xmark.circle"
-        }
-    }
-
-    private var emptyTitle: String {
-        switch vm.selectedSegment {
-        case .upcoming:  return "No upcoming bookings"
-        case .completed: return "No completed sessions"
-        case .cancelled: return "No cancelled bookings"
-        }
-    }
-
-    private var emptyMessage: String {
-        switch vm.selectedSegment {
-        case .upcoming:  return "Explore our services and book your first session."
-        case .completed: return "Your completed sessions will appear here."
-        case .cancelled: return "You haven't cancelled any bookings."
-        }
+    private var emptyStateView: some View {
+        EmptyStateView(
+            variant: .bookings,
+            title: AppStrings.Bookings.emptyTitle,
+            message: AppStrings.Bookings.emptyMessage,
+            actionTitle: AppStrings.Bookings.emptyAction,
+            onAction: { /* navigate to browse */ }
+        )
     }
 }
 

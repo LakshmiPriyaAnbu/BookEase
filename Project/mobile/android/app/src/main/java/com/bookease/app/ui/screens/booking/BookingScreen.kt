@@ -16,9 +16,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.data.models.Booking
 import com.bookease.app.data.models.DatePill
 import com.bookease.app.data.models.TimeSlot
@@ -44,7 +46,7 @@ fun BookingScreen(
             // Title
             item {
                 Text(
-                    text = "Booking",
+                    text = stringResource(R.string.booking_title),
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontSize = 26.sp,
                         fontWeight = FontWeight.ExtraBold
@@ -57,7 +59,7 @@ fun BookingScreen(
 
             // Date selector
             item {
-                SectionLabel("Select date")
+                SectionLabel(stringResource(R.string.booking_select_date))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -78,7 +80,7 @@ fun BookingScreen(
 
             // Time slots
             item {
-                SectionLabel("Select time")
+                SectionLabel(stringResource(R.string.booking_select_time))
                 TimeSlotGridDesign(
                     slots = vm.timeSlots,
                     selectedSlot = vm.selectedSlot,
@@ -91,7 +93,7 @@ fun BookingScreen(
 
             // Your details
             item {
-                SectionLabel("Your details")
+                SectionLabel(stringResource(R.string.booking_your_details))
                 Column(
                     modifier = Modifier
                         .padding(horizontal = BeSp.lg)
@@ -109,6 +111,7 @@ fun BookingScreen(
                             .padding(horizontal = BeSp.md),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        val fullNamePlaceholder = stringResource(R.string.booking_placeholder_full_name)
                         androidx.compose.foundation.text.BasicTextField(
                             value = vm.fullName,
                             onValueChange = { vm.fullName = it },
@@ -122,7 +125,7 @@ fun BookingScreen(
                                 Box {
                                     if (vm.fullName.isEmpty()) {
                                         Text(
-                                            text = "Full name",
+                                            text = fullNamePlaceholder,
                                             style = MaterialTheme.typography.bodyMedium.copy(
                                                 color = BeColor.ink300,
                                                 fontSize = 14.5.sp
@@ -146,6 +149,7 @@ fun BookingScreen(
                             .padding(horizontal = BeSp.md),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        val phonePlaceholder = stringResource(R.string.booking_placeholder_phone)
                         androidx.compose.foundation.text.BasicTextField(
                             value = vm.phone,
                             onValueChange = { vm.phone = it },
@@ -159,7 +163,7 @@ fun BookingScreen(
                                 Box {
                                     if (vm.phone.isEmpty()) {
                                         Text(
-                                            text = "+1 415 555 0199",
+                                            text = phonePlaceholder,
                                             style = MaterialTheme.typography.bodyMedium.copy(
                                                 color = BeColor.ink300,
                                                 fontSize = 14.5.sp
@@ -182,6 +186,7 @@ fun BookingScreen(
                             .border(1.dp, BeColor.border, RoundedCornerShape(BeRadius.md))
                             .padding(horizontal = BeSp.md, vertical = 12.dp)
                     ) {
+                        val notesPlaceholder = stringResource(R.string.booking_placeholder_notes)
                         androidx.compose.foundation.text.BasicTextField(
                             value = vm.notes,
                             onValueChange = { vm.notes = it },
@@ -194,7 +199,7 @@ fun BookingScreen(
                                 Box {
                                     if (vm.notes.isEmpty()) {
                                         Text(
-                                            text = "Notes (optional)",
+                                            text = notesPlaceholder,
                                             style = MaterialTheme.typography.bodyMedium.copy(
                                                 color = BeColor.ink300,
                                                 fontSize = 14.sp

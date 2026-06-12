@@ -19,10 +19,12 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.data.models.Booking
 import com.bookease.app.ui.components.PrimaryButton
 import com.bookease.app.ui.components.SecondaryButton
@@ -92,7 +94,7 @@ fun ConfirmationScreen(
             Spacer(Modifier.height(22.dp))
 
             Text(
-                text = "Booking confirmed",
+                text = stringResource(R.string.confirmation_title),
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -103,7 +105,7 @@ fun ConfirmationScreen(
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Your session is booked. We've sent the details to your email.",
+                text = stringResource(R.string.confirmation_subtitle),
                 style = MaterialTheme.typography.bodyMedium.copy(
                     color = BeColor.ink300,
                     lineHeight = 22.sp
@@ -130,7 +132,7 @@ fun ConfirmationScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Booking ID",
+                        text = stringResource(R.string.confirmation_booking_id_label),
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = BeColor.ink300,
                             fontSize = 12.5.sp
@@ -164,9 +166,18 @@ fun ConfirmationScreen(
 
                 Spacer(Modifier.height(BeSp.md))
 
-                ConfirmDetailRow(label = "Service",      value = booking.serviceName)
-                ConfirmDetailRow(label = "Date & time",  value = dateFormatter.format(date))
-                ConfirmDetailRow(label = "Coach",        value = booking.coachName)
+                ConfirmDetailRow(
+                    label = stringResource(R.string.confirmation_detail_service),
+                    value = booking.serviceName
+                )
+                ConfirmDetailRow(
+                    label = stringResource(R.string.confirmation_detail_date_time),
+                    value = dateFormatter.format(date)
+                )
+                ConfirmDetailRow(
+                    label = stringResource(R.string.confirmation_detail_coach),
+                    value = booking.coachName
+                )
             }
         }
 
@@ -185,12 +196,12 @@ fun ConfirmationScreen(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             PrimaryButton(
-                text = "Add to Calendar",
+                text = stringResource(R.string.confirmation_add_to_calendar),
                 onClick = {},
                 modifier = Modifier.fillMaxWidth()
             )
             SecondaryButton(
-                text = "Back to Home",
+                text = stringResource(R.string.confirmation_back_to_home),
                 onClick = onBackToHome,
                 modifier = Modifier.fillMaxWidth()
             )

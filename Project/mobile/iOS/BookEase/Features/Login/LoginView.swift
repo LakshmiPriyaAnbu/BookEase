@@ -7,6 +7,7 @@ struct LoginView: View {
 
     @State private var emailError: String? = nil
     @State private var passwordError: String? = nil
+    @State private var showErrorBanner = false
 
     @FocusState private var focusedField: LoginField?
 
@@ -25,6 +26,11 @@ struct LoginView: View {
 
                 titleBlock
                     .padding(.bottom, 0)
+
+                if showErrorBanner {
+                    errorBannerView
+                        .padding(.bottom, Spacing.base)
+                }
 
                 emailField
                     .padding(.top, 0)
@@ -72,24 +78,52 @@ struct LoginView: View {
                     .accessibilityHidden(true)
             }
 
-            Text("BookEase")
+            Text(AppStrings.Common.appName)
                 .font(.spaceGrotesk(20, weight: .bold))
                 .foregroundColor(.beInk800)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("BookEase")
+        .accessibilityLabel(AppStrings.Common.appName)
+    }
+
+    // MARK: - Error Banner
+
+    private var errorBannerView: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "info.circle.fill")
+                .font(.system(size: 18))
+                .foregroundColor(.beDanger)
+                .accessibilityHidden(true)
+
+            Text(AppStrings.Auth.errorBannerMessage)
+                .font(.jakarta(13.5, weight: .semibold))
+                .foregroundColor(.beDangerText)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 15)
+        .padding(.vertical, 13)
+        .background(Color.beDangerBg)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color(hex: "F6C6D1"), lineWidth: 1)
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(AppStrings.Auth.errorBannerMessage)
     }
 
     // MARK: - Title Block
 
     private var titleBlock: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Welcome back")
+            Text(AppStrings.Auth.welcomeBack)
                 .font(.jakarta(28, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .padding(.bottom, Spacing.sm)
 
-            Text("Log in to manage your bookings.")
+            Text(AppStrings.Auth.loginSubtitle)
                 .font(.jakarta(14.5, weight: .medium))
                 .foregroundColor(.beMuted500)
                 .padding(.bottom, 28)
@@ -100,11 +134,11 @@ struct LoginView: View {
 
     private var emailField: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Email")
+            Text(AppStrings.Auth.emailLabel)
                 .font(.jakarta(12.5, weight: .bold))
                 .foregroundColor(.beText600)
 
-            TextField("your@email.com", text: $email)
+            TextField(AppStrings.Auth.emailPlaceholder, text: $email)
                 .font(.jakarta(15, weight: .medium))
                 .foregroundColor(.beInk700)
                 .keyboardType(.emailAddress)
@@ -117,7 +151,10 @@ struct LoginView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 13))
                 .overlay(
                     RoundedRectangle(cornerRadius: 13)
-                        .stroke(emailError != nil ? Color.beDanger : Color.beBorder100, lineWidth: 1)
+                        .stroke(
+                            emailError != nil ? Color.beDanger : Color.beBorder100,
+                            lineWidth: emailError != nil ? 1.5 : 1
+                        )
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 13)
@@ -126,7 +163,7 @@ struct LoginView: View {
                             lineWidth: 2
                         )
                 )
-                .accessibilityLabel("Email address")
+                .accessibilityLabel(AppStrings.Auth.emailAccessibilityLabel)
                 .onChange(of: email) { _, _ in
                     if emailError != nil { emailError = nil }
                 }
@@ -142,25 +179,25 @@ struct LoginView: View {
     private var passwordField: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text("Password")
+                Text(AppStrings.Auth.passwordLabel)
                     .font(.jakarta(12.5, weight: .bold))
                     .foregroundColor(.beText600)
                 Spacer()
                 Button {} label: {
-                    Text("Forgot?")
+                    Text(AppStrings.Auth.forgotPassword)
                         .font(.jakarta(12.5, weight: .bold))
                         .foregroundColor(.bePrimary)
                 }
-                .accessibilityLabel("Forgot password")
+                .accessibilityLabel(AppStrings.Auth.forgotPasswordAccessibilityLabel)
             }
 
             HStack {
                 Group {
                     if showPassword {
-                        TextField("Password", text: $password)
+                        TextField(AppStrings.Auth.passwordPlaceholder, text: $password)
                             .focused($focusedField, equals: .password)
                     } else {
-                        SecureField("Password", text: $password)
+                        SecureField(AppStrings.Auth.passwordPlaceholder, text: $password)
                             .focused($focusedField, equals: .password)
                     }
                 }
@@ -177,7 +214,7 @@ struct LoginView: View {
                         .font(.system(size: 17, weight: .medium))
                         .foregroundColor(.beMuted500)
                 }
-                .accessibilityLabel(showPassword ? "Hide password" : "Show password")
+                .accessibilityLabel(showPassword ? AppStrings.Auth.hidePasswordAccessibilityLabel : AppStrings.Auth.showPasswordAccessibilityLabel)
             }
             .frame(height: 50)
             .padding(.horizontal, 15)
@@ -185,7 +222,10 @@ struct LoginView: View {
             .clipShape(RoundedRectangle(cornerRadius: 13))
             .overlay(
                 RoundedRectangle(cornerRadius: 13)
-                    .stroke(passwordError != nil ? Color.beDanger : Color.beBorder100, lineWidth: 1)
+                    .stroke(
+                        passwordError != nil ? Color.beDanger : Color.beBorder100,
+                        lineWidth: passwordError != nil ? 1.5 : 1
+                    )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 13)
@@ -194,7 +234,7 @@ struct LoginView: View {
                         lineWidth: 2
                     )
             )
-            .accessibilityLabel("Password")
+            .accessibilityLabel(AppStrings.Auth.passwordLabel)
 
             if let error = passwordError {
                 FieldErrorLabel(message: error)
@@ -208,7 +248,7 @@ struct LoginView: View {
         Button {
             submitLogin()
         } label: {
-            Text("Log in")
+            Text(AppStrings.Auth.loginButton)
                 .font(.jakarta(15.5, weight: .bold))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
@@ -217,7 +257,7 @@ struct LoginView: View {
                 .clipShape(RoundedRectangle(cornerRadius: Radius.lg))
                 .beShadowBtn()
         }
-        .accessibilityLabel("Log in")
+        .accessibilityLabel(AppStrings.Auth.loginButton)
     }
 
     // MARK: - OR Divider
@@ -227,7 +267,7 @@ struct LoginView: View {
             Rectangle()
                 .fill(Color.beBorder100)
                 .frame(height: 1)
-            Text("OR")
+            Text(AppStrings.Common.orDivider)
                 .font(.jakarta(12, weight: .semibold))
                 .foregroundColor(.beMuted400)
             Rectangle()
@@ -243,7 +283,7 @@ struct LoginView: View {
         VStack(spacing: 11) {
             socialButton(
                 icon: AnyView(GoogleGIcon()),
-                title: "Continue with Google"
+                title: AppStrings.Auth.continueWithGoogle
             )
             socialButton(
                 icon: AnyView(
@@ -251,7 +291,7 @@ struct LoginView: View {
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(.beInk800)
                 ),
-                title: "Continue with Apple"
+                title: AppStrings.Auth.continueWithApple
             )
         }
     }
@@ -279,15 +319,15 @@ struct LoginView: View {
     private var signUpLink: some View {
         HStack(spacing: 0) {
             Spacer()
-            Text("Don't have an account? ")
+            Text(AppStrings.Auth.noAccountPrompt)
                 .font(.jakarta(14, weight: .medium))
                 .foregroundColor(.beText600)
             Button {} label: {
-                Text("Sign up")
+                Text(AppStrings.Auth.signUp)
                     .font(.jakarta(14, weight: .bold))
                     .foregroundColor(.bePrimary)
             }
-            .accessibilityLabel("Sign up for an account")
+            .accessibilityLabel(AppStrings.Auth.signUpAccessibilityLabel)
             Spacer()
         }
     }
@@ -300,25 +340,27 @@ struct LoginView: View {
 
         let trimmedEmail = email.trimmingCharacters(in: .whitespaces)
         if trimmedEmail.isEmpty || !trimmedEmail.contains("@") {
-            emailError = "Enter a valid email address"
+            emailError = AppStrings.Errors.validationEmailInvalid
             hasErrors = true
         } else {
             emailError = nil
         }
 
         if password.count < 8 {
-            passwordError = "Password must be at least 8 characters"
+            passwordError = AppStrings.Errors.validationPasswordTooShort
             hasErrors = true
         } else {
             passwordError = nil
         }
 
         if hasErrors {
-            toastManager.show("Please check your email and password.", type: .error)
+            withAnimation(.easeInOut(duration: 0.2)) { showErrorBanner = true }
+            toastManager.show(AppStrings.Auth.toastCheckCredentials, type: .error)
             return
         }
 
-        toastManager.show("Welcome back!", type: .success)
+        withAnimation(.easeInOut(duration: 0.2)) { showErrorBanner = false }
+        toastManager.show(AppStrings.Auth.toastWelcomeBack, type: .success)
     }
 }
 

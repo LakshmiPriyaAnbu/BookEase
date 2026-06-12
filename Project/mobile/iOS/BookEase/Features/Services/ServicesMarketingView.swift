@@ -28,10 +28,10 @@ struct ServicesMarketingView: View {
 
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text("Services")
+            Text(AppStrings.Services.title)
                 .font(.jakarta(26, weight: .heavy))
                 .foregroundColor(.beInk800)
-            Text("24 services across 6 categories")
+            Text(AppStrings.Services.marketingSubtitle)
                 .font(.jakarta(13.5, weight: .medium))
                 .foregroundColor(.beMuted500)
         }
@@ -45,7 +45,7 @@ struct ServicesMarketingView: View {
                 .font(.system(size: 17))
                 .foregroundColor(.beMuted500)
                 .accessibilityHidden(true)
-            Text("Search services or coaches")
+            Text(AppStrings.Services.searchServicesOrCoaches)
                 .font(.jakarta(14.5, weight: .medium))
                 .foregroundColor(.beMuted500)
             Spacer()
@@ -55,14 +55,14 @@ struct ServicesMarketingView: View {
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 13))
         .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.beBorder100, lineWidth: 1))
-        .accessibilityLabel("Search services or coaches")
+        .accessibilityLabel(AppStrings.Services.searchServicesOrCoaches)
     }
 
     // MARK: - Browse By Category
 
     private var browseByCategorySection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Browse by category")
+            Text(AppStrings.Services.browseByCategoryTitle)
                 .font(.jakarta(16, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .padding(.horizontal, Spacing.lg)
@@ -83,23 +83,23 @@ struct ServicesMarketingView: View {
 
     private var featuredSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Featured")
+            Text(AppStrings.Services.featuredTitle)
                 .font(.jakarta(16, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .padding(.horizontal, Spacing.lg)
 
             VStack(spacing: 13) {
                 FeaturedServiceRow(
-                    title: "1:1 Strength Coaching",
-                    duration: "60 min",
-                    rating: "4.9",
-                    price: "$65"
+                    title: AppStrings.FeaturedService.strengthCoachingTitle,
+                    duration: AppStrings.FeaturedService.strengthCoachingDuration,
+                    rating: AppStrings.FeaturedService.strengthCoachingRating,
+                    price: AppStrings.FeaturedService.strengthCoachingPrice
                 )
                 FeaturedServiceRow(
-                    title: "Nutrition Consult",
-                    duration: "40 min",
-                    rating: "5.0",
-                    price: "$55"
+                    title: AppStrings.FeaturedService.nutritionConsultTitle,
+                    duration: AppStrings.FeaturedService.nutritionConsultDuration,
+                    rating: AppStrings.FeaturedService.nutritionConsultRating,
+                    price: AppStrings.FeaturedService.nutritionConsultPrice
                 )
             }
             .padding(.horizontal, Spacing.lg)
@@ -173,7 +173,7 @@ private struct FeaturedServiceRow: View {
                         .foregroundColor(.bePrimary)
                     Spacer()
                     Button {} label: {
-                        Text("Book")
+                        Text(AppStrings.Common.book)
                             .font(.jakarta(12.5, weight: .bold))
                             .foregroundColor(.bePrimary700)
                             .padding(.horizontal, 14)
@@ -181,7 +181,7 @@ private struct FeaturedServiceRow: View {
                             .background(Color.bePrimarySoft)
                             .clipShape(RoundedRectangle(cornerRadius: 9))
                     }
-                    .accessibilityLabel("Book \(title)")
+                    .accessibilityLabel("\(AppStrings.Common.book) \(title)")
                 }
             }
         }
@@ -201,19 +201,19 @@ private enum MarketingCategory: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .strength:  return "Strength"
-        case .hiit:      return "HIIT"
-        case .mobility:  return "Mobility"
-        case .nutrition: return "Nutrition"
+        case .strength:  return AppStrings.MarketingCategory.strengthTitle
+        case .hiit:      return AppStrings.MarketingCategory.hiitTitle
+        case .mobility:  return AppStrings.MarketingCategory.mobilityTitle
+        case .nutrition: return AppStrings.MarketingCategory.nutritionTitle
         }
     }
 
     var countLabel: String {
         switch self {
-        case .strength:  return "8 services"
-        case .hiit:      return "5 services"
-        case .mobility:  return "4 services"
-        case .nutrition: return "3 services"
+        case .strength:  return AppStrings.MarketingCategory.strengthCount
+        case .hiit:      return AppStrings.MarketingCategory.hiitCount
+        case .mobility:  return AppStrings.MarketingCategory.mobilityCount
+        case .nutrition: return AppStrings.MarketingCategory.nutritionCount
         }
     }
 

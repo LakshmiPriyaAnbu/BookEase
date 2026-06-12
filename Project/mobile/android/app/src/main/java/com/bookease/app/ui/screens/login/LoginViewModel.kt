@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bookease.app.core.constants.AppStrings
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -26,6 +27,9 @@ class LoginViewModel : ViewModel() {
         private set
 
     var keepLoggedIn by mutableStateOf(false)
+        private set
+
+    var submitted by mutableStateOf(false)
         private set
 
     private val _loginEvent = MutableSharedFlow<Unit>()
@@ -49,18 +53,23 @@ class LoginViewModel : ViewModel() {
         keepLoggedIn = value
     }
 
+    fun markSubmitted() {
+        submitted = true
+    }
+
     fun onLogin() {
+        markSubmitted()
         var valid = true
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailError = "Enter a valid email address"
+            emailError = AppStrings.Errors.LOGIN_INVALID_EMAIL
             valid = false
         } else {
             emailError = null
         }
 
         if (password.isBlank()) {
-            passwordError = "Password is required"
+            passwordError = AppStrings.Errors.LOGIN_PASSWORD_REQUIRED
             valid = false
         } else {
             passwordError = null

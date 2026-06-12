@@ -93,6 +93,6 @@ struct Booking: Codable, Identifiable {
     }
 
     var formattedPrice: String {
-        "$\(priceCents / 100)"
+        "₹\(priceCents / 100)"
     }
 }

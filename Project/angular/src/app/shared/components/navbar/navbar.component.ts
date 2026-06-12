@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { APP_STRINGS } from '../../../core/constants';
 
 @Component({
   selector: 'be-navbar',
@@ -10,13 +11,13 @@ import { RouterModule } from '@angular/router';
       <div class="container nav__inner">
         <a class="nav__brand" routerLink="/">
           <span class="nav__logo">⚡</span>
-          <span class="nav__name">BookEase</span>
+          <span class="nav__name">{{ appStrings.BRAND.NAME }}</span>
         </a>
         <div class="nav__links">
-          <a routerLink="/services" routerLinkActive="nav__link--active" class="nav__link">Services</a>
-          <a routerLink="/admin" class="nav__link">Admin</a>
+          <a routerLink="/services" routerLinkActive="nav__link--active" class="nav__link">{{ appStrings.NAV.SERVICES }}</a>
+          <a routerLink="/admin" class="nav__link">{{ appStrings.NAV.ADMIN }}</a>
         </div>
-        <a routerLink="/book" class="nav__cta">Book a session</a>
+        <a routerLink="/book" class="nav__cta">{{ appStrings.NAV.BOOK_SESSION }}</a>
       </div>
     </nav>`,
   styles: [`
@@ -46,4 +47,6 @@ import { RouterModule } from '@angular/router';
     }
   `],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  readonly appStrings = APP_STRINGS;
+}

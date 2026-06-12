@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.ui.components.ToastType
 import com.bookease.app.ui.theme.*
 
@@ -32,9 +34,11 @@ fun ContactScreen(
     showToast: (String, ToastType) -> Unit = { _, _ -> },
     vm: ContactViewModel = viewModel()
 ) {
+    val successToastMessage = stringResource(R.string.contact_success_toast)
+
     LaunchedEffect(Unit) {
         vm.submitEvent.collect {
-            showToast("Message sent! We'll reply within a day.", ToastType.SUCCESS)
+            showToast(successToastMessage, ToastType.SUCCESS)
         }
     }
 
@@ -56,7 +60,7 @@ fun ContactScreen(
             // ── Title block ──────────────────────────────────────────────────
             item {
                 Text(
-                    text  = "Contact",
+                    text  = stringResource(R.string.contact_title),
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontSize   = 26.sp,
                         fontWeight = FontWeight.ExtraBold
@@ -64,7 +68,7 @@ fun ContactScreen(
                     modifier = Modifier.padding(top = 8.dp)
                 )
                 Text(
-                    text  = "We reply within a day.",
+                    text  = stringResource(R.string.contact_subtitle),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color      = BeColor.ink300,
                         fontSize   = 13.5.sp,
@@ -81,22 +85,22 @@ fun ContactScreen(
                         iconBg    = BeColor.primarySoft,
                         icon      = Icons.Default.Email,
                         iconTint  = BeColor.primary,
-                        label     = "Email",
-                        value     = "hello@bookease.app"
+                        label     = stringResource(R.string.contact_info_email_label),
+                        value     = stringResource(R.string.contact_info_email_value)
                     )
                     ContactInfoCard(
                         iconBg    = BeColor.successBg,
                         icon      = Icons.Default.Phone,
                         iconTint  = BeColor.successText,
-                        label     = "Phone",
-                        value     = "+1 (415) 555-0100"
+                        label     = stringResource(R.string.contact_info_phone_label),
+                        value     = stringResource(R.string.contact_info_phone_value)
                     )
                     ContactInfoCard(
                         iconBg    = BeColor.infoBg,
                         icon      = Icons.Default.LocationOn,
                         iconTint  = BeColor.infoText,
-                        label     = "Studio",
-                        value     = "540 Market St, SF"
+                        label     = stringResource(R.string.contact_info_studio_label),
+                        value     = stringResource(R.string.contact_info_studio_value)
                     )
                 }
                 Spacer(Modifier.height(BeSp.xl))
@@ -105,7 +109,7 @@ fun ContactScreen(
             // ── Form section title ───────────────────────────────────────────
             item {
                 Text(
-                    text  = "Send a message",
+                    text  = stringResource(R.string.contact_send_message_title),
                     style = MaterialTheme.typography.headlineSmall.copy(
                         fontSize   = 16.sp,
                         fontWeight = FontWeight.ExtraBold
@@ -121,35 +125,35 @@ fun ContactScreen(
                     ContactField(
                         value            = vm.name,
                         onValueChange    = vm::onNameChange,
-                        placeholder      = "Jordan Hayes",
-                        label            = "Name",
+                        placeholder      = stringResource(R.string.contact_placeholder_name),
+                        label            = stringResource(R.string.contact_field_name_label),
                         error            = vm.nameError,
                         keyboardOptions  = KeyboardOptions.Default,
-                        contentDesc      = "Name input"
+                        contentDesc      = stringResource(R.string.contact_name_input_content_desc)
                     )
 
                     // Email
                     ContactField(
                         value            = vm.email,
                         onValueChange    = vm::onEmailChange,
-                        placeholder      = "jordan@email.com",
-                        label            = "Email",
+                        placeholder      = stringResource(R.string.contact_placeholder_email),
+                        label            = stringResource(R.string.contact_field_email_label),
                         error            = vm.emailError,
                         keyboardOptions  = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        contentDesc      = "Email input"
+                        contentDesc      = stringResource(R.string.contact_email_input_content_desc)
                     )
 
                     // Message
                     ContactField(
                         value            = vm.message,
                         onValueChange    = vm::onMessageChange,
-                        placeholder      = "Tell us what you need…",
-                        label            = "Message",
+                        placeholder      = stringResource(R.string.contact_placeholder_message),
+                        label            = stringResource(R.string.contact_field_message_label),
                         error            = vm.messageError,
                         minLines         = 3,
                         singleLine       = false,
                         keyboardOptions  = KeyboardOptions.Default,
-                        contentDesc      = "Message input"
+                        contentDesc      = stringResource(R.string.contact_message_input_content_desc)
                     )
                 }
                 Spacer(Modifier.height(BeSp.xxxl))
@@ -279,6 +283,9 @@ private fun ContactField(
 
 @Composable
 private fun ContactBottomBar(onSend: () -> Unit) {
+    val sendContentDesc = stringResource(R.string.contact_send_content_desc)
+    val sendMessageLabel = stringResource(R.string.common_send_message)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -296,7 +303,7 @@ private fun ContactBottomBar(onSend: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(52.dp)
-                .semantics { contentDescription = "Send message" },
+                .semantics { contentDescription = sendContentDesc },
             shape  = RoundedCornerShape(14.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = BeColor.primary,
@@ -304,7 +311,7 @@ private fun ContactBottomBar(onSend: () -> Unit) {
             )
         ) {
             Text(
-                text  = "Send message",
+                text  = sendMessageLabel,
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontSize   = 15.5.sp,
                     fontWeight = FontWeight.Bold

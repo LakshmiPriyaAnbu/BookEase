@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
+const { messages } = require('./constants/messages');
 
 const authRoutes         = require('./modules/auth/auth.routes');
 const categoriesRoutes   = require('./modules/categories/categories.routes');
@@ -17,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // Health check
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/health', (req, res) => res.json({ status: messages.health.ok }));
 
 // API routes
 app.use('/api/auth',         authRoutes);
@@ -29,7 +30,7 @@ app.use('/api/me',           usersRoutes);
 app.use('/api/admin',        adminRoutes);
 
 // 404
-app.use((req, res) => res.status(404).json({ error: 'Route not found' }));
+app.use((req, res) => res.status(404).json({ error: messages.errors.routeNotFound }));
 
 // Error handler
 app.use(errorHandler);

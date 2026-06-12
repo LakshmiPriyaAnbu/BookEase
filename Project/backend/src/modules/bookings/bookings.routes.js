@@ -3,6 +3,7 @@ const { z } = require('zod');
 const { v4: uuidv4 } = require('uuid');
 const pool = require('../../config/db');
 const { requireAuth, requireRole } = require('../../middleware/auth');
+const { messages } = require('../../constants/messages');
 
 const createSchema = z.object({
   serviceId: z.string().uuid(),
@@ -60,7 +61,7 @@ router.get('/:id', requireAuth, async (req, res, next) => {
        WHERE b.id = $1 AND b.user_id = $2`,
       [req.params.id, req.user.sub]
     );
-    if (!rows[0]) return res.status(404).json({ error: 'Booking not found' });
+    if (!rows[0]) return res.status(404).json({ error: messages.booking.notFound });
     res.json(rows[0]);
   } catch (err) {
     next(err);
@@ -84,7 +85,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     );
     if (!slots[0] || slots[0].is_booked) {
       await client.query('ROLLBACK');
-      return res.status(409).json({ error: 'Time slot is no longer available' });
+      return res.status(409).json({ error: messages.booking.slotUnavailable });
     }
 
     // Fetch service price
@@ -94,7 +95,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     );
     if (!svcRows[0]) {
       await client.query('ROLLBACK');
-      return res.status(404).json({ error: 'Service not found' });
+      return res.status(404).json({ error: messages.service.notFound });
     }
 
     // Create booking
@@ -137,7 +138,7 @@ router.patch('/:id', requireAuth, async (req, res, next) => {
       isAdmin ? [status, req.params.id] : [status, req.params.id]
     );
 
-    if (!rows.length) return res.status(404).json({ error: 'Booking not found or action not allowed' });
+    if (!rows.length) return res.status(404).json({ error: messages.booking.notFoundOrNotAllowed });
     res.json(rows[0]);
   } catch (err) {
     next(err);

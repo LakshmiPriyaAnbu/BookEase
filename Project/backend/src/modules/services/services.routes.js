@@ -3,6 +3,7 @@ const { z } = require('zod');
 const { v4: uuidv4 } = require('uuid');
 const pool = require('../../config/db');
 const { requireAuth, requireRole } = require('../../middleware/auth');
+const { messages } = require('../../constants/messages');
 
 const serviceSchema = z.object({
   name: z.string().min(2),
@@ -63,7 +64,7 @@ router.get('/:id', async (req, res, next) => {
        WHERE s.id = $1`,
       [req.params.id]
     );
-    if (!rows[0]) return res.status(404).json({ error: 'Service not found' });
+    if (!rows[0]) return res.status(404).json({ error: messages.service.notFound });
     res.json(rows[0]);
   } catch (err) {
     next(err);
@@ -91,7 +92,7 @@ router.put('/:id', requireAuth, requireRole('owner', 'staff'), async (req, res, 
   try {
     const data = serviceSchema.partial().parse(req.body);
     const fields = Object.keys(data);
-    if (!fields.length) return res.status(400).json({ error: 'Nothing to update' });
+    if (!fields.length) return res.status(400).json({ error: messages.service.nothingToUpdate });
 
     const colMap = {
       name: 'name', description: 'description', priceCents: 'price_cents',
@@ -105,7 +106,7 @@ router.put('/:id', requireAuth, requireRole('owner', 'staff'), async (req, res, 
       `UPDATE services SET ${setClauses} WHERE id = $${values.length} RETURNING *`,
       values
     );
-    if (!rows[0]) return res.status(404).json({ error: 'Service not found' });
+    if (!rows[0]) return res.status(404).json({ error: messages.service.notFound });
     res.json(rows[0]);
   } catch (err) {
     next(err);

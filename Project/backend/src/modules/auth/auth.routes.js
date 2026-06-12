@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const pool = require('../../config/db');
 const { sign } = require('../../config/jwt');
 const { requireAuth } = require('../../middleware/auth');
+const { messages } = require('../../constants/messages');
 
 const registerSchema = z.object({
   fullName: z.string().min(2),
@@ -33,7 +34,7 @@ router.post('/register', async (req, res, next) => {
     const token = sign({ sub: user.id, role: user.role });
     res.status(201).json({ token, user });
   } catch (err) {
-    if (err.code === '23505') return res.status(409).json({ error: 'Email already registered' });
+    if (err.code === '23505') return res.status(409).json({ error: messages.auth.emailAlreadyRegistered });
     next(err);
   }
 });
@@ -48,7 +49,7 @@ router.post('/login', async (req, res, next) => {
     );
     const user = rows[0];
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ error: messages.auth.invalidCredentials });
     }
     const token = sign({ sub: user.id, role: user.role });
     const { password: _, ...safeUser } = user;
@@ -60,7 +61,7 @@ router.post('/login', async (req, res, next) => {
 
 // POST /api/auth/logout  (client just discards the token, but we acknowledge)
 router.post('/logout', requireAuth, (req, res) => {
-  res.json({ message: 'Logged out' });
+  res.json({ message: messages.auth.loggedOut });
 });
 
 module.exports = router;

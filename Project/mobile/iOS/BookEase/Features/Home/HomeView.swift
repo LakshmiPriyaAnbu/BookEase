@@ -44,7 +44,7 @@ struct HomeView: View {
     private var headerSection: some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {
-                Text("Good morning,")
+                Text(AppStrings.Home.greeting)
                     .font(.jakarta(14, weight: .medium))
                     .foregroundColor(.beMuted500)
                 Text(MockData.currentUser.fullName)
@@ -85,7 +85,7 @@ struct HomeView: View {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 18))
                 .foregroundColor(.beMuted500)
-            Text("Search services or coaches")
+            Text(AppStrings.Home.searchPlaceholder)
                 .font(.jakarta(15, weight: .regular))
                 .foregroundColor(.beMuted500)
             Spacer()
@@ -102,12 +102,12 @@ struct HomeView: View {
     private func upcomingCard(booking: Booking) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("UPCOMING SESSION")
+                Text(AppStrings.Home.upcomingSessionLabel)
                     .font(.jakarta(12, weight: .bold))
                     .foregroundColor(Color(hex: "D9D3FA"))
                     .tracking(1.2)
                 Spacer()
-                Text("In 2 hrs")
+                Text(AppStrings.Home.upcomingSessionBadge)
                     .font(.jakarta(11, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.horizontal, 9)
@@ -143,12 +143,12 @@ struct HomeView: View {
     private var popularSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
             HStack {
-                Text("Popular services")
+                Text(AppStrings.Home.popularServicesTitle)
                     .font(.jakarta(17, weight: .heavy))
                     .foregroundColor(.beInk800)
                 Spacer()
                 NavigationLink(destination: ServiceListView()) {
-                    Text("See all")
+                    Text(AppStrings.Common.seeAll)
                         .font(.jakarta(13.5, weight: .bold))
                         .foregroundColor(.bePrimary)
                 }
@@ -173,42 +173,42 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: Spacing.md) {
             HStack(spacing: 0) {
                 NavigationLink(destination: HowItWorksView()) {
-                    Text("How it works")
+                    Text(AppStrings.Home.howItWorksLink)
                         .font(.jakarta(14, weight: .semibold))
                         .foregroundColor(.bePrimary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("How it works")
+                .accessibilityLabel(AppStrings.Home.howItWorksLink)
 
                 Spacer()
 
                 NavigationLink(destination: PricingView()) {
-                    Text("Pricing")
+                    Text(AppStrings.Home.pricingLink)
                         .font(.jakarta(14, weight: .semibold))
                         .foregroundColor(.bePrimary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Pricing")
+                .accessibilityLabel(AppStrings.Home.pricingLink)
 
                 Spacer()
 
                 NavigationLink(destination: ContactView()) {
-                    Text("Contact")
+                    Text(AppStrings.Home.contactLink)
                         .font(.jakarta(14, weight: .semibold))
                         .foregroundColor(.bePrimary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Contact")
+                .accessibilityLabel(AppStrings.Home.contactLink)
 
                 Spacer()
 
                 NavigationLink(destination: LoginView()) {
-                    Text("Log in")
+                    Text(AppStrings.Home.loginLink)
                         .font(.jakarta(14, weight: .semibold))
                         .foregroundColor(.bePrimary)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Log in")
+                .accessibilityLabel(AppStrings.Home.loginLink)
             }
             .padding(Spacing.lg)
             .background(Color.white)
@@ -221,7 +221,7 @@ struct HomeView: View {
 
     private var categoriesSection: some View {
         VStack(alignment: .leading, spacing: Spacing.md) {
-            Text("Categories")
+            Text(AppStrings.Home.categoriesTitle)
                 .font(.jakarta(17, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .padding(.horizontal, Spacing.lg)

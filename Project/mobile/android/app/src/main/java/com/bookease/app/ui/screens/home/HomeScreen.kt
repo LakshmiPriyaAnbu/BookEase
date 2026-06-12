@@ -19,11 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.data.models.BookCategory
 import com.bookease.app.data.models.Booking
 import com.bookease.app.data.models.Service
@@ -78,7 +80,7 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Popular services",
+                    text = stringResource(R.string.home_popular_services),
                     style = MaterialTheme.typography.headlineSmall.copy(
                         fontSize = 17.sp,
                         fontWeight = FontWeight.ExtraBold
@@ -86,7 +88,7 @@ fun HomeScreen(
                     modifier = Modifier.weight(1f)
                 )
                 Text(
-                    text = "See all",
+                    text = stringResource(R.string.common_see_all),
                     style = MaterialTheme.typography.labelLarge.copy(
                         color = BeColor.primary,
                         fontSize = 13.5.sp
@@ -120,7 +122,7 @@ fun HomeScreen(
         // Categories header
         item {
             Text(
-                text = "Categories",
+                text = stringResource(R.string.home_categories),
                 style = MaterialTheme.typography.headlineSmall.copy(
                     fontSize = 17.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -144,7 +146,7 @@ fun HomeScreen(
         item {
             Spacer(Modifier.height(BeSp.xl))
             Text(
-                text  = "More",
+                text  = stringResource(R.string.home_more),
                 style = MaterialTheme.typography.headlineSmall.copy(
                     fontSize   = 17.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -172,7 +174,7 @@ private fun HomeHeader(fullName: String, avatarInitial: String) {
     ) {
         Column(Modifier.weight(1f)) {
             Text(
-                text = "Good morning,",
+                text = stringResource(R.string.home_greeting),
                 style = MaterialTheme.typography.bodyMedium.copy(
                     color = BeColor.ink300,
                     fontSize = 14.sp
@@ -198,7 +200,7 @@ private fun HomeHeader(fullName: String, avatarInitial: String) {
         ) {
             Icon(
                 imageVector = Icons.Default.Notifications,
-                contentDescription = "Notifications",
+                contentDescription = stringResource(R.string.home_notifications_content_desc),
                 tint = BeColor.ink700,
                 modifier = Modifier.size(19.dp)
             )
@@ -247,7 +249,7 @@ private fun SearchBarField(modifier: Modifier = Modifier) {
             modifier = Modifier.size(18.dp)
         )
         Text(
-            text = "Search services or coaches",
+            text = stringResource(R.string.home_search_placeholder),
             style = MaterialTheme.typography.bodyMedium.copy(
                 color = BeColor.ink300,
                 fontSize = 15.sp
@@ -280,7 +282,7 @@ private fun UpcomingSessionCard(booking: Booking) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "UPCOMING SESSION",
+                    text = stringResource(R.string.home_upcoming_session_label),
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = Color(0xFFD9D3FA),
                         letterSpacing = 1.2.sp,
@@ -295,7 +297,7 @@ private fun UpcomingSessionCard(booking: Booking) {
                         .padding(horizontal = 9.dp, vertical = 4.dp)
                 ) {
                     Text(
-                        text = "In 2 hrs",
+                        text = stringResource(R.string.home_upcoming_session_eta),
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = Color.White,
                             fontSize = 11.sp,
@@ -419,11 +421,16 @@ private fun categoryIcon(name: String) = when (name) {
 
 @Composable
 private fun MoreLinksCard(onNavigateTo: (String) -> Unit) {
+    val howItWorksLabel = stringResource(R.string.home_how_it_works)
+    val pricingLabel = stringResource(R.string.home_pricing)
+    val contactLabel = stringResource(R.string.home_contact)
+    val logInLabel = stringResource(R.string.home_log_in)
+
     val links = listOf(
-        Triple("How it works", Icons.Default.Info,       "how_it_works"),
-        Triple("Pricing",      Icons.Default.Sell,       "pricing"),
-        Triple("Contact",      Icons.Default.MailOutline, "contact"),
-        Triple("Log in",       Icons.Default.Login,      "login")
+        Triple(howItWorksLabel, Icons.Default.Info,       "how_it_works"),
+        Triple(pricingLabel,    Icons.Default.Sell,       "pricing"),
+        Triple(contactLabel,    Icons.Default.MailOutline, "contact"),
+        Triple(logInLabel,      Icons.Default.Login,      "login")
     )
 
     Column(

@@ -13,7 +13,7 @@ struct RootTabView: View {
                 HomeView()
             }
             .tabItem {
-                Label("Home", systemImage: selectedTab == .home ? "house.fill" : "house")
+                Label(AppStrings.Navigation.tabHome, systemImage: selectedTab == .home ? "house.fill" : "house")
             }
             .tag(Tab.home)
 
@@ -21,7 +21,7 @@ struct RootTabView: View {
                 ServiceListView()
             }
             .tabItem {
-                Label("Explore", systemImage: selectedTab == .explore ? "magnifyingglass.circle.fill" : "magnifyingglass.circle")
+                Label(AppStrings.Navigation.tabExplore, systemImage: selectedTab == .explore ? "magnifyingglass.circle.fill" : "magnifyingglass.circle")
             }
             .tag(Tab.explore)
 
@@ -29,7 +29,7 @@ struct RootTabView: View {
                 BookingsView()
             }
             .tabItem {
-                Label("Bookings", systemImage: "calendar")
+                Label(AppStrings.Navigation.tabBookings, systemImage: "calendar")
             }
             .tag(Tab.bookings)
 
@@ -37,7 +37,7 @@ struct RootTabView: View {
                 ProfileView()
             }
             .tabItem {
-                Label("Profile", systemImage: selectedTab == .profile ? "person.fill" : "person")
+                Label(AppStrings.Navigation.tabProfile, systemImage: selectedTab == .profile ? "person.fill" : "person")
             }
             .tag(Tab.profile)
         }

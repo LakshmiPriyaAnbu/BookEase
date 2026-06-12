@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.ui.theme.*
 
 private data class Step(
@@ -35,34 +37,34 @@ private data class Guarantee(
     val label: String
 )
 
-private val steps = listOf(
-    Step(
-        number      = 1,
-        title       = "Choose a service",
-        description = "Browse our curated catalog of fitness, wellness, and nutrition sessions. Filter by category, coach, or price to find the perfect match for your goals."
-    ),
-    Step(
-        number      = 2,
-        title       = "Pick a time slot",
-        description = "Select a date and time that works for you from real-time availability. Your slot is held for 10 minutes while you complete the booking."
-    ),
-    Step(
-        number      = 3,
-        title       = "Confirm & go",
-        description = "Review your booking summary, pay securely in-app, and receive an instant confirmation. Calendar sync and reminders handle the rest."
-    )
-)
-
-private val guarantees = listOf(
-    Guarantee(Icons.Default.CheckCircle, "Instant confirmation"),
-    Guarantee(Icons.Default.Refresh,     "Free rescheduling"),
-    Guarantee(Icons.Default.Lock,        "Secure payments")
-)
-
 @Composable
 fun HowItWorksScreen(
     onGetStarted: () -> Unit = {}
 ) {
+    val steps = listOf(
+        Step(
+            number      = 1,
+            title       = stringResource(R.string.how_it_works_step1_title),
+            description = stringResource(R.string.how_it_works_step1_desc)
+        ),
+        Step(
+            number      = 2,
+            title       = stringResource(R.string.how_it_works_step2_title),
+            description = stringResource(R.string.how_it_works_step2_desc)
+        ),
+        Step(
+            number      = 3,
+            title       = stringResource(R.string.how_it_works_step3_title),
+            description = stringResource(R.string.how_it_works_step3_desc)
+        )
+    )
+
+    val guarantees = listOf(
+        Guarantee(Icons.Default.CheckCircle, stringResource(R.string.how_it_works_guarantee_instant_confirmation)),
+        Guarantee(Icons.Default.Refresh,     stringResource(R.string.how_it_works_guarantee_free_rescheduling)),
+        Guarantee(Icons.Default.Lock,        stringResource(R.string.how_it_works_guarantee_secure_payments))
+    )
+
     Scaffold(
         containerColor = BeColor.surface100,
         bottomBar = {
@@ -81,7 +83,7 @@ fun HowItWorksScreen(
             // ── Eyebrow ──────────────────────────────────────────────────────
             item {
                 Text(
-                    text  = "HOW IT WORKS",
+                    text  = stringResource(R.string.how_it_works_eyebrow),
                     style = MaterialTheme.typography.labelMedium.copy(
                         color         = BeColor.primary,
                         fontSize      = 12.sp,
@@ -95,7 +97,7 @@ fun HowItWorksScreen(
             // ── Title ────────────────────────────────────────────────────────
             item {
                 Text(
-                    text  = "Booked in three steps",
+                    text  = stringResource(R.string.how_it_works_title),
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontSize    = 26.sp,
                         fontWeight  = FontWeight.ExtraBold,
@@ -108,7 +110,7 @@ fun HowItWorksScreen(
             // ── Subtitle ─────────────────────────────────────────────────────
             item {
                 Text(
-                    text  = "From browsing to booking, we've made it effortless. No phone calls, no waiting — just tap and you're on the schedule.",
+                    text  = stringResource(R.string.how_it_works_subtitle),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color      = BeColor.ink300,
                         fontSize   = 14.sp,
@@ -136,9 +138,9 @@ fun HowItWorksScreen(
                     modifier              = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    guarantees.forEach { g ->
+                    guarantees.forEach { guarantee ->
                         GuaranteeItem(
-                            guarantee = g,
+                            guarantee = guarantee,
                             modifier  = Modifier.weight(1f)
                         )
                     }
@@ -247,6 +249,9 @@ private fun GuaranteeItem(
 
 @Composable
 private fun BottomBar(onGetStarted: () -> Unit) {
+    val getStartedContentDesc = stringResource(R.string.how_it_works_get_started_content_desc)
+    val getStartedLabel = stringResource(R.string.common_get_started)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -270,7 +275,7 @@ private fun BottomBar(onGetStarted: () -> Unit) {
                     ambientColor = BeColor.primary.copy(alpha = 0.3f),
                     spotColor    = BeColor.primary.copy(alpha = 0.3f)
                 )
-                .semantics { contentDescription = "Get started" },
+                .semantics { contentDescription = getStartedContentDesc },
             shape  = RoundedCornerShape(14.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = BeColor.primary,
@@ -278,7 +283,7 @@ private fun BottomBar(onGetStarted: () -> Unit) {
             )
         ) {
             Text(
-                text  = "Get started",
+                text  = getStartedLabel,
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontSize   = 15.5.sp,
                     fontWeight = FontWeight.Bold

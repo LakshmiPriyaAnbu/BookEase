@@ -14,7 +14,7 @@ struct Service: Codable, Identifiable {
 
     var formattedPrice: String {
         let dollars = priceCents / 100
-        return "$\(dollars)"
+        return "₹\(dollars)"
     }
 
     var formattedDuration: String {

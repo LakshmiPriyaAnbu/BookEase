@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { z } = require('zod');
 const pool = require('../../config/db');
 const { requireAuth } = require('../../middleware/auth');
+const { messages } = require('../../constants/messages');
 
 const prefsSchema = z.object({
   notifications: z.boolean().optional(),
@@ -15,7 +16,7 @@ router.get('/', requireAuth, async (req, res, next) => {
       'SELECT id, full_name, email, phone, role, avatar_url, created_at FROM users WHERE id = $1',
       [req.user.sub]
     );
-    if (!rows[0]) return res.status(404).json({ error: 'User not found' });
+    if (!rows[0]) return res.status(404).json({ error: messages.user.notFound });
     res.json(rows[0]);
   } catch (err) {
     next(err);

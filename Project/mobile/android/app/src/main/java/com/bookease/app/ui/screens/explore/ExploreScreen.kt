@@ -15,10 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.data.models.Service
 import com.bookease.app.ui.components.FilterChipBar
 import com.bookease.app.ui.components.ServiceRow
@@ -49,7 +51,7 @@ fun ExploreScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Services",
+                    text = stringResource(R.string.explore_title),
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontSize = 26.sp,
                         fontWeight = FontWeight.ExtraBold
@@ -66,7 +68,7 @@ fun ExploreScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Tune,
-                        contentDescription = "Filter",
+                        contentDescription = stringResource(R.string.explore_filter_content_desc),
                         tint = BeColor.ink700,
                         modifier = Modifier.size(19.dp)
                     )
@@ -74,6 +76,7 @@ fun ExploreScreen(
             }
 
             // Search bar
+            val searchPlaceholder = stringResource(R.string.explore_search_placeholder)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,7 +107,7 @@ fun ExploreScreen(
                         Box {
                             if (vm.searchText.isEmpty()) {
                                 Text(
-                                    text = "Search",
+                                    text = searchPlaceholder,
                                     style = MaterialTheme.typography.bodyMedium.copy(
                                         color = BeColor.ink300,
                                         fontSize = 14.5.sp
@@ -172,11 +175,11 @@ private fun EmptyState(modifier: Modifier = Modifier) {
         )
         Spacer(Modifier.height(BeSp.md))
         Text(
-            text = "No services found",
+            text = stringResource(R.string.explore_empty_title),
             style = MaterialTheme.typography.headlineSmall.copy(color = BeColor.ink500)
         )
         Text(
-            text = "Try a different search or filter",
+            text = stringResource(R.string.explore_empty_message),
             style = MaterialTheme.typography.bodyMedium
         )
     }

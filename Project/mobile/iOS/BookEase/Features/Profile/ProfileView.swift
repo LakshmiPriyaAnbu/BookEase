@@ -8,7 +8,7 @@ struct ProfileView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 // Title
-                Text("Profile")
+                Text(AppStrings.Profile.title)
                     .font(.jakarta(26, weight: .heavy))
                     .foregroundColor(.beInk800)
                     .padding(.horizontal, Spacing.lg)
@@ -77,7 +77,7 @@ struct ProfileView: View {
                     iconName: "calendar",
                     iconBg: Color.bePrimarySoft,
                     iconColor: Color.bePrimary,
-                    title: "My bookings"
+                    title: AppStrings.Profile.myBookings
                 )
             }
             .buttonStyle(.plain)
@@ -88,7 +88,7 @@ struct ProfileView: View {
                 iconName: "creditcard.fill",
                 iconBg: Color.beInfoBg,
                 iconColor: Color.beInfo,
-                title: "Payment methods"
+                title: AppStrings.Profile.paymentMethods
             )
 
             Divider().background(Color(hex: "F4F4F6"))
@@ -132,7 +132,7 @@ struct ProfileView: View {
                 .background(Color.beWarningBg)
                 .clipShape(RoundedRectangle(cornerRadius: 9))
 
-            Text("Notifications")
+            Text(AppStrings.Profile.notifications)
                 .font(.jakarta(15, weight: .semibold))
                 .foregroundColor(.beInk700)
 
@@ -150,7 +150,7 @@ struct ProfileView: View {
 
     private var logOutButton: some View {
         Button {} label: {
-            Text("Log out")
+            Text(AppStrings.Profile.logOut)
                 .font(.jakarta(15, weight: .bold))
                 .foregroundColor(Color.beDanger)
                 .frame(maxWidth: .infinity)

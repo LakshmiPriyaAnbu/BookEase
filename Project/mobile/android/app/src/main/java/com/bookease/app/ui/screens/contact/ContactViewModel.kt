@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bookease.app.core.constants.AppStrings
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -48,21 +49,21 @@ class ContactViewModel : ViewModel() {
         var valid = true
 
         if (name.isBlank()) {
-            nameError = "Name is required"
+            nameError = AppStrings.Errors.CONTACT_NAME_REQUIRED
             valid = false
         } else {
             nameError = null
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailError = "Enter a valid email address"
+            emailError = AppStrings.Errors.CONTACT_INVALID_EMAIL
             valid = false
         } else {
             emailError = null
         }
 
         if (message.length < 10) {
-            messageError = "Message must be at least 10 characters"
+            messageError = AppStrings.Errors.CONTACT_MESSAGE_TOO_SHORT
             valid = false
         } else {
             messageError = null

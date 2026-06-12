@@ -28,10 +28,10 @@ struct PricingView: View {
 
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text("Pricing")
+            Text(AppStrings.Pricing.title)
                 .font(.jakarta(26, weight: .heavy))
                 .foregroundColor(.beInk800)
-            Text("Start free or save with a plan.")
+            Text(AppStrings.Pricing.subtitle)
                 .font(.jakarta(13.5, weight: .medium))
                 .foregroundColor(.beMuted500)
         }
@@ -41,10 +41,10 @@ struct PricingView: View {
 
     private var billingToggle: some View {
         HStack(spacing: 4) {
-            toggleTab(title: "Monthly", isActive: !isYearly) {
+            toggleTab(title: AppStrings.Pricing.monthly, isActive: !isYearly) {
                 isYearly = false
             }
-            toggleTab(title: "Yearly · -20%", isActive: isYearly) {
+            toggleTab(title: AppStrings.Pricing.yearlyWithDiscount, isActive: isYearly) {
                 isYearly = true
             }
         }
@@ -88,27 +88,31 @@ struct PricingView: View {
 private struct StarterPlanCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Starter")
+            Text(AppStrings.Pricing.starterPlanName)
                 .font(.jakarta(14, weight: .bold))
                 .foregroundColor(.beMuted500)
                 .padding(.bottom, Spacing.sm)
 
-            Text("$0")
+            Text(AppStrings.Pricing.starterPlanPrice)
                 .font(.jakarta(34, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .tracking(-0.02 * 34)
 
-            Text("Pay per session")
+            Text(AppStrings.Pricing.starterPlanBillingCycle)
                 .font(.jakarta(12.5, weight: .medium))
                 .foregroundColor(.beMuted500)
                 .padding(.top, 2)
                 .padding(.bottom, Spacing.base)
 
-            PlanFeatureList(features: ["Book any service", "Reminders & calendar sync", "In-app payments"])
-                .padding(.bottom, Spacing.base)
+            PlanFeatureList(features: [
+                AppStrings.Pricing.starterFeature1,
+                AppStrings.Pricing.starterFeature2,
+                AppStrings.Pricing.starterFeature3
+            ])
+            .padding(.bottom, Spacing.base)
 
             Button {} label: {
-                Text("Get started")
+                Text(AppStrings.Pricing.starterCTAButton)
                     .font(.jakarta(14.5, weight: .bold))
                     .foregroundColor(.beInk800)
                     .frame(maxWidth: .infinity)
@@ -116,7 +120,7 @@ private struct StarterPlanCard: View {
                     .background(Color.beSurface200)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
-            .accessibilityLabel("Get started with Starter plan")
+            .accessibilityLabel(AppStrings.Pricing.starterCTAAccessibilityLabel)
         }
         .padding(22)
         .background(Color.white)
@@ -132,37 +136,37 @@ private struct ProPlanCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Pro")
+            Text(AppStrings.Pricing.proPlanName)
                 .font(.jakarta(14, weight: .bold))
                 .foregroundColor(.bePrimary)
                 .padding(.bottom, Spacing.sm)
 
             HStack(alignment: .lastTextBaseline, spacing: 3) {
-                Text(isYearly ? "$39" : "$49")
+                Text(isYearly ? AppStrings.Pricing.proPlanPricingYearly : AppStrings.Pricing.proPlanPricingMonthly)
                     .font(.jakarta(34, weight: .heavy))
                     .foregroundColor(.beInk800)
                     .tracking(-0.02 * 34)
-                Text("/mo")
+                Text(AppStrings.Pricing.proPlanPerMonth)
                     .font(.jakarta(15, weight: .medium))
                     .foregroundColor(.beMuted500)
             }
 
-            Text("8 sessions / month")
+            Text(AppStrings.Pricing.proPlanBillingCycle)
                 .font(.jakarta(12.5, weight: .medium))
                 .foregroundColor(.beMuted500)
                 .padding(.top, 2)
                 .padding(.bottom, Spacing.base)
 
             PlanFeatureList(features: [
-                "Everything in Starter",
-                "Priority slots",
-                "Free rescheduling",
-                "Progress tracking"
+                AppStrings.Pricing.proFeature1,
+                AppStrings.Pricing.proFeature2,
+                AppStrings.Pricing.proFeature3,
+                AppStrings.Pricing.proFeature4
             ])
             .padding(.bottom, Spacing.base)
 
             Button {} label: {
-                Text("Choose Pro")
+                Text(AppStrings.Pricing.proCTAButton)
                     .font(.jakarta(14.5, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -171,7 +175,7 @@ private struct ProPlanCard: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .beShadowBtn()
             }
-            .accessibilityLabel("Choose Pro plan, \(isYearly ? "$39" : "$49") per month")
+            .accessibilityLabel("\(AppStrings.Pricing.proCTAButton) plan, \(isYearly ? AppStrings.Pricing.proPlanPricingYearly : AppStrings.Pricing.proPlanPricingMonthly) per month")
         }
         .padding(.horizontal, 22)
         .padding(.top, 34)
@@ -181,7 +185,7 @@ private struct ProPlanCard: View {
         .overlay(RoundedRectangle(cornerRadius: Radius.xl).stroke(Color.bePrimary, lineWidth: 2))
         .shadow(color: Color.bePrimary.opacity(0.16), radius: 16, x: 0, y: 14)
         .overlay(alignment: .topLeading) {
-            Text("MOST POPULAR")
+            Text(AppStrings.Pricing.mostPopularBadge)
                 .font(.jakarta(11, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 11)
@@ -200,36 +204,36 @@ private struct ElitePlanCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Elite")
+            Text(AppStrings.Pricing.elitePlanName)
                 .font(.jakarta(14, weight: .bold))
                 .foregroundColor(.beMuted500)
                 .padding(.bottom, Spacing.sm)
 
             HStack(alignment: .lastTextBaseline, spacing: 3) {
-                Text(isYearly ? "$79" : "$99")
+                Text(isYearly ? AppStrings.Pricing.elitePlanPricingYearly : AppStrings.Pricing.elitePlanPricingMonthly)
                     .font(.jakarta(34, weight: .heavy))
                     .foregroundColor(.beInk800)
                     .tracking(-0.02 * 34)
-                Text("/mo")
+                Text(AppStrings.Pricing.proPlanPerMonth)
                     .font(.jakarta(15, weight: .medium))
                     .foregroundColor(.beMuted500)
             }
 
-            Text("Unlimited sessions")
+            Text(AppStrings.Pricing.elitePlanBillingCycle)
                 .font(.jakarta(12.5, weight: .medium))
                 .foregroundColor(.beMuted500)
                 .padding(.top, 2)
                 .padding(.bottom, Spacing.base)
 
             PlanFeatureList(features: [
-                "Everything in Pro",
-                "Dedicated coach",
-                "Custom nutrition plan"
+                AppStrings.Pricing.eliteFeature1,
+                AppStrings.Pricing.eliteFeature2,
+                AppStrings.Pricing.eliteFeature3
             ])
             .padding(.bottom, Spacing.base)
 
             Button {} label: {
-                Text("Choose Elite")
+                Text(AppStrings.Pricing.eliteCTAButton)
                     .font(.jakarta(14.5, weight: .bold))
                     .foregroundColor(.beInk800)
                     .frame(maxWidth: .infinity)
@@ -237,7 +241,7 @@ private struct ElitePlanCard: View {
                     .background(Color.beSurface200)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
-            .accessibilityLabel("Choose Elite plan, \(isYearly ? "$79" : "$99") per month")
+            .accessibilityLabel("\(AppStrings.Pricing.eliteCTAButton) plan, \(isYearly ? AppStrings.Pricing.elitePlanPricingYearly : AppStrings.Pricing.elitePlanPricingMonthly) per month")
         }
         .padding(22)
         .background(Color.white)

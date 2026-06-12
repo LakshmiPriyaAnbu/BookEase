@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { APP_STRINGS } from '../../core/constants';
 
 @Component({
   selector: 'be-admin-layout',
@@ -11,25 +12,25 @@ import { RouterModule } from '@angular/router';
       <aside class="sidebar">
         <div class="sidebar__brand">
           <span>⚡</span>
-          <span class="sidebar__name">BookEase</span>
-          <span class="sidebar__tag">Admin</span>
+          <span class="sidebar__name">{{ appStrings.BRAND.NAME }}</span>
+          <span class="sidebar__tag">{{ appStrings.ADMIN.SIDEBAR_TAG }}</span>
         </div>
 
         <nav class="sidebar__nav">
           <a routerLink="/admin/dashboard" routerLinkActive="nav-item--active" class="nav-item">
-            <span>📊</span> Dashboard
+            <span>📊</span> {{ appStrings.ADMIN.NAV_DASHBOARD }}
           </a>
           <a routerLink="/admin/bookings" routerLinkActive="nav-item--active" class="nav-item">
-            <span>📅</span> Bookings
+            <span>📅</span> {{ appStrings.ADMIN.NAV_BOOKINGS }}
           </a>
           <a routerLink="/admin/services" routerLinkActive="nav-item--active" class="nav-item">
-            <span>🏋️</span> Services
+            <span>🏋️</span> {{ appStrings.ADMIN.NAV_SERVICES }}
           </a>
         </nav>
 
         <div class="sidebar__footer">
           <a routerLink="/" class="nav-item">
-            <span>🌐</span> View site
+            <span>🌐</span> {{ appStrings.NAV.VIEW_SITE }}
           </a>
         </div>
       </aside>
@@ -70,4 +71,6 @@ import { RouterModule } from '@angular/router';
     .main { flex: 1; background: $surface-100; overflow-y: auto; }
   `],
 })
-export class AdminLayoutComponent {}
+export class AdminLayoutComponent {
+  readonly appStrings = APP_STRINGS;
+}

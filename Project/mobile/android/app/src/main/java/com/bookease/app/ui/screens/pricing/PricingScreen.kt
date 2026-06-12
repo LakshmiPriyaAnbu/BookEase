@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bookease.app.R
 import com.bookease.app.ui.theme.*
 
 @Composable
@@ -40,7 +42,7 @@ fun PricingScreen(
         // ── Title block ──────────────────────────────────────────────────────
         item {
             Text(
-                text  = "Pricing",
+                text  = stringResource(R.string.pricing_title),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontSize   = 26.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -48,7 +50,7 @@ fun PricingScreen(
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(
-                text  = "Start free or save with a plan.",
+                text  = stringResource(R.string.pricing_subtitle),
                 style = MaterialTheme.typography.bodySmall.copy(
                     color      = BeColor.ink300,
                     fontSize   = 13.5.sp,
@@ -99,13 +101,13 @@ private fun BillingToggle(
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         BillingTab(
-            label    = "Monthly",
+            label    = stringResource(R.string.pricing_billing_monthly),
             selected = billingCycle == BillingCycle.MONTHLY,
             onClick  = { if (billingCycle != BillingCycle.MONTHLY) onToggle() },
             modifier = Modifier.weight(1f)
         )
         BillingTab(
-            label    = "Yearly  (save 20%)",
+            label    = stringResource(R.string.pricing_billing_yearly),
             selected = billingCycle == BillingCycle.YEARLY,
             onClick  = { if (billingCycle != BillingCycle.YEARLY) onToggle() },
             modifier = Modifier.weight(1f)
@@ -153,15 +155,18 @@ private fun BillingTab(
 
 @Composable
 private fun StarterPlanCard() {
+    val ctaContentDesc = stringResource(R.string.pricing_cta_starter_content_desc)
+    val getStartedLabel = stringResource(R.string.common_get_started)
+
     PlanCard(
-        name        = "Starter",
+        name        = stringResource(R.string.pricing_plan_starter),
         nameColor   = BeColor.ink300,
-        price       = "$0",
-        billingNote = "Pay per session",
+        price       = stringResource(R.string.pricing_starter_price),
+        billingNote = stringResource(R.string.pricing_starter_billing_note),
         features    = listOf(
-            "Book any service",
-            "Reminders & calendar sync",
-            "In-app payments"
+            stringResource(R.string.pricing_starter_feature_1),
+            stringResource(R.string.pricing_starter_feature_2),
+            stringResource(R.string.pricing_starter_feature_3)
         ),
         borderColor = BeColor.border,
         borderWidth = 1.dp,
@@ -171,7 +176,7 @@ private fun StarterPlanCard() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .semantics { contentDescription = "Get started with Starter plan" },
+                    .semantics { contentDescription = ctaContentDesc },
                 shape    = RoundedCornerShape(12.dp),
                 colors   = ButtonDefaults.buttonColors(
                     containerColor = BeColor.surface200,
@@ -180,7 +185,7 @@ private fun StarterPlanCard() {
                 elevation = ButtonDefaults.buttonElevation(0.dp)
             ) {
                 Text(
-                    text  = "Get started",
+                    text  = getStartedLabel,
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontSize   = 14.5.sp,
                         fontWeight = FontWeight.Bold,
@@ -196,19 +201,22 @@ private fun StarterPlanCard() {
 
 @Composable
 private fun ProPlanCard(billingCycle: BillingCycle) {
-    val price = if (billingCycle == BillingCycle.MONTHLY) "$49/mo" else "$39/mo"
+    val price = if (billingCycle == BillingCycle.MONTHLY) "₹49/mo" else "₹39/mo"
+    val ctaContentDesc = stringResource(R.string.pricing_cta_pro_content_desc)
+    val getStartedLabel = stringResource(R.string.common_get_started)
+    val mostPopularLabel = stringResource(R.string.pricing_most_popular)
 
     Box {
         PlanCard(
-            name        = "Pro",
+            name        = stringResource(R.string.pricing_plan_pro),
             nameColor   = BeColor.primary,
             price       = price,
-            billingNote = "8 sessions / month",
+            billingNote = stringResource(R.string.pricing_pro_billing_note),
             features    = listOf(
-                "Everything in Starter",
-                "Priority slots",
-                "Free rescheduling",
-                "Progress tracking"
+                stringResource(R.string.pricing_pro_feature_1),
+                stringResource(R.string.pricing_pro_feature_2),
+                stringResource(R.string.pricing_pro_feature_3),
+                stringResource(R.string.pricing_pro_feature_4)
             ),
             borderColor = BeColor.primary,
             borderWidth = 2.dp,
@@ -225,7 +233,7 @@ private fun ProPlanCard(billingCycle: BillingCycle) {
                             ambientColor = BeColor.primary.copy(alpha = 0.3f),
                             spotColor    = BeColor.primary.copy(alpha = 0.3f)
                         )
-                        .semantics { contentDescription = "Get started with Pro plan" },
+                        .semantics { contentDescription = ctaContentDesc },
                     shape    = RoundedCornerShape(12.dp),
                     colors   = ButtonDefaults.buttonColors(
                         containerColor = BeColor.primary,
@@ -233,7 +241,7 @@ private fun ProPlanCard(billingCycle: BillingCycle) {
                     )
                 ) {
                     Text(
-                        text  = "Get started",
+                        text  = getStartedLabel,
                         style = MaterialTheme.typography.labelLarge.copy(
                             fontSize   = 14.5.sp,
                             fontWeight = FontWeight.Bold
@@ -253,7 +261,7 @@ private fun ProPlanCard(billingCycle: BillingCycle) {
                 .padding(horizontal = 11.dp, vertical = 5.dp)
         ) {
             Text(
-                text  = "MOST POPULAR",
+                text  = mostPopularLabel,
                 style = MaterialTheme.typography.labelSmall.copy(
                     color      = Color.White,
                     fontSize   = 11.sp,
@@ -269,17 +277,19 @@ private fun ProPlanCard(billingCycle: BillingCycle) {
 
 @Composable
 private fun ElitePlanCard(billingCycle: BillingCycle) {
-    val price = if (billingCycle == BillingCycle.MONTHLY) "$99/mo" else "$79/mo"
+    val price = if (billingCycle == BillingCycle.MONTHLY) "₹99/mo" else "₹79/mo"
+    val ctaContentDesc = stringResource(R.string.pricing_cta_elite_content_desc)
+    val getStartedLabel = stringResource(R.string.common_get_started)
 
     PlanCard(
-        name        = "Elite",
+        name        = stringResource(R.string.pricing_plan_elite),
         nameColor   = BeColor.ink300,
         price       = price,
-        billingNote = "Unlimited sessions",
+        billingNote = stringResource(R.string.pricing_elite_billing_note),
         features    = listOf(
-            "Everything in Pro",
-            "Dedicated coach",
-            "Custom nutrition plan"
+            stringResource(R.string.pricing_elite_feature_1),
+            stringResource(R.string.pricing_elite_feature_2),
+            stringResource(R.string.pricing_elite_feature_3)
         ),
         borderColor = BeColor.border,
         borderWidth = 1.dp,
@@ -289,7 +299,7 @@ private fun ElitePlanCard(billingCycle: BillingCycle) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .semantics { contentDescription = "Get started with Elite plan" },
+                    .semantics { contentDescription = ctaContentDesc },
                 shape    = RoundedCornerShape(12.dp),
                 colors   = ButtonDefaults.buttonColors(
                     containerColor = BeColor.surface200,
@@ -298,7 +308,7 @@ private fun ElitePlanCard(billingCycle: BillingCycle) {
                 elevation = ButtonDefaults.buttonElevation(0.dp)
             ) {
                 Text(
-                    text  = "Get started",
+                    text  = getStartedLabel,
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontSize   = 14.5.sp,
                         fontWeight = FontWeight.Bold,

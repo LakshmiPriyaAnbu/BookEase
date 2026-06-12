@@ -18,9 +18,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.data.models.TimeSlot
 import com.bookease.app.ui.components.PrimaryButton
 import com.bookease.app.ui.components.ServiceThumbnail
@@ -59,7 +61,7 @@ fun ServiceDetailScreen(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.detail_back_content_desc),
                             tint = BeColor.ink700,
                             modifier = Modifier.size(18.dp)
                         )
@@ -150,7 +152,7 @@ fun ServiceDetailScreen(
             if (service.included.isNotEmpty()) {
                 item {
                     Text(
-                        text = "What's included",
+                        text = stringResource(R.string.detail_whats_included),
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.ExtraBold,
                             fontSize = 15.sp
@@ -165,7 +167,7 @@ fun ServiceDetailScreen(
                             .padding(bottom = BeSp.lg),
                         verticalArrangement = Arrangement.spacedBy(11.dp)
                     ) {
-                        service.included.forEach { item ->
+                        service.included.forEach { includedItem ->
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -185,7 +187,7 @@ fun ServiceDetailScreen(
                                     )
                                 }
                                 Text(
-                                    text = item,
+                                    text = includedItem,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp)
                                 )
                             }
@@ -197,7 +199,7 @@ fun ServiceDetailScreen(
             // Available today
             item {
                 Text(
-                    text = "Available today",
+                    text = stringResource(R.string.detail_available_today),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 15.sp
@@ -260,7 +262,7 @@ fun ServiceDetailScreen(
             ) {
                 Column {
                     Text(
-                        text = "Total",
+                        text = stringResource(R.string.detail_total_label),
                         style = MaterialTheme.typography.labelSmall.copy(
                             color = BeColor.ink300,
                             fontSize = 11.5.sp
@@ -275,7 +277,7 @@ fun ServiceDetailScreen(
                     )
                 }
                 PrimaryButton(
-                    text = "Book Now",
+                    text = stringResource(R.string.common_book_now),
                     onClick = onBookNow,
                     enabled = vm.canProceed,
                     modifier = Modifier.weight(1f)

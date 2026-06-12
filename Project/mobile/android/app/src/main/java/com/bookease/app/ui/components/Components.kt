@@ -22,11 +22,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookease.app.R
 import com.bookease.app.data.models.*
 import com.bookease.app.ui.theme.*
 
@@ -384,7 +386,7 @@ fun ServiceRow(
                         .padding(horizontal = 14.dp, vertical = 7.dp)
                 ) {
                     Text(
-                        text = "Book",
+                        text = stringResource(R.string.common_book),
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = BeColor.primaryDark,
                             fontSize = 12.5.sp,

@@ -30,18 +30,18 @@ struct HowItWorksView: View {
 
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("HOW IT WORKS")
+            Text(AppStrings.HowItWorks.eyebrow)
                 .font(.jakarta(12, weight: .heavy))
                 .foregroundColor(.bePrimary)
                 .tracking(1.2)
                 .padding(.bottom, 6)
 
-            Text("Booked in three steps")
+            Text(AppStrings.HowItWorks.title)
                 .font(.jakarta(26, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .lineSpacing(26 * 0.1)
 
-            Text("From browsing to a confirmed session in under a minute — no calls, no waiting.")
+            Text(AppStrings.HowItWorks.subtitle)
                 .font(.jakarta(14, weight: .medium))
                 .foregroundColor(.beMuted500)
                 .lineSpacing(14 * 0.55)
@@ -66,7 +66,7 @@ struct HowItWorksView: View {
             Divider()
                 .background(Color.beBorder100)
             Button {} label: {
-                Text("Get started")
+                Text(AppStrings.HowItWorks.getStartedButton)
                     .font(.jakarta(15.5, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -75,7 +75,7 @@ struct HowItWorksView: View {
                     .clipShape(RoundedRectangle(cornerRadius: Radius.lg))
                     .beShadowBtn()
             }
-            .accessibilityLabel("Get started")
+            .accessibilityLabel(AppStrings.HowItWorks.getStartedButton)
             .padding(.horizontal, Spacing.lg)
             .padding(.top, 14)
             .padding(.bottom, 30)
@@ -134,21 +134,21 @@ private struct HowItWorksStep: Identifiable {
     static let allSteps: [HowItWorksStep] = [
         HowItWorksStep(
             id: 1,
-            number: "1",
-            title: "Choose a service",
-            description: "Browse coaches and programs, filter by goal and schedule. Every coach is verified and reviewed."
+            number: AppStrings.HowItWorks.step1Number,
+            title: AppStrings.HowItWorks.step1Title,
+            description: AppStrings.HowItWorks.step1Description
         ),
         HowItWorksStep(
             id: 2,
-            number: "2",
-            title: "Pick a time slot",
-            description: "See live availability and lock the slot that fits your week. Reschedule free up to 12 hours before."
+            number: AppStrings.HowItWorks.step2Number,
+            title: AppStrings.HowItWorks.step2Title,
+            description: AppStrings.HowItWorks.step2Description
         ),
         HowItWorksStep(
             id: 3,
-            number: "3",
-            title: "Confirm & go",
-            description: "Pay securely in-app and get instant confirmation plus a calendar invite. Just show up and train."
+            number: AppStrings.HowItWorks.step3Number,
+            title: AppStrings.HowItWorks.step3Title,
+            description: AppStrings.HowItWorks.step3Description
         )
     ]
 }

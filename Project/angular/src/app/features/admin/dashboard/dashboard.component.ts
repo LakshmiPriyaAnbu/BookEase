@@ -6,6 +6,7 @@ import { StatusBadgeComponent } from '../../../shared/components/status-badge/st
 import { BookingsService } from '../../../core/services/bookings.service';
 import { Booking, WeeklyAnalytic, MOCK_WEEKLY_ANALYTICS } from '../../../shared/models/models';
 import { MoneyPipe } from '../../../shared/pipes/money.pipe';
+import { APP_STRINGS } from '../../../core/constants';
 
 @Component({
   selector: 'be-dashboard',
@@ -16,18 +17,18 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
       <!-- Topbar -->
       <div class="topbar">
         <div>
-          <h1 class="topbar__title">Dashboard</h1>
+          <h1 class="topbar__title">{{ appStrings.ADMIN.DASHBOARD_TITLE }}</h1>
           <p class="topbar__sub">{{ today | date:'EEEE, MMMM d, y' }}</p>
         </div>
-        <a routerLink="/book" class="topbar__cta">+ New booking</a>
+        <a routerLink="/book" class="topbar__cta">{{ appStrings.ADMIN.NEW_BOOKING_CTA }}</a>
       </div>
 
       <!-- KPI cards -->
       <div class="kpi-grid">
-        <be-stat-card icon="📅" label="Total bookings"   [value]="stats.totalBookings.toString()"                    iconBg="#EEEBFD" />
-        <be-stat-card icon="💰" label="Revenue"          [value]="stats.totalRevenueCents | money"                   iconBg="#E7F8EE" />
-        <be-stat-card icon="👥" label="Customers"        [value]="stats.totalCustomers.toString()"                   iconBg="#EAEFFC" />
-        <be-stat-card icon="🏋️" label="Active services"  [value]="stats.activeServices.toString()"                   iconBg="#FEF3D9" />
+        <be-stat-card icon="📅" [label]="S.ADMIN.KPI_TOTAL_BOOKINGS"  [value]="stats.totalBookings.toString()"       iconBg="#EEEBFD" />
+        <be-stat-card icon="💰" [label]="S.ADMIN.KPI_REVENUE"        [value]="stats.totalRevenueCents | money"       iconBg="#E7F8EE" />
+        <be-stat-card icon="👥" [label]="S.ADMIN.KPI_CUSTOMERS"      [value]="stats.totalCustomers.toString()"       iconBg="#EAEFFC" />
+        <be-stat-card icon="🏋️" [label]="S.ADMIN.KPI_ACTIVE_SERVICES" [value]="stats.activeServices.toString()"     iconBg="#FEF3D9" />
       </div>
 
       <!-- Recent bookings + chart -->
@@ -35,13 +36,13 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
         <!-- Recent bookings table -->
         <div class="card table-card">
           <div class="card-header">
-            <h3 class="card-header__title">Recent bookings</h3>
-            <a routerLink="/admin/bookings" class="card-header__link">View all →</a>
+            <h3 class="card-header__title">{{ appStrings.ADMIN.RECENT_BOOKINGS_TITLE }}</h3>
+            <a routerLink="/admin/bookings" class="card-header__link">{{ appStrings.ADMIN.RECENT_BOOKINGS_LINK }}</a>
           </div>
           <table class="table">
             <thead>
               <tr>
-                <th>Ref</th><th>Customer</th><th>Service</th><th>Date</th><th>Amount</th><th>Status</th>
+                <th>{{ appStrings.ADMIN.TABLE_COL_REF }}</th><th>{{ appStrings.ADMIN.TABLE_COL_CUSTOMER }}</th><th>{{ appStrings.ADMIN.TABLE_COL_SERVICE }}</th><th>{{ appStrings.ADMIN.TABLE_COL_DATE }}</th><th>{{ appStrings.ADMIN.TABLE_COL_AMOUNT }}</th><th>{{ appStrings.ADMIN.TABLE_COL_STATUS }}</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +61,7 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
         <!-- Bar chart -->
         <div class="card chart-card">
           <div class="card-header">
-            <h3 class="card-header__title">Weekly bookings</h3>
+            <h3 class="card-header__title">{{ appStrings.ADMIN.WEEKLY_BOOKINGS_TITLE }}</h3>
           </div>
           <div class="chart">
             <div *ngFor="let d of analytics" class="chart__col">
@@ -121,6 +122,7 @@ import { MoneyPipe } from '../../../shared/pipes/money.pipe';
   `],
 })
 export class DashboardComponent implements OnInit {
+  readonly appStrings = APP_STRINGS;
   stats = { totalBookings: 0, totalRevenueCents: 0, totalCustomers: 0, activeServices: 0 };
   recentBookings: Booking[] = [];
   analytics: WeeklyAnalytic[] = MOCK_WEEKLY_ANALYTICS;

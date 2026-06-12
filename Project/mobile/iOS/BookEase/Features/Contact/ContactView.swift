@@ -44,10 +44,10 @@ struct ContactView: View {
 
     private var headerSection: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text("Contact")
+            Text(AppStrings.Contact.title)
                 .font(.jakarta(26, weight: .heavy))
                 .foregroundColor(.beInk800)
-            Text("We reply within a day.")
+            Text(AppStrings.Contact.subtitle)
                 .font(.jakarta(13.5, weight: .medium))
                 .foregroundColor(.beMuted500)
         }
@@ -61,22 +61,22 @@ struct ContactView: View {
                 iconName: "envelope",
                 iconBgColor: .bePrimarySoft,
                 iconFgColor: .bePrimary,
-                label: "Email",
-                value: "hello@bookease.app"
+                label: AppStrings.Contact.emailInfoLabel,
+                value: AppStrings.Contact.emailInfoValue
             )
             ContactInfoCard(
                 iconName: "phone",
                 iconBgColor: .beSuccessBg,
                 iconFgColor: .beSuccess,
-                label: "Phone",
-                value: "+1 (415) 555-0100"
+                label: AppStrings.Contact.phoneInfoLabel,
+                value: AppStrings.Contact.phoneInfoValue
             )
             ContactInfoCard(
                 iconName: "mappin",
                 iconBgColor: .beInfoBg,
                 iconFgColor: .beInfo,
-                label: "Studio",
-                value: "540 Market St, SF"
+                label: AppStrings.Contact.studioInfoLabel,
+                value: AppStrings.Contact.studioInfoValue
             )
         }
     }
@@ -85,7 +85,7 @@ struct ContactView: View {
 
     private var formSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Send a message")
+            Text(AppStrings.Contact.sendMessageTitle)
                 .font(.jakarta(16, weight: .heavy))
                 .foregroundColor(.beInk800)
                 .padding(.bottom, Spacing.md)
@@ -93,7 +93,7 @@ struct ContactView: View {
             VStack(spacing: 10) {
                 // Name field
                 VStack(alignment: .leading, spacing: 4) {
-                    TextField("Jordan Hayes", text: $name)
+                    TextField(AppStrings.Contact.namePlaceholder, text: $name)
                         .font(.jakarta(14.5, weight: .medium))
                         .foregroundColor(.beInk700)
                         .frame(height: 46)
@@ -104,7 +104,7 @@ struct ContactView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(nameError != nil ? Color.beDanger : Color.beBorder100, lineWidth: 1)
                         )
-                        .accessibilityLabel("Name")
+                        .accessibilityLabel(AppStrings.Contact.nameAccessibilityLabel)
                         .onChange(of: name) { _, _ in
                             if nameError != nil { nameError = nil }
                         }
@@ -116,7 +116,7 @@ struct ContactView: View {
 
                 // Email field
                 VStack(alignment: .leading, spacing: 4) {
-                    TextField("jordan@email.com", text: $email)
+                    TextField(AppStrings.Contact.emailPlaceholder, text: $email)
                         .font(.jakarta(14.5, weight: .medium))
                         .foregroundColor(.beInk700)
                         .keyboardType(.emailAddress)
@@ -129,7 +129,7 @@ struct ContactView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(emailError != nil ? Color.beDanger : Color.beBorder100, lineWidth: 1)
                         )
-                        .accessibilityLabel("Email")
+                        .accessibilityLabel(AppStrings.Contact.emailAccessibilityLabel)
                         .onChange(of: email) { _, _ in
                             if emailError != nil { emailError = nil }
                         }
@@ -154,7 +154,7 @@ struct ContactView: View {
     private var messageEditor: some View {
         ZStack(alignment: .topLeading) {
             if message.isEmpty {
-                Text("Your message…")
+                Text(AppStrings.Contact.messagePlaceholder)
                     .font(.jakarta(14.5, weight: .medium))
                     .foregroundColor(.beMuted500)
                     .padding(.top, 12)
@@ -166,7 +166,7 @@ struct ContactView: View {
                 .foregroundColor(.beInk700)
                 .frame(minHeight: 96)
                 .scrollContentBackground(.hidden)
-                .accessibilityLabel("Message")
+                .accessibilityLabel(AppStrings.Contact.messageAccessibilityLabel)
                 .onChange(of: message) { _, _ in
                     if messageError != nil { messageError = nil }
                 }
@@ -189,7 +189,7 @@ struct ContactView: View {
             Button {
                 submitForm()
             } label: {
-                Text("Send message")
+                Text(AppStrings.Contact.sendMessageButton)
                     .font(.jakarta(15.5, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -198,7 +198,7 @@ struct ContactView: View {
                     .clipShape(RoundedRectangle(cornerRadius: Radius.lg))
                     .beShadowBtn()
             }
-            .accessibilityLabel("Send message")
+            .accessibilityLabel(AppStrings.Contact.sendMessageButton)
             .padding(.horizontal, Spacing.lg)
             .padding(.top, 14)
             .padding(.bottom, 30)
@@ -213,7 +213,7 @@ struct ContactView: View {
 
         let trimmedName = name.trimmingCharacters(in: .whitespaces)
         if trimmedName.isEmpty {
-            nameError = "Name is required"
+            nameError = AppStrings.Contact.errorNameRequired
             hasErrors = true
         } else {
             nameError = nil
@@ -221,25 +221,25 @@ struct ContactView: View {
 
         let trimmedEmail = email.trimmingCharacters(in: .whitespaces)
         if trimmedEmail.isEmpty || !trimmedEmail.contains("@") || !trimmedEmail.contains(".") {
-            emailError = "Enter a valid email address"
+            emailError = AppStrings.Contact.errorInvalidEmail
             hasErrors = true
         } else {
             emailError = nil
         }
 
         if message.count < 10 {
-            messageError = "Message must be at least 10 characters"
+            messageError = AppStrings.Contact.errorMessageTooShort
             hasErrors = true
         } else {
             messageError = nil
         }
 
         if hasErrors {
-            toastManager.show("Please fill in all required fields.", type: .error)
+            toastManager.show(AppStrings.Contact.toastFillFields, type: .error)
             return
         }
 
-        toastManager.show("Message sent! We'll reply within a day.", type: .success)
+        toastManager.show(AppStrings.Contact.toastSuccess, type: .success)
         name = ""
         email = ""
         message = ""
