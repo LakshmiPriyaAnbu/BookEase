@@ -90,6 +90,7 @@ import { APP_STRINGS } from '../../core/constants';
 })
 export class ServicesListComponent implements OnInit {
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
   private svc = inject(ServicesService);
   private toastService = inject(ToastService);
   all: Service[] = [];

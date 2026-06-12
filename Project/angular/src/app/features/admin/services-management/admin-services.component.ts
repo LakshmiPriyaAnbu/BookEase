@@ -176,6 +176,7 @@ import { APP_STRINGS } from '../../../core/constants';
 })
 export class AdminServicesComponent implements OnInit {
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
   services: Service[] = [];
   categories: Category[] = MOCK_CATEGORIES;
   showForm = false;

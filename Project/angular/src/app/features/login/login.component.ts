@@ -226,6 +226,7 @@ import { APP_STRINGS } from '../../core/constants';
 })
 export class LoginComponent {
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
 
   private fb = inject(FormBuilder);
   private router = inject(Router);

@@ -123,6 +123,7 @@ import { APP_STRINGS } from '../../../core/constants';
 })
 export class DashboardComponent implements OnInit {
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
   stats = { totalBookings: 0, totalRevenueCents: 0, totalCustomers: 0, activeServices: 0 };
   recentBookings: Booking[] = [];
   analytics: WeeklyAnalytic[] = MOCK_WEEKLY_ANALYTICS;

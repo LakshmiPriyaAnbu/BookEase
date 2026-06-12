@@ -137,6 +137,7 @@ import { APP_STRINGS } from '../../../core/constants';
 })
 export class AdminBookingsComponent implements OnInit {
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
   all: Booking[] = [];
   filtered: Booking[] = [];
   search = '';

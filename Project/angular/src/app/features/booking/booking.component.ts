@@ -26,6 +26,7 @@ export class BookingComponent implements OnInit {
   form = { fullName: '', phone: '', email: '', notes: '' };
 
   readonly appStrings = APP_STRINGS;
+  protected readonly S = APP_STRINGS;
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
